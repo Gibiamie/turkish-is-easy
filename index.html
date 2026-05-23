@@ -1,245 +1,620 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Turkish Meaning Builder</title>
-<style>
-:root{
-  --bg:#eef4ff; --surface:#ffffff; --surface2:#f8fafc; --ink:#0f172a; --muted:#64748b;
-  --line:#dbe3ef; --primary:#2563eb; --primaryDark:#1e40af; --success:#16a34a;
-  --danger:#dc2626; --warning:#f59e0b; --purple:#7c3aed; --chip:#eff6ff;
-  --radius:20px; --shadow:0 12px 30px rgba(15,23,42,.08);
-}
-*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-button,input{font-family:inherit}.app{max-width:520px;margin:0 auto;min-height:100vh;background:linear-gradient(180deg,#fff 0%,#f8fbff 100%);padding:14px 14px 24px}.hidden{display:none!important}
-.header{text-align:center;padding:10px 6px 8px}.brand-row{display:flex;align-items:center;justify-content:center;gap:10px}.logo{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,#2dd4bf,#2563eb);color:#fff;display:grid;place-items:center;font-size:23px;box-shadow:0 8px 18px rgba(37,99,235,.18)}
-h1{font-size:23px;margin:0;letter-spacing:-.03em}.subtitle{font-size:13px;color:var(--muted);line-height:1.35;margin-top:5px}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0;box-shadow:var(--shadow)}
-.prompt{font-size:20px;font-weight:900;text-align:center;margin:6px 0 12px;letter-spacing:-.02em}.small{font-size:13px;color:var(--muted);font-weight:700;line-height:1.45}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
-.btn{border:0;border-radius:14px;min-height:42px;padding:10px 12px;font-size:14px;font-weight:900;cursor:pointer;transition:.12s transform,.12s opacity,.12s background;display:inline-flex;align-items:center;justify-content:center;gap:7px;text-align:center}.btn:active{transform:scale(.985)}.btn:disabled{opacity:.45;cursor:not-allowed}.btn-primary{background:var(--primary);color:white}.btn-primary:hover{background:var(--primaryDark)}.btn-secondary{background:#eef2ff;color:#1e3a8a}.btn-ghost{background:#f1f5f9;color:#334155}.btn-success{background:#dcfce7;color:#166534}.btn-danger{background:#fee2e2;color:#991b1b}.btn-compact{min-height:36px;padding:8px 10px;font-size:13px;border-radius:12px}.btn-audio{background:#f8fafc;border:1px solid #cbd5e1;color:#1e3a8a;min-height:38px;font-size:13px}.btn-audio.playing{background:#dbeafe;border-color:#60a5fa}.btn-clear{background:#fff;border:1px solid #fecaca;color:#991b1b}
-.profile-card{border:1px solid var(--line);border-radius:18px;padding:14px;background:#f8fafc;text-align:left;min-height:105px}.profile-card strong{font-size:18px;display:block;margin-bottom:5px}.profile-card.bella{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white}.profile-card.ayza{background:linear-gradient(135deg,#dcfce7,#a7f3d0);color:#14532d}.mode-card{border:1px solid var(--line);border-radius:16px;padding:12px;margin:8px 0;background:#fff;cursor:pointer}.mode-card.active{border-color:#2563eb;background:#eff6ff}.mode-card strong{display:block;font-size:16px;margin-bottom:4px}
-.stat{background:#f8fafc;border-radius:16px;padding:10px;text-align:center;border:1px solid #edf2f7}.stat strong{font-size:18px}.stat small{display:block;color:var(--muted);font-weight:700;font-size:11px;margin-top:3px}.progress{height:8px;background:#e5e7eb;border-radius:99px;overflow:hidden}.progress>div{height:100%;width:0;background:linear-gradient(90deg,#22c55e,#2563eb);transition:width .25s}.path-card{border:1px solid #e2e8f0;border-radius:18px;padding:12px;margin:10px 0;background:#fff}.path-top{display:flex;align-items:center;gap:10px}.path-icon{width:42px;height:42px;border-radius:14px;background:#eff6ff;display:grid;place-items:center;font-size:22px;flex:0 0 42px}.path-title{font-size:17px;font-weight:950}.path-desc{font-size:12px;color:var(--muted);font-weight:700;margin-top:2px}.pill{display:inline-flex;align-items:center;gap:4px;border:1px solid #e2e8f0;border-radius:999px;padding:4px 8px;background:#f8fafc;color:#475569;font-size:11px;font-weight:900}.path-meta{display:flex;justify-content:space-between;align-items:center;margin:10px 0 8px}.lesson-nav{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}.lesson-title{text-align:center;font-size:18px;font-weight:950}.counter{text-align:center;color:var(--muted);font-size:12px;font-weight:800;margin:5px 0 8px}.lesson-progress-label{font-size:11px;font-weight:900;color:#475569;display:flex;justify-content:space-between;margin:0 1px 5px}.explain-card{background:linear-gradient(135deg,#eff6ff,#f8fafc);border:1px solid #bfdbfe;border-radius:18px;padding:12px;margin:10px 0}.explain-top{display:flex;align-items:center;gap:10px}.laya{width:62px;height:62px;object-fit:contain;flex:0 0 62px;filter:drop-shadow(0 8px 12px rgba(37,99,235,.18));animation:float 3.3s ease-in-out infinite;background:transparent!important}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}.explain-title{font-size:15px;font-weight:950}.explain-text{font-size:12px;color:#334155;font-weight:700;line-height:1.4;margin-top:4px}.more{margin-top:8px;border-top:1px dashed #cbd5e1;padding-top:8px;display:none}.more.open{display:block}.big-word{text-align:center;font-size:44px;font-weight:950;color:var(--primary);letter-spacing:-.04em;margin:10px 0}.meaning{text-align:center;font-size:18px;font-weight:950;color:#334155;margin:8px 0}.alphabet-example{text-align:center;font-size:18px;font-weight:750;color:#334155;margin:8px 0;letter-spacing:0;font-variant-ligatures:normal}.alphabet-example .tr-word{font-weight:750;color:#1f2937}.alphabet-example .translation{font-weight:650;color:#475569}.visual{width:104px;height:104px;margin:8px auto;border-radius:28px;background:linear-gradient(135deg,#f8fafc,#eff6ff);border:1px solid #dbeafe;display:grid;place-items:center;font-size:58px}.root-card{text-align:center}.answer-box{min-height:58px;border:2px dashed #cbd5e1;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;margin:10px 0;font-size:25px;font-weight:950;color:var(--primary);background:#f8fafc}.word-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.word-chip{min-height:44px;border-radius:14px;border:1px solid #cbd5e1;background:#fff;color:#0f172a;font-size:18px;font-weight:950;box-shadow:0 4px 12px rgba(15,23,42,.04)}.word-chip.root{background:#ecfeff;border-color:#67e8f9}.word-chip.suffix{background:#fff7ed;border-color:#fdba74}.word-chip.distractor{background:#f8fafc;color:#64748b}.word-chip.selected{background:#2563eb;color:#fff;border-color:#2563eb}.feedback{border-radius:16px;padding:11px;margin-top:10px;background:#f1f5f9;color:#334155;text-align:center;font-size:13px;font-weight:900;line-height:1.35}.feedback.good{background:#dcfce7;color:#166534}.feedback.bad{background:#fee2e2;color:#991b1b}.rule-reveal{display:none;margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;padding:10px;border-radius:15px;font-size:13px;font-weight:800;line-height:1.45}.rule-reveal.show{display:block}.topic-visual-row{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px 0}.mini-visual{width:46px;height:46px;border-radius:14px;background:#f8fafc;border:1px solid #e2e8f0;display:grid;place-items:center;font-size:27px}.bottom-actions{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(248,251,255,0),#f8fbff 20%);padding-top:12px;margin-top:8px}.screen-note{font-size:12px;color:#64748b;font-weight:700;text-align:center;line-height:1.35}.warning-box{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;border-radius:15px;padding:10px;font-size:12px;font-weight:800;line-height:1.4;margin-top:8px}.admin-link{font-size:11px;text-align:center;color:#94a3b8;margin-top:14px}
-
-/* Professional root-word image system: image first, emoji second, text fallback third */
-.rw-visual{
-  width:92px;
-  height:92px;
-  border-radius:24px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:8px auto 12px;
-  background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
-  border:1px solid #dbe4f0;
-  box-shadow:0 6px 18px rgba(15,23,42,.08);
-  overflow:hidden;
-  position:relative;
-}
-.rw-visual.compact{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  margin:0;
-}
-.rw-visual-img{width:100%;height:100%;object-fit:cover;display:block;background:transparent}
-.rw-visual-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px;line-height:1}
-.rw-visual.compact .rw-visual-emoji{font-size:28px}
-.rw-visual-text{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:13px;font-weight:950;color:#334155;letter-spacing:.08em;line-height:1.05}
-.rw-visual.compact .rw-visual-text{font-size:10px;padding:5px}
-.root-card{padding:18px 14px}
-.root-media{display:flex;align-items:center;justify-content:center;gap:14px;margin:4px 0 10px}
-.root-copy{text-align:left}.root-copy .big-word{font-size:34px;text-align:left;margin:0;color:#2563eb}.root-copy .meaning{text-align:left;margin:3px 0 0;font-size:15px}
-.topic-visual-row .rw-visual{box-shadow:none;background:#fff;border-color:#e2e8f0}
-
-@media(max-width:380px){.app{padding:10px}.word-grid{grid-template-columns:repeat(2,1fr)}.big-word{font-size:38px}.visual{width:90px;height:90px;font-size:48px}.laya{width:54px;height:54px}.lesson-title{font-size:16px}.btn{font-size:13px}.grid3{grid-template-columns:1fr 1fr 1fr;gap:6px}.stat{padding:8px 4px}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Turkish Meaning Builder — v1 RC</title>
+  <style>
+    :root{
+      --bg:#f6f8fc;
+      --card:#ffffff;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --soft:#eef6ff;
+      --primary:#2563eb;
+      --primary-ink:#fff;
+      --primary-soft:#dbeafe;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --warn:#d97706;
+      --chip:#f8fafc;
+      --radius:20px;
+      --shadow:0 10px 30px rgba(15,23,42,.07);
+      --touch:44px;
+      --max:760px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f8fbff 0%,#f6f8fc 100%);
+      color:var(--ink);
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+    }
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    .app{max-width:var(--max);margin:0 auto;min-height:100%;padding:14px 14px 88px}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(246,248,252,.9);backdrop-filter:blur(12px);
+      padding:10px 0 8px;margin:0 0 8px;
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,#38bdf8,#2563eb);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:var(--shadow)}
+    .brand h1{font-size:18px;margin:0;line-height:1.05}
+    .brand p{font-size:12px;color:var(--muted);margin:2px 0 0}
+    .header-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{
+      border:1px solid var(--line);background:#fff;color:var(--muted);
+      min-height:34px;padding:6px 10px;border-radius:999px;font-size:13px;font-weight:700;
+    }
+    .pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:16px;margin:12px 0;
+    }
+    .hero{padding:18px}
+    .hero h2{font-size:24px;letter-spacing:-.03em;margin:0 0 8px}
+    .hero p{margin:0;color:var(--muted);line-height:1.45}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    @media (max-width:560px){.grid{grid-template-columns:1fr}.app{padding-left:12px;padding-right:12px}.hero h2{font-size:22px}}
+    .topic{
+      border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px;text-align:left;
+      display:flex;gap:12px;align-items:flex-start;min-height:118px;transition:.15s transform,.15s border-color;
+    }
+    .topic:hover{transform:translateY(-1px);border-color:#bfdbfe}
+    .topic-num{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:var(--primary-soft);color:var(--primary);font-weight:900}
+    .topic h3{font-size:16px;margin:0 0 6px}
+    .topic p{font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.35}
+    .progress-line{height:8px;background:#edf2f7;border-radius:999px;overflow:hidden}
+    .progress-line span{display:block;height:100%;background:linear-gradient(90deg,#38bdf8,#2563eb);border-radius:999px;width:0%}
+    .progress-text{font-size:12px;color:var(--muted);font-weight:700;margin-top:6px}
+    .lesson-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0}
+    .lesson-title h2{font-size:21px;margin:0}
+    .lesson-title p{font-size:13px;color:var(--muted);margin:4px 0 0}
+    .nav-mini{display:flex;gap:6px;align-items:center;justify-content:space-between;margin:10px 0}
+    .btn{
+      border:0;border-radius:14px;min-height:var(--touch);padding:10px 14px;font-weight:800;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    }
+    .btn.primary{background:var(--primary);color:var(--primary-ink)}
+    .btn.secondary{background:#fff;color:#1e293b;border:1px solid var(--line)}
+    .btn.ghost{background:transparent;color:var(--muted);border:1px solid transparent}
+    .btn.small{min-height:36px;padding:7px 11px;border-radius:12px;font-size:13px}
+    .btn.full{width:100%}
+    .btn.danger{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+    .btn.success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+    .compact-actions{display:flex;gap:8px}.compact-actions .btn{flex:1}
+    .explain-card{background:linear-gradient(135deg,#eef8ff,#fff);border:1px solid #dbeafe;border-radius:18px;padding:12px;display:flex;gap:12px;align-items:center}
+    .laya{width:74px;height:74px;object-fit:contain;flex:0 0 74px}
+    .explain-card p{margin:0;color:#334155;line-height:1.35;font-size:14px}
+    .explain-card h3{margin:0 0 4px;font-size:15px}
+    .learn-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+    .learn-row span{font-size:12px;color:var(--muted)}
+    .root-visual{width:110px;height:110px;margin:4px auto 12px;border-radius:24px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+    .root-visual img{width:100%;height:100%;object-fit:cover}
+    .root-visual .fallback{font-size:34px;font-weight:900;color:#334155;letter-spacing:.04em}
+    .center{text-align:center}
+    .letter{font-size:76px;line-height:1;font-weight:900;letter-spacing:-.06em;margin:10px 0;color:#0f172a}
+    .example-word{font-size:28px;font-weight:650;letter-spacing:0;margin:4px 0 2px;font-variant-ligatures:none}
+    .word-title{font-size:30px;font-weight:850;margin:6px 0 2px}
+    .meaning{font-size:15px;color:var(--muted);margin:0 0 12px}
+    .audio-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+    .audio-status{font-size:12px;color:var(--muted);text-align:center;min-height:18px}
+    .prompt{font-size:20px;font-weight:850;text-align:center;margin:4px 0 8px}
+    .prompt-sub{font-size:13px;color:var(--muted);text-align:center;margin:0 0 14px}
+    .answer-zone{
+      min-height:58px;border:2px dashed #bfdbfe;border-radius:18px;background:#f8fbff;
+      display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;margin:12px 0;
+    }
+    .answer-zone.empty{color:#94a3b8;font-weight:800;font-size:13px}
+    .chip-grid{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+    .chip{
+      min-height:42px;padding:9px 14px;border-radius:14px;background:var(--chip);border:1.5px solid #cbd5e1;
+      color:#0f172a;font-weight:850;box-shadow:0 2px 8px rgba(15,23,42,.04);
+    }
+    .chip.selected{background:#dbeafe;border-color:#2563eb;color:#1d4ed8}
+    .chip.suffix{border-style:dashed}
+    .feedback{border-radius:16px;padding:12px;margin-top:12px;font-size:14px;line-height:1.4;display:none}
+    .feedback.show{display:block}
+    .feedback.ok{background:#dcfce7;color:#14532d;border:1px solid #bbf7d0}
+    .feedback.bad{background:#fee2e2;color:#7f1d1d;border:1px solid #fecaca}
+    .rule{font-weight:900;margin-top:6px}
+    .bottom-sheet-backdrop{
+      position:fixed;inset:0;background:rgba(15,23,42,.35);z-index:60;display:none;align-items:flex-end;justify-content:center;
+    }
+    .bottom-sheet-backdrop.show{display:flex}
+    .sheet{
+      width:min(760px,100%);background:#fff;border-radius:26px 26px 0 0;padding:18px;box-shadow:0 -18px 40px rgba(15,23,42,.18);
+      max-height:80vh;overflow:auto;
+    }
+    .sheet h3{margin:0 0 8px;font-size:20px}.sheet p{color:#334155;line-height:1.48}
+    .sheet .mini-rule{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0}
+    .completion{display:none}.completion.show{display:block}
+    .mode-note{font-size:12px;color:#64748b}
+    .qa-panel{background:#0f172a;color:#e2e8f0;border-radius:18px;padding:14px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;font-size:12px;white-space:pre-wrap;overflow:auto}
+    .footer-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);padding:10px 14px;background:rgba(246,248,252,.92);backdrop-filter:blur(14px);border-top:1px solid #e2e8f0;z-index:30}
+    .footer-nav .compact-actions{max-width:var(--max);margin:0 auto}
+    .hidden{display:none!important}
+  </style>
 </head>
 <body>
 <div class="app">
-  <header class="header"><div class="brand-row"><div class="logo">🧩</div><div><h1>Turkish Meaning Builder</h1><div id="subtitle" class="subtitle"></div></div></div></header>
-
-  <section id="startPage" class="card">
-    <div class="prompt" id="chooseTitle">Choose learner</div>
-    <div class="grid2">
-      <button class="profile-card bella" id="chooseBella"><strong>Bella</strong><span>English interface</span></button>
-      <button class="profile-card ayza" id="chooseAyza"><strong>Ayza</strong><span>Bahasa Indonesia</span></button>
-    </div>
-    <div id="styleArea" class="hidden"><div class="prompt" id="styleTitle"></div><div id="styleList"></div><button class="btn btn-primary" style="width:100%;margin-top:10px" id="continueBtn"></button></div>
-  </section>
-
-  <section id="homePage" class="hidden">
-    <div class="card">
-      <div class="row"><button class="btn btn-ghost btn-compact" id="changeBtn"></button><button class="btn btn-danger btn-compact" id="resetBtn"></button></div>
-      <div class="prompt" id="homeTitle"></div>
-      <div class="screen-note" id="homeNote"></div>
-      <div class="grid3" style="margin-top:12px">
-        <div class="stat"><strong id="score">0</strong><small id="scoreLabel"></small></div>
-        <div class="stat"><strong id="attempts">0</strong><small id="practiceLabel"></small></div>
-        <div class="stat"><strong id="accuracy">0%</strong><small id="accuracyLabel"></small></div>
+  <div class="topbar">
+    <div class="header-row">
+      <div class="brand">
+        <div class="brand-mark">TR</div>
+        <div>
+          <h1>Turkish Meaning Builder</h1>
+          <p>v1 Release Candidate</p>
+        </div>
       </div>
-      <div style="margin-top:10px"><div class="progress"><div id="totalBar"></div></div></div>
+      <button class="btn ghost small" id="homeBtn">Home</button>
     </div>
-    <div class="card"><div class="prompt" id="pathTitle"></div><div id="pathBox"></div></div>
-  </section>
+    <div class="pill-row">
+      <button class="pill active" data-mode="kids">Kids</button>
+      <button class="pill" data-mode="family">Family</button>
+      <button class="pill" data-mode="adult">Adult</button>
+      <button class="pill active" data-lang="en">English</button>
+      <button class="pill" data-lang="id">Indonesian</button>
+    </div>
+  </div>
 
-  <section id="lessonPage" class="hidden">
-    <div class="card">
-      <div class="lesson-nav"><button class="btn btn-ghost btn-compact" id="prevBtn"></button><div class="lesson-title" id="lessonTitle"></div><button class="btn btn-ghost btn-compact" id="menuBtn"></button></div>
-      <div class="counter" id="counter"></div>
-      <div class="lesson-progress-label"><span id="pageProgressText"></span><span id="completeProgressText"></span></div><div class="progress"><div id="lessonBar"></div></div>
-      <div id="activity"></div>
-      <div class="bottom-actions"><div class="row"><button class="btn btn-ghost" id="prevBtn2"></button><button class="btn btn-primary" id="nextBtn"></button></div></div>
-    </div>
-  </section>
+  <main id="root"></main>
 </div>
+
+<div class="footer-nav hidden" id="footerNav">
+  <div class="compact-actions">
+    <button class="btn secondary small" id="prevBtn">Previous</button>
+    <button class="btn secondary small" id="mainBtn">Main Page</button>
+    <button class="btn primary small" id="nextBtn">Next</button>
+  </div>
+</div>
+
+<div class="bottom-sheet-backdrop" id="sheetBackdrop">
+  <div class="sheet">
+    <h3 id="sheetTitle"></h3>
+    <div id="sheetBody"></div>
+    <button class="btn primary full" id="sheetClose">Got it</button>
+  </div>
+</div>
+
 <script>
-'use strict';
-const VERSION='v26-root-word-images';
-const A='audio/';
-const LAYA_SRC='assets/laya_dolphin_3d.png';
-const UI={
- en:{subtitle:'Build Turkish meaning with sounds, roots and suffixes.',choose:'Choose learner',style:'Choose learning style',continue:'Continue',kids:'Kids Mode',kidsDesc:'Visual, warm and short guidance.',family:'Family Mode',familyDesc:'Balanced guidance for parent and child.',adult:'Adult Mode',adultDesc:'Cleaner explanations with grammar logic.',change:'Change learner',reset:'Delete progress',home:'Home Page',homeNote:'First 5 topics are kept clean before adding more lessons.',score:'Score',practice:'Practice',accuracy:'Accuracy',path:'Learning Path',open:'Open',done:'Completed',now:'Now',previous:'Previous',next:'Next',finish:'Finish',menu:'Main Page',page:'Page',completed:'Done',listenMain:'Main sound',listenExample:'Example',listenContrast:'Contrast',listenRoot:'Listen root',listenSound:'Listen Turkish sound',tryTTS:'Try Turkish TTS',know:'I know this',check:'Check',clear:'Clear',correct:'Correct. Now the word is revealed.',wrong:'Try again. Build the parts in the correct order.',tap:'Tap the word parts in the correct order.',audioMissing:'Audio is not available yet.',audioLoading:'Loading audio...',audioPlaying:'Playing...',showTip:'Show short tip',hideTip:'Hide tip',alphabet:'Alphabet Pro',root:'Root Words',meaning:'Meaning Builder',plural:'Plural Builder',accusative:'Accusative Builder',alphabetDesc:'Letters, examples and safe contrast sounds.',rootDesc:'Basic concrete words with visual support.',meaningDesc:'Build meaning using roots and suffixes.',pluralDesc:'Build plural words using -ler / -lar.',accusativeDesc:'Build specific object words with -(y)ı / -(y)i / -(y)u / -(y)ü.',topicIntro:'Topic explanation',practice:'Practice'},
- id:{subtitle:'Bangun makna bahasa Turki dengan bunyi, akar kata, dan akhiran.',choose:'Pilih pengguna',style:'Pilih gaya belajar',continue:'Lanjut',kids:'Mode Anak',kidsDesc:'Visual, hangat, dan instruksi singkat.',family:'Mode Keluarga',familyDesc:'Panduan seimbang untuk orang tua dan anak.',adult:'Mode Dewasa',adultDesc:'Penjelasan lebih rapi dengan logika tata bahasa.',change:'Ganti pengguna',reset:'Hapus progres',home:'Halaman Utama',homeNote:'5 topik pertama dibuat rapi sebelum menambah pelajaran lain.',score:'Skor',practice:'Latihan',accuracy:'Akurasi',path:'Jalur Belajar',open:'Buka',done:'Selesai',now:'Saat ini',previous:'Sebelumnya',next:'Berikutnya',finish:'Selesai',menu:'Halaman Utama',page:'Halaman',completed:'Selesai',listenMain:'Bunyi utama',listenExample:'Contoh',listenContrast:'Perbandingan',listenRoot:'Dengar akar',listenSound:'Dengar bunyi Turki',tryTTS:'Coba TTS Turki',know:'Saya tahu',check:'Periksa',clear:'Hapus',correct:'Benar. Sekarang kata ditampilkan.',wrong:'Coba lagi. Susun bagian kata dengan urutan benar.',tap:'Tekan bagian kata dalam urutan yang benar.',audioMissing:'Audio belum tersedia.',audioLoading:'Memuat audio...',audioPlaying:'Memutar...',showTip:'Tampilkan tip singkat',hideTip:'Sembunyikan tip',alphabet:'Alfabet Pro',root:'Akar Kata',meaning:'Pembuat Makna',plural:'Pembuat Jamak',accusative:'Pembuat Objek Spesifik',alphabetDesc:'Huruf, contoh, dan bunyi pembanding yang aman.',rootDesc:'Kata dasar konkret dengan dukungan visual.',meaningDesc:'Bangun makna memakai akar kata dan akhiran.',pluralDesc:'Bangun kata jamak memakai -ler / -lar.',accusativeDesc:'Bangun kata objek tertentu dengan -(y)ı / -(y)i / -(y)u / -(y)ü.',topicIntro:'Penjelasan topik',practice:'Latihan'}
+/* =========================
+   CONFIG
+========================= */
+const CONFIG = {
+  version: "v1-rc",
+  layaPath: "assets/laya_dolphin_3d.png",
+  qaMode: new URLSearchParams(location.search).get("qa") === "1",
+  storageKey: "tmb_v1_rc_progress"
 };
-const LESSON_ORDER=['alphabet','root','meaning','plural','accusative'];
-const AUDIO={
- a:A+'pronunciation_tr_a.mp3', at:A+'pronunciation_tr_at.mp3', anne:A+'pronunciation_tr_anne.mp3',
- i:A+'pronunciation_tr_i.mp3', iki:A+'pronunciation_tr_iki.mp3', i_noktasiz:A+'pronunciation_tr_i_noktasiz.mp3', alti:A+'pronunciation_tr_alti.mp3',
- o:A+'pronunciation_tr_o.mp3', on:A+'pronunciation_tr_on.mp3', oe:A+'pronunciation_tr_o_noktali.mp3', ogretmen:A+'pronunciation_tr_ogretmen.mp3',
- ue:A+'pronunciation_tr_u_noktali.mp3', sut:A+'pronunciation_tr_sut.mp3', su:A+'pronunciation_tr_su.mp3', uc:A+'pronunciation_tr_uc.mp3',
- sh:A+'pronunciation_tr_sh.mp3', seker:A+'pronunciation_tr_seker.mp3', cok:A+'pronunciation_tr_cok.mp3', agac:A+'pronunciation_tr_agac.mp3', dag:A+'pronunciation_tr_dag.mp3', gel:A+'pronunciation_tr_gel.mp3',
- ev:A+'pronunciation_tr_ev.mp3', okul:A+'pronunciation_tr_okul.mp3', kitap:A+'pronunciation_tr_kitap.mp3', elma:A+'pronunciation_tr_elma.mp3', kopek:A+'pronunciation_tr_kopek.mp3', goz:A+'pronunciation_tr_goz.mp3', masa:A+'pronunciation_tr_masa.mp3', araba:A+'pronunciation_tr_araba.mp3', kalem:A+'pronunciation_tr_kalem.mp3', gazete:A+'pronunciation_tr_gazete.mp3', cay:A+'pronunciation_tr_cay.mp3',
- evim:A+'pronunciation_tr_evim.mp3', evde:A+'pronunciation_tr_evde.mp3', evimde:A+'pronunciation_tr_evimde.mp3', arabam:A+'pronunciation_tr_arabam.mp3', masamda:A+'pronunciation_tr_masamda.mp3', kalemimde:A+'pronunciation_tr_kalemimde.mp3', suyumda:A+'pronunciation_tr_suyumda.mp3', elimde:A+'pronunciation_tr_elimde.mp3', gozumde:A+'pronunciation_tr_gozumde.mp3', kitabimda:A+'pronunciation_tr_kitabimda.mp3', parkta:A+'pronunciation_tr_parkta.mp3'
+
+const STATE = {
+  mode: "kids",
+  lang: "en",
+  view: "home",
+  topic: null,
+  index: 0,
+  selected: [],
+  answered: false
 };
-const ALPHABET=[
- {id:'a',letter:'a',meaning:{en:'a sound',id:'bunyi a'},main:{label:'a',audio:AUDIO.a},example:{label:'at',audio:AUDIO.at,meaning:{en:'horse',id:'kuda'}},contrast:{label:'anne',audio:AUDIO.anne},tip:{en:'Listen for the same clear Turkish a sound in words.',id:'Dengarkan bunyi a Turki yang jelas di dalam kata.'}},
- {id:'i',letter:'i',meaning:{en:'i sound',id:'bunyi i'},main:{label:'i',audio:AUDIO.i},example:{label:'iki',audio:AUDIO.iki,meaning:{en:'two',id:'dua'}},contrast:{label:'altı',audio:AUDIO.alti},tip:{en:'Turkish i and dotless ı are different sounds.',id:'Huruf i dan ı dalam bahasa Turki berbeda.'}},
- {id:'dotless',letter:'ı',meaning:{en:'dotless ı',id:'ı tanpa titik'},main:{label:'ı',audio:AUDIO.i_noktasiz},example:{label:'altı',audio:AUDIO.alti,meaning:{en:'six',id:'enam'}},contrast:{label:'i',audio:AUDIO.i},tip:{en:'Dotless ı is not the same as i. Do not use the red-word audio that sounded unclear.',id:'ı tanpa titik tidak sama dengan i.'}},
- {id:'o',letter:'o',meaning:{en:'o sound',id:'bunyi o'},main:{label:'o',audio:AUDIO.o},example:{label:'on',audio:AUDIO.on,meaning:{en:'ten',id:'sepuluh'}},contrast:{label:'ö',audio:AUDIO.oe},tip:{en:'Use the same o audio everywhere for consistency.',id:'Gunakan audio o yang sama di semua tempat.'}},
- {id:'oe',letter:'ö',meaning:{en:'ö sound',id:'bunyi ö'},main:{label:'ö',audio:AUDIO.oe},example:{label:'öğretmen',audio:AUDIO.ogretmen,meaning:{en:'teacher',id:'guru'}},contrast:{label:'o',audio:AUDIO.o},tip:{en:'ö is rounded. Compare it with o carefully.',id:'ö diucapkan dengan bibir bulat. Bandingkan dengan o.'}},
- {id:'ue',letter:'ü',meaning:{en:'ü sound',id:'bunyi ü'},main:{label:'ü',audio:AUDIO.ue},example:{label:'süt',audio:AUDIO.sut,meaning:{en:'milk',id:'susu'}},contrast:{label:'su',audio:AUDIO.su},tip:{en:'ü and u are not the same. Listen slowly.',id:'ü dan u tidak sama. Dengarkan perlahan.'}},
- {id:'sh',letter:'ş',meaning:{en:'ş sound',id:'bunyi ş'},main:{label:'ş',audio:AUDIO.sh},example:{label:'şeker',audio:AUDIO.seker,meaning:{en:'sugar',id:'gula'}},contrast:{label:'çok',audio:AUDIO.cok},tip:{en:'ş is like sh. It is not ç.',id:'ş seperti bunyi sy. Bukan ç.'}},
- {id:'ch',letter:'ç',meaning:{en:'ç sound',id:'bunyi ç'},main:{label:'ç',audio:AUDIO.cok},example:{label:'ağaç',audio:AUDIO.agac,meaning:{en:'tree',id:'pohon'}},contrast:{label:'ş',audio:AUDIO.sh},tip:{en:'ç is like ch. Example audio uses ağaç.',id:'ç seperti bunyi c/ch. Audio contoh memakai ağaç.'}},
- {id:'softg',letter:'ğ',meaning:{en:'soft ğ',id:'ğ lembut'},main:{label:'ağaç',audio:AUDIO.agac},example:{label:'dağ',audio:AUDIO.dag,meaning:{en:'mountain',id:'gunung'}},contrast:{label:'gel',audio:AUDIO.gel},tip:{en:'No Turkish word starts with ğ. It usually softens or lengthens the vowel before it.',id:'Tidak ada kata Turki yang dimulai dengan ğ. Biasanya melembutkan atau memanjangkan vokal sebelumnya.'}}
-];
-const ROOTS=[
- {id:'ev',word:'ev',audio:AUDIO.ev,emoji:'🏠',meaning:{en:'house / home',id:'rumah'}},
- {id:'okul',word:'okul',audio:AUDIO.okul,emoji:'🏫',meaning:{en:'school',id:'sekolah'}},
- {id:'kitap',word:'kitap',audio:AUDIO.kitap,emoji:'📘',meaning:{en:'book',id:'buku'}},
- {id:'elma',word:'elma',audio:AUDIO.elma,emoji:'🍎',meaning:{en:'apple',id:'apel'}},
- {id:'kopek',word:'köpek',audio:AUDIO.kopek,emoji:'🐶',meaning:{en:'dog',id:'anjing'}},
- {id:'goz',word:'göz',audio:AUDIO.goz,emoji:'👁️',meaning:{en:'eye',id:'mata'}},
- {id:'masa',word:'masa',audio:AUDIO.masa,emoji:'TABLE',meaning:{en:'table',id:'meja'}},
- {id:'araba',word:'araba',audio:AUDIO.araba,emoji:'🚗',meaning:{en:'car',id:'mobil'}},
- {id:'su',word:'su',audio:AUDIO.su,emoji:'💧',meaning:{en:'water',id:'air'}},
- {id:'kalem',word:'kalem',audio:AUDIO.kalem,emoji:'✏️',meaning:{en:'pencil / pen',id:'pensil / pena'}}
+
+const TXT = {
+  en: {
+    homeTitle: "Build Turkish step by step",
+    homeSub: "Practice the first five topics with safe audio, clean progress, and no answer reveal.",
+    listen: "Listen Turkish sound",
+    listenAfter: "Sound unlocks after the correct answer.",
+    know: "I know this",
+    check: "Check",
+    clear: "Clear",
+    correct: "Correct. Great work.",
+    wrong: "Try again. Build from left to right.",
+    learnWhy: "Learn why",
+    layaExplains: "Laya explains",
+    grammarRule: "Show grammar rule",
+    mainPage: "Main Page",
+    previous: "Previous",
+    next: "Next",
+    answerHere: "Build your answer here",
+    completed: "Completed",
+    start: "Start",
+    continue: "Continue",
+    reset: "Delete progress"
+  },
+  id: {
+    homeTitle: "Bangun bahasa Turki langkah demi langkah",
+    homeSub: "Latih lima topik pertama dengan audio aman, progres jelas, dan tanpa membocorkan jawaban.",
+    listen: "Dengarkan bunyi Turki",
+    listenAfter: "Suara terbuka setelah jawaban benar.",
+    know: "Saya sudah tahu",
+    check: "Periksa",
+    clear: "Hapus",
+    correct: "Benar. Bagus sekali.",
+    wrong: "Coba lagi. Bangun dari kiri ke kanan.",
+    learnWhy: "Pelajari alasannya",
+    layaExplains: "Laya menjelaskan",
+    grammarRule: "Tampilkan aturan",
+    mainPage: "Halaman utama",
+    previous: "Sebelumnya",
+    next: "Berikutnya",
+    answerHere: "Susun jawaban di sini",
+    completed: "Selesai",
+    start: "Mulai",
+    continue: "Lanjutkan",
+    reset: "Hapus progres"
+  }
+};
+
+/* =========================
+   DATA MAP
+========================= */
+const TOPICS = [
+  {id:"alphabet", title:"Alphabet Pro", sub:"Sounds and contrasts", type:"alphabet"},
+  {id:"root_words", title:"Root Words", sub:"Concrete starter words", type:"root"},
+  {id:"meaning_builder", title:"Meaning Builder", sub:"Root + meaning suffixes", type:"builder"},
+  {id:"plural_builder", title:"Plural Builder", sub:"-lar / -ler", type:"builder"},
+  {id:"accusative_builder", title:"Accusative Builder", sub:"The definite object", type:"builder"}
 ];
 
-const WORD_VISUALS={
- ev:{image:'images/ev.png',emoji:'🏠',text:'HOUSE',label:'house'},
- okul:{image:'images/okul.png',emoji:'🏫',text:'SCHOOL',label:'school'},
- kitap:{image:'images/kitap.png',emoji:'📘',text:'BOOK',label:'book'},
- elma:{image:'images/elma.png',emoji:'🍎',text:'APPLE',label:'apple'},
- 'köpek':{image:'images/kopek.png',emoji:'🐶',text:'DOG',label:'dog'},
- kopek:{image:'images/kopek.png',emoji:'🐶',text:'DOG',label:'dog'},
- 'göz':{image:'images/goz.png',emoji:'👁️',text:'EYE',label:'eye'},
- goz:{image:'images/goz.png',emoji:'👁️',text:'EYE',label:'eye'},
- masa:{image:'images/masa.png',emoji:null,text:'TABLE',label:'table'},
- araba:{image:'images/araba.png',emoji:'🚗',text:'CAR',label:'car'},
- su:{image:'images/su.png',emoji:'💧',text:'WATER',label:'water'},
- kalem:{image:'images/kalem.png',emoji:'✏️',text:'PENCIL',label:'pencil'},
- el:{image:null,emoji:'✋',text:'HAND',label:'hand'},
- gazete:{image:null,emoji:'📰',text:'NEWS',label:'newspaper'},
- 'çay':{image:null,emoji:'☕',text:'TEA',label:'tea'},
- cay:{image:null,emoji:'☕',text:'TEA',label:'tea'},
- 'süt':{image:null,emoji:'🥛',text:'MILK',label:'milk'},
- sut:{image:null,emoji:'🥛',text:'MILK',label:'milk'}
+const ALPHABET_PRO = [
+  {id:"alpha_a",letter:"a",target:"Turkish a sound",mainAudio:"audio/pronunciation_tr_a.mp3",exampleWord:"araba",exampleAudio:"audio/pronunciation_tr_araba.mp3",sourceRule:"phoneme_consistency"},
+  {id:"alpha_e",letter:"e",target:"Turkish e sound; not i",mainAudio:"audio/pronunciation_tr_e.mp3",exampleWord:"ev",exampleAudio:"audio/pronunciation_tr_ev.mp3",contrast:"i",contrastAudio:"audio/pronunciation_tr_i.mp3",explanationKey:"e_i_contrast"},
+  {id:"alpha_i_dotless",letter:"ı",target:"Dotless Turkish ı",mainAudio:"audio/pronunciation_tr_i_noktasiz.mp3",exampleWord:"altı",exampleAudio:"audio/pronunciation_tr_alti.mp3",contrast:"i",contrastAudio:"audio/pronunciation_tr_i.mp3",explanationKey:"i_ı_contrast"},
+  {id:"alpha_i",letter:"i",target:"Dotted Turkish i",mainAudio:"audio/pronunciation_tr_i.mp3",exampleWord:"iki",exampleAudio:"audio/pronunciation_tr_iki.mp3",contrast:"ı",contrastAudio:"audio/pronunciation_tr_i_noktasiz.mp3",explanationKey:"i_ı_contrast"},
+  {id:"alpha_o",letter:"o",target:"Turkish o sound",mainAudio:"audio/pronunciation_tr_o.mp3",exampleWord:"on",exampleAudio:"audio/pronunciation_tr_on.mp3",contrast:"ö",contrastAudio:"audio/pronunciation_tr_o_noktali.mp3",explanationKey:"o_ö_contrast"},
+  {id:"alpha_o_noktali",letter:"ö",target:"Turkish ö sound",mainAudio:"audio/pronunciation_tr_o_noktali.mp3",exampleWord:"öğretmen",exampleAudio:"audio/pronunciation_tr_ogretmen.mp3",contrast:"o",contrastAudio:"audio/pronunciation_tr_o.mp3",explanationKey:"o_ö_contrast"},
+  {id:"alpha_u",letter:"u",target:"Turkish u sound",mainAudio:"audio/pronunciation_tr_u.mp3",exampleWord:"su",exampleAudio:"audio/pronunciation_tr_su.mp3",contrast:"ü",contrastAudio:"audio/pronunciation_tr_u_noktali.mp3",explanationKey:"u_ü_contrast"},
+  {id:"alpha_u_noktali",letter:"ü",target:"Turkish ü sound",mainAudio:"audio/pronunciation_tr_u_noktali.mp3",exampleWord:"üzgünüm",exampleAudio:"audio/pronunciation_tr_uzgunum.mp3",contrast:"u",contrastAudio:"audio/pronunciation_tr_u.mp3",explanationKey:"u_ü_contrast"},
+  {id:"alpha_c",letter:"c",target:"Turkish c; not English c / Indonesian c",mainAudio:"audio/pronunciation_tr_c.mp3",exampleWord:"c",exampleAudio:"audio/pronunciation_tr_c.mp3",contrast:"ç",contrastAudio:"audio/pronunciation_tr_cok.mp3",explanationKey:"c_ç_contrast"},
+  {id:"alpha_c_cedilla",letter:"ç",target:"Turkish ç sound",mainAudio:"audio/pronunciation_tr_cok.mp3",exampleWord:"ağaç",exampleAudio:"audio/pronunciation_tr_agac.mp3",contrast:"ş",contrastAudio:"audio/pronunciation_tr_sh.mp3",explanationKey:"ş_ç_contrast"},
+  {id:"alpha_sh",letter:"ş",target:"Turkish ş sound",mainAudio:"audio/pronunciation_tr_sh.mp3",exampleWord:"şeker",exampleAudio:"audio/pronunciation_tr_seker.mp3",contrast:"ç",contrastAudio:"audio/pronunciation_tr_cok.mp3",explanationKey:"ş_ç_contrast"},
+  {id:"alpha_soft_g",letter:"ğ",target:"Safe learner explanation of ğ",mainAudio:null,exampleWord:"dağ",exampleAudio:"audio/pronunciation_tr_dag.mp3",extraExamples:[{word:"ağaç",audio:"audio/pronunciation_tr_agac.mp3"},{word:"soğuk",audio:"audio/pronunciation_tr_soguk.mp3"}],contrast:"g",contrastAudio:"audio/pronunciation_tr_gel.mp3",explanationKey:"safe_ğ_explanation"}
+];
+
+const ROOT_WORDS = [
+  {id:"root_ev",word:"ev",meaning_en:"house",meaning_id:"rumah",audio:"audio/pronunciation_tr_ev.mp3",image:"images/ev.png",fallback:"🏠"},
+  {id:"root_okul",word:"okul",meaning_en:"school",meaning_id:"sekolah",audio:"audio/pronunciation_tr_okul.mp3",image:"images/okul.png",fallback:"🏫"},
+  {id:"root_kitap",word:"kitap",meaning_en:"book",meaning_id:"buku",audio:"audio/pronunciation_tr_kitap.mp3",image:"images/kitap.png",fallback:"📘"},
+  {id:"root_elma",word:"elma",meaning_en:"apple",meaning_id:"apel",audio:"audio/pronunciation_tr_elma.mp3",image:"images/elma.png",fallback:"🍎"},
+  {id:"root_kopek",word:"köpek",meaning_en:"dog",meaning_id:"anjing",audio:"audio/pronunciation_tr_kopek.mp3",image:"images/kopek.png",fallback:"🐶"},
+  {id:"root_goz",word:"göz",meaning_en:"eye",meaning_id:"mata",audio:"audio/pronunciation_tr_goz.mp3",image:"images/goz.png",fallback:"👁️"},
+  {id:"root_masa",word:"masa",meaning_en:"table",meaning_id:"meja",audio:"audio/pronunciation_tr_masa.mp3",image:"images/masa.png",fallback:"TABLE"},
+  {id:"root_araba",word:"araba",meaning_en:"car",meaning_id:"mobil",audio:"audio/pronunciation_tr_araba.mp3",image:"images/araba.png",fallback:"🚗"},
+  {id:"root_su",word:"su",meaning_en:"water",meaning_id:"air",audio:"audio/pronunciation_tr_su.mp3",image:"images/su.png",fallback:"💧"},
+  {id:"root_kalem",word:"kalem",meaning_en:"pencil",meaning_id:"pensil",audio:"audio/pronunciation_tr_kalem.mp3",image:"images/kalem.png",fallback:"✏️"}
+];
+
+const MEANING_BUILDER = [
+  {id:"meaning_evim",prompt_en:"my house",prompt_id:"rumah saya",answerParts:["ev","im"],options:["ev","im","de","in"],finalWord:"evim",audio:"audio/pronunciation_tr_evim.mp3",image:"images/ev.png",revealAfterCorrect:"ev + im = evim",explanationKey:"possessive_suffix_basic"},
+  {id:"meaning_evde",prompt_en:"at / in the house",prompt_id:"di rumah",answerParts:["ev","de"],options:["ev","de","im","da"],finalWord:"evde",audio:"audio/pronunciation_tr_evde.mp3",image:"images/ev.png",revealAfterCorrect:"ev + de = evde",explanationKey:"locative_suffix_basic"},
+  {id:"meaning_evimde",prompt_en:"in my house",prompt_id:"di rumah saya",answerParts:["ev","im","de"],options:["ev","im","de","in","da"],finalWord:"evimde",audio:"audio/pronunciation_tr_evimde.mp3",image:"images/ev.png",revealAfterCorrect:"ev + im + de = evimde",explanationKey:"possessive_plus_locative"},
+  {id:"meaning_arabam",prompt_en:"my car",prompt_id:"mobil saya",answerParts:["araba","m"],options:["araba","m","da","im"],finalWord:"arabam",audio:"audio/pronunciation_tr_arabam.mp3",image:"images/araba.png",revealAfterCorrect:"araba + m = arabam",explanationKey:"possessive_after_vowel"},
+  {id:"meaning_masamda",prompt_en:"on / at my table",prompt_id:"di meja saya",answerParts:["masa","m","da"],options:["masa","m","da","im","de"],finalWord:"masamda",audio:"audio/pronunciation_tr_masamda.mp3",image:"images/masa.png",revealAfterCorrect:"masa + m + da = masamda",explanationKey:"possessive_plus_locative"},
+  {id:"meaning_kalemimde",prompt_en:"in / on my pencil",prompt_id:"di pensil saya",answerParts:["kalem","im","de"],options:["kalem","im","de","da","m"],finalWord:"kalemimde",audio:"audio/pronunciation_tr_kalemimde.mp3",image:"images/kalem.png",revealAfterCorrect:"kalem + im + de = kalemimde",explanationKey:"possessive_plus_locative"},
+  {id:"meaning_parkta",prompt_en:"at / in the park",prompt_id:"di taman",answerParts:["park","ta"],options:["park","ta","da","de"],finalWord:"parkta",audio:"audio/pronunciation_tr_parkta.mp3",image:null,revealAfterCorrect:"park + ta = parkta",explanationKey:"locative_suffix_basic"},
+  {id:"meaning_elimde",prompt_en:"in my hand",prompt_id:"di tangan saya",answerParts:["el","im","de"],options:["el","im","de","da","in"],finalWord:"elimde",audio:"audio/pronunciation_tr_elimde.mp3",image:null,revealAfterCorrect:"el + im + de = elimde",explanationKey:"possessive_plus_locative"},
+  {id:"meaning_gozumde",prompt_en:"in my eye",prompt_id:"di mata saya",answerParts:["göz","üm","de"],options:["göz","üm","de","im","da"],finalWord:"gözümde",audio:"audio/pronunciation_tr_gozumde.mp3",image:"images/goz.png",revealAfterCorrect:"göz + üm + de = gözümde",explanationKey:"vowel_harmony_suffix_shape"},
+  {id:"meaning_kitabimda",prompt_en:"in my book",prompt_id:"di buku saya",answerParts:["kitap","ım","da"],options:["kitap","ım","da","im","ta"],finalWord:"kitabımda",audio:"audio/pronunciation_tr_kitabimda.mp3",image:"images/kitap.png",revealAfterCorrect:"kitap + ım + da → kitabımda",explanationKey:"consonant_softening_p_b"}
+];
+
+const PLURAL_BUILDER = [
+  {id:"plural_evler",prompt_en:"houses",prompt_id:"rumah-rumah",answerParts:["ev","ler"],options:["ev","ler","lar"],finalWord:"evler",audio:"audio/pronunciation_tr_evler.mp3",image:"images/ev.png",revealAfterCorrect:"ev + ler = evler",explanationKey:"plural_basic"},
+  {id:"plural_kitaplar",prompt_en:"books",prompt_id:"buku-buku",answerParts:["kitap","lar"],options:["kitap","lar","ler"],finalWord:"kitaplar",audio:"audio/pronunciation_tr_kitaplar.mp3",image:"images/kitap.png",revealAfterCorrect:"kitap + lar = kitaplar",explanationKey:"plural_basic"},
+  {id:"plural_kopekler",prompt_en:"dogs",prompt_id:"anjing-anjing",answerParts:["köpek","ler"],options:["köpek","ler","lar"],finalWord:"köpekler",audio:"audio/pronunciation_tr_kopekler.mp3",image:"images/kopek.png",revealAfterCorrect:"köpek + ler = köpekler",explanationKey:"plural_basic"},
+  {id:"plural_okullar",prompt_en:"schools",prompt_id:"sekolah-sekolah",answerParts:["okul","lar"],options:["okul","lar","ler"],finalWord:"okullar",audio:"audio/pronunciation_tr_okullar.mp3",image:"images/okul.png",revealAfterCorrect:"okul + lar = okullar",explanationKey:"plural_basic"},
+  {id:"plural_arabalar",prompt_en:"cars",prompt_id:"mobil-mobil",answerParts:["araba","lar"],options:["araba","lar","ler"],finalWord:"arabalar",audio:"audio/pronunciation_tr_arabalar.mp3",image:"images/araba.png",revealAfterCorrect:"araba + lar = arabalar",explanationKey:"plural_basic"}
+];
+
+const ACCUSATIVE_BUILDER = [
+  {id:"acc_elmayi",prompt_en:"the apple",prompt_id:"apel itu",answerParts:["elma","yı"],options:["elma","yı","yi","ı"],finalWord:"elmayı",audio:"audio/pronunciation_tr_elmayi.mp3",image:"images/elma.png",revealAfterCorrect:"elma + yı = elmayı",explanationKey:"y_glide_accusative"},
+  {id:"acc_gazeteyi",prompt_en:"the newspaper",prompt_id:"koran itu",answerParts:["gazete","yi"],options:["gazete","yi","yı","i"],finalWord:"gazeteyi",audio:"audio/pronunciation_tr_gazeteyi.mp3",image:null,revealAfterCorrect:"gazete + yi = gazeteyi",explanationKey:"y_glide_accusative"},
+  {id:"acc_kitabi",prompt_en:"the book",prompt_id:"buku itu",answerParts:["kitap","ı"],options:["kitap","ı","i","yı"],finalWord:"kitabı",audio:"audio/pronunciation_tr_kitabi.mp3",image:"images/kitap.png",revealAfterCorrect:"kitap + ı → kitabı",explanationKey:"consonant_softening_p_b"},
+  {id:"acc_kopegi",prompt_en:"the dog",prompt_id:"anjing itu",answerParts:["köpek","i"],options:["köpek","i","ı","yi"],finalWord:"köpeği",audio:"audio/pronunciation_tr_kopegi.mp3",image:"images/kopek.png",revealAfterCorrect:"köpek + i → köpeği",explanationKey:"consonant_softening_k_ğ"},
+  {id:"acc_arabayi",prompt_en:"the car",prompt_id:"mobil itu",answerParts:["araba","yı"],options:["araba","yı","yi","ı"],finalWord:"arabayı",audio:"audio/pronunciation_tr_arabayi.mp3",image:"images/araba.png",revealAfterCorrect:"araba + yı = arabayı",explanationKey:"y_glide_accusative"}
+];
+
+const EXPLANATION_MAP = {
+  e_i_contrast:{main:"Turkish e and i are different sounds.", kids_en:"Listen carefully: e is not i.", adult_en:"In English, e may sound like /i/ in words like he or me. Turkish e is separate from i.", id:"Dalam bahasa Turki, e dan i adalah bunyi yang berbeda."},
+  i_ı_contrast:{main:"Turkish i and ı are different sounds.", kids_en:"One has a dot. One has no dot. Listen first.", adult_en:"Dotted i and dotless ı are two different Turkish vowels.", id:"Huruf i dan ı dalam bahasa Turki berbeda."},
+  o_ö_contrast:{main:"Turkish o and ö are different sounds.", kids_en:"Listen to the round sound difference.", adult_en:"ö is a separate Turkish vowel and should not be read as o.", id:"Huruf o dan ö berbeda dalam bahasa Turki."},
+  u_ü_contrast:{main:"Turkish u and ü are different sounds.", kids_en:"Listen to the difference before you repeat.", adult_en:"ü is a separate Turkish vowel and should not be read as u.", id:"Huruf u dan ü berbeda dalam bahasa Turki."},
+  c_ç_contrast:{main:"Turkish c and ç are different letters.", kids_en:"c and ç are not the same in Turkish.", adult_en:"English c can sound like k or s. Turkish c has one sound, while ç is a different letter.", id:"Dalam bahasa Indonesia, c biasanya mirip bunyi ç Turki. Dalam bahasa Turki, c dan ç berbeda."},
+  ş_ç_contrast:{main:"Turkish ş and ç are different sounds.", kids_en:"ş and ç are two different sounds. Listen and compare.", adult_en:"ş and ç are separate Turkish consonants and should not be confused.", id:"Huruf ş dan ç adalah bunyi yang berbeda."},
+  safe_ğ_explanation:{main:"ğ is not a hard g. Listen inside real Turkish words.", kids_en:"ğ does not start Turkish words. It usually makes the sound before it softer or longer.", adult_en:"ğ is not read like a hard g. It does not begin Turkish words. Learn it through real words like dağ, ağaç, and soğuk.", id:"Huruf ğ tidak dibaca seperti g keras. Huruf ini tidak muncul di awal kata Turki."},
+  possessive_suffix_basic:{main:"A suffix can add the meaning “my” to a root word.", kids_en:"Turkish words are built like blocks. First the word, then the meaning block.", adult_en:"The possessive suffix adds ownership to the root. The suffix form changes by sound harmony.", id:"Akhiran bisa menambahkan arti “milik saya” pada kata dasar."},
+  possessive_after_vowel:{main:"After a vowel, Turkish can add a shorter possessive suffix.", kids_en:"When the word ends softly, the next block can be shorter.", adult_en:"After vowel-final stems, possessive forms can attach without an initial vowel.", id:"Setelah vokal, akhiran bisa menjadi lebih pendek."},
+  locative_suffix_basic:{main:"The place suffix adds the meaning in, on, or at.", kids_en:"This suffix tells where something is.", adult_en:"The locative suffix -de/-da/-te/-ta marks location: in, on, or at.", id:"Akhiran tempat berarti di, pada, atau dalam."},
+  possessive_plus_locative:{main:"Build from left to right: root first, suffixes after.", kids_en:"First choose the main word. Then add the meaning blocks in order.", adult_en:"Turkish meaning is built through ordered suffixes: root + possessive + location.", id:"Bangun kata dari kiri ke kanan: kata dasar dulu, lalu akhiran."},
+  vowel_harmony_suffix_shape:{main:"Some suffixes change sound to match the word.", kids_en:"The meaning block can sound different so the word is easier to say.", adult_en:"A suffix can have several forms. The form is selected according to vowel harmony.", id:"Beberapa akhiran berubah bunyi agar cocok dengan kata."},
+  consonant_softening_p_b:{main:"Some words change sound before a vowel suffix.", kids_en:"Sometimes Turkish changes a sound to make the word easier to say.", adult_en:"Before a vowel-initial suffix, final p can soften to b: kitap → kitabı / kitabımda.", id:"Sebelum akhiran vokal, p bisa menjadi b."},
+  consonant_softening_k_ğ:{main:"Some words change sound before a vowel suffix.", kids_en:"Turkish sometimes makes the sound softer before a suffix.", adult_en:"Before a vowel-initial suffix, final k can soften to ğ: köpek → köpeği.", id:"Sebelum akhiran vokal, k bisa berubah menjadi ğ."},
+  y_glide_accusative:{main:"When a word ends with a vowel, Turkish may add y before the suffix.", kids_en:"The letter y helps two vowel sounds connect smoothly.", adult_en:"The linking sound y is inserted between two vowels: elma + yı = elmayı.", id:"Huruf y membantu menghubungkan dua bunyi vokal."},
+  plural_basic:{main:"Turkish uses -lar or -ler for plural words.", kids_en:"To say more than one, Turkish adds a plural block.", adult_en:"The plural suffix appears as -lar or -ler depending on vowel harmony.", id:"Bahasa Turki memakai -lar atau -ler untuk bentuk jamak."}
 };
-function normalizeWordKey(word){return String(word||'').trim().toLowerCase();}
-function getWordVisual(word){const key=normalizeWordKey(word);return WORD_VISUALS[key]||{image:null,emoji:null,text:key?key.toUpperCase():'WORD',label:key||'word'};}
-function renderWordVisual(word,compact=false){
- const v=getWordVisual(word); const safe=(normalizeWordKey(word)||'word').replace(/[^a-z0-9]/g,''); const id=Math.random().toString(36).slice(2,8);
- const emojiId='emoji-'+safe+'-'+id; const textId='text-'+safe+'-'+id;
- const cls='rw-visual'+(compact?' compact':'');
- return `<div class="${cls}" aria-label="${v.label}">${v.image?`<img class="rw-visual-img" src="${v.image}" alt="${v.label}" onerror="this.style.display='none';var e=document.getElementById('${emojiId}');var t=document.getElementById('${textId}');if(e){e.style.display='flex';}else if(t){t.style.display='flex';}">`:''}${v.emoji?`<div id="${emojiId}" class="rw-visual-emoji" style="${v.image?'display:none;':'display:flex;'}">${v.emoji}</div>`:''}<div id="${textId}" class="rw-visual-text" style="${v.image||v.emoji?'display:none;':'display:flex;'}">${v.text}</div></div>`;
-}
-function firstRootForVisual(item){
- if(item&&Array.isArray(item.seq)&&item.seq.length)return item.seq[0];
- if(item&&Array.isArray(item.cards)){const r=item.cards.find(c=>c[1]==='root'); if(r)return r[0];}
- return item&&item.id?item.id:'';
+
+function datasetFor(topicId){
+  if(topicId==="alphabet") return ALPHABET_PRO;
+  if(topicId==="root_words") return ROOT_WORDS;
+  if(topicId==="meaning_builder") return MEANING_BUILDER;
+  if(topicId==="plural_builder") return PLURAL_BUILDER;
+  if(topicId==="accusative_builder") return ACCUSATIVE_BUILDER;
+  return [];
 }
 
-const BUILDERS={
- meaning:[
- {id:'evim',prompt:{en:'my house',id:'rumah saya'},visual:'🏠',result:'evim',audio:AUDIO.evim,seq:['ev','im'],cards:[['ev','root'],['im','suffix'],['de','distractor'],['da','distractor']],rule:{en:'-im can mean “my”. After a correct answer, you can see how the parts join.',id:'-im berarti “milik saya”. Setelah benar, kamu melihat cara bagian bergabung.'},explain:'ev + im → evim'},
- {id:'evde',prompt:{en:'at home / at the house',id:'di rumah'},visual:'🏠',result:'evde',audio:AUDIO.evde,seq:['ev','de'],cards:[['ev','root'],['de','suffix'],['im','distractor'],['da','distractor'],['in','distractor']],rule:{en:'-de can show location. It is not possession.',id:'-de menunjukkan tempat. Ini bukan kepunyaan.'},explain:'ev + de → evde'},
- {id:'evimde',prompt:{en:'in my house / at my house',id:'di rumah saya'},visual:'🏠',result:'evimde',audio:AUDIO.evimde,seq:['ev','im','de'],cards:[['ev','root'],['im','suffix'],['de','suffix'],['in','distractor'],['da','distractor']],rule:{en:'Possession comes before location: my + in/at.',id:'Kepunyaan datang sebelum tempat: milik saya + di.'},explain:'ev + im + de → evimde'},
- {id:'arabam',prompt:{en:'my car',id:'mobil saya'},visual:'🚗',result:'arabam',audio:AUDIO.arabam,seq:['araba','m'],cards:[['araba','root'],['m','suffix'],['im','distractor'],['da','distractor']],rule:{en:'Words ending in a vowel often use -m for “my”.',id:'Kata yang berakhir vokal sering memakai -m untuk “milik saya”.'},explain:'araba + m → arabam'},
- {id:'masamda',prompt:{en:'on / at my table',id:'di meja saya'},visual:'TABLE',result:'masamda',audio:AUDIO.masamda,seq:['masa','m','da'],cards:[['masa','root'],['m','suffix'],['da','suffix'],['de','distractor'],['im','distractor']],rule:{en:'First build “my table”, then add the place suffix.',id:'Buat “meja saya” dulu, lalu tambah akhiran tempat.'},explain:'masa + m + da → masamda'},
- {id:'kalemimde',prompt:{en:'in / on my pen',id:'di pena saya'},visual:'✏️',result:'kalemimde',audio:AUDIO.kalemimde,seq:['kalem','im','de'],cards:[['kalem','root'],['im','suffix'],['de','suffix'],['da','distractor'],['m','distractor']],rule:{en:'The suffix order matters: root + my + place.',id:'Urutan akhiran penting: akar + milik saya + tempat.'},explain:'kalem + im + de → kalemimde'},
- {id:'suyumda',prompt:{en:'in my water',id:'di air saya'},visual:'💧',result:'suyumda',audio:AUDIO.suyumda,seq:['su','yum','da'],cards:[['su','root'],['yum','suffix'],['da','suffix'],['de','distractor'],['im','distractor']],rule:{en:'Some words need a buffer sound before the possessive ending.',id:'Beberapa kata butuh bunyi penyambung sebelum akhiran kepunyaan.'},explain:'su + yum + da → suyumda'},
- {id:'elimde',prompt:{en:'in my hand',id:'di tangan saya'},visual:'✋',result:'elimde',audio:AUDIO.elimde,seq:['el','im','de'],cards:[['el','root'],['im','suffix'],['de','suffix'],['da','distractor'],['ler','distractor']],rule:{en:'el means hand. -im makes it “my hand”; -de adds location.',id:'el berarti tangan. -im menjadi “tangan saya”; -de menambah tempat.'},explain:'el + im + de → elimde'},
- {id:'gozumde',prompt:{en:'in my eye',id:'di mata saya'},visual:'👁️',result:'gözümde',audio:AUDIO.gozumde,seq:['göz','üm','de'],cards:[['göz','root'],['üm','suffix'],['de','suffix'],['um','distractor'],['da','distractor']],rule:{en:'Suffix vowels follow the sound of the word. göz uses ü.',id:'Vokal akhiran mengikuti bunyi kata. göz memakai ü.'},explain:'göz + üm + de → gözümde'},
- {id:'kitabimda',prompt:{en:'in my book',id:'di buku saya'},visual:'📘',result:'kitabımda',audio:AUDIO.kitabimda,seq:['kitap','ım','da'],cards:[['kitap','root'],['ım','suffix'],['da','suffix'],['im','distractor'],['de','distractor']],rule:{en:'When a vowel-starting suffix comes after kitap, p softens to b.',id:'Saat akhiran berawal vokal datang setelah kitap, p berubah menjadi b.'},explain:'kitap + ım + da → kitabımda'}
- ],
- plural:[
- {id:'evler',prompt:{en:'houses',id:'rumah-rumah'},visual:'🏠',result:'evler',seq:['ev','ler'],cards:[['ev','root'],['ler','suffix'],['lar','distractor'],['im','distractor']],explain:'ev + ler → evler',rule:{en:'Plural suffix is -ler or -lar. The vowel sound decides.',id:'Akhiran jamak adalah -ler atau -lar. Bunyi vokal menentukan.'}},
- {id:'kitaplar',prompt:{en:'books',id:'buku-buku'},visual:'📘',result:'kitaplar',seq:['kitap','lar'],cards:[['kitap','root'],['lar','suffix'],['ler','distractor'],['ım','distractor']],explain:'kitap + lar → kitaplar',rule:{en:'kitap takes -lar for plural.',id:'kitap memakai -lar untuk jamak.'}},
- {id:'köpekler',prompt:{en:'dogs',id:'anjing-anjing'},visual:'🐶',result:'köpekler',seq:['köpek','ler'],cards:[['köpek','root'],['ler','suffix'],['lar','distractor'],['i','distractor']],explain:'köpek + ler → köpekler',rule:{en:'köpek takes -ler for plural.',id:'köpek memakai -ler untuk jamak.'}},
- {id:'okullar',prompt:{en:'schools',id:'sekolah-sekolah'},visual:'🏫',result:'okullar',seq:['okul','lar'],cards:[['okul','root'],['lar','suffix'],['ler','distractor'],['da','distractor']],explain:'okul + lar → okullar',rule:{en:'okul takes -lar for plural.',id:'okul memakai -lar untuk jamak.'}},
- {id:'arabalar',prompt:{en:'cars',id:'mobil-mobil'},visual:'🚗',result:'arabalar',seq:['araba','lar'],cards:[['araba','root'],['lar','suffix'],['ler','distractor'],['m','distractor']],explain:'araba + lar → arabalar',rule:{en:'araba takes -lar.',id:'araba memakai -lar.'}},
- {id:'masalar',prompt:{en:'tables',id:'meja-meja'},visual:'TABLE',result:'masalar',seq:['masa','lar'],cards:[['masa','root'],['lar','suffix'],['ler','distractor'],['da','distractor']],explain:'masa + lar → masalar',rule:{en:'masa takes -lar.',id:'masa memakai -lar.'}},
- {id:'kalemler',prompt:{en:'pens / pencils',id:'pena / pensil'},visual:'✏️',result:'kalemler',seq:['kalem','ler'],cards:[['kalem','root'],['ler','suffix'],['lar','distractor'],['im','distractor']],explain:'kalem + ler → kalemler',rule:{en:'kalem takes -ler.',id:'kalem memakai -ler.'}},
- {id:'elmal ar'.replace(' ',''),prompt:{en:'apples',id:'apel-apel'},visual:'🍎',result:'elmalar',seq:['elma','lar'],cards:[['elma','root'],['lar','suffix'],['ler','distractor'],['yı','distractor']],explain:'elma + lar → elmalar',rule:{en:'elma takes -lar.',id:'elma memakai -lar.'}},
- {id:'gozler',prompt:{en:'eyes',id:'mata-mata'},visual:'👁️',result:'gözler',seq:['göz','ler'],cards:[['göz','root'],['ler','suffix'],['lar','distractor'],['üm','distractor']],explain:'göz + ler → gözler',rule:{en:'göz takes -ler.',id:'göz memakai -ler.'}},
- {id:'sular',prompt:{en:'waters',id:'air-air'},visual:'💧',result:'sular',seq:['su','lar'],cards:[['su','root'],['lar','suffix'],['ler','distractor'],['yum','distractor']],explain:'su + lar → sular',rule:{en:'su takes -lar.',id:'su memakai -lar.'}}
- ],
- accusative:[
- {id:'elmayi',prompt:{en:'the apple',id:'apel itu'},visual:'🍎',result:'elmayı',seq:['elma','yı'],cards:[['elma','root'],['yı','suffix'],['yi','distractor'],['lar','distractor']],explain:'elma + yı → elmayı',rule:{en:'If the word ends with a vowel, Turkish uses buffer y before the object suffix.',id:'Jika kata berakhir vokal, bahasa Turki memakai y sebelum akhiran objek.'}},
- {id:'gazeteyi',prompt:{en:'the newspaper',id:'koran itu'},visual:'📰',result:'gazeteyi',seq:['gazete','yi'],cards:[['gazete','root'],['yi','suffix'],['yı','distractor'],['ler','distractor']],explain:'gazete + yi → gazeteyi',rule:{en:'gazete ends in a vowel, so the buffer y appears.',id:'gazete berakhir vokal, jadi muncul y penyambung.'}},
- {id:'sutu',prompt:{en:'the milk',id:'susu itu'},visual:'🥛',result:'sütü',seq:['süt','ü'],cards:[['süt','root'],['ü','suffix'],['u','distractor'],['ler','distractor']],explain:'süt + ü → sütü',rule:{en:'The object suffix vowel follows the word sound.',id:'Vokal akhiran objek mengikuti bunyi kata.'}},
- {id:'kitabi',prompt:{en:'the book',id:'buku itu'},visual:'📘',result:'kitabı',seq:['kitap','ı'],cards:[['kitap','root'],['ı','suffix'],['i','distractor'],['lar','distractor']],explain:'kitap + ı → kitabı',rule:{en:'Before a vowel suffix, final p can soften to b: kitap → kitabı.',id:'Sebelum akhiran vokal, p akhir bisa menjadi b: kitap → kitabı.'}},
- {id:'kopeg i'.replace(' ',''),prompt:{en:'the dog',id:'anjing itu'},visual:'🐶',result:'köpeği',seq:['köpek','i'],cards:[['köpek','root'],['i','suffix'],['ı','distractor'],['ler','distractor']],explain:'köpek + i → köpeği',rule:{en:'Before a vowel suffix, final k can soften to ğ: köpek → köpeği.',id:'Sebelum akhiran vokal, k akhir bisa menjadi ğ: köpek → köpeği.'}},
- {id:'evi',prompt:{en:'the house',id:'rumah itu'},visual:'🏠',result:'evi',seq:['ev','i'],cards:[['ev','root'],['i','suffix'],['de','distractor'],['ler','distractor']],explain:'ev + i → evi',rule:{en:'The specific object suffix can be -ı, -i, -u, or -ü.',id:'Akhiran objek tertentu bisa -ı, -i, -u, atau -ü.'}},
- {id:'okulu',prompt:{en:'the school',id:'sekolah itu'},visual:'🏫',result:'okulu',seq:['okul','u'],cards:[['okul','root'],['u','suffix'],['ü','distractor'],['lar','distractor']],explain:'okul + u → okulu',rule:{en:'okul uses -u as object suffix.',id:'okul memakai -u sebagai akhiran objek.'}},
- {id:'arabayi',prompt:{en:'the car',id:'mobil itu'},visual:'🚗',result:'arabayı',seq:['araba','yı'],cards:[['araba','root'],['yı','suffix'],['yi','distractor'],['m','distractor']],explain:'araba + yı → arabayı',rule:{en:'araba ends in a vowel, so Turkish uses buffer y.',id:'araba berakhir vokal, jadi bahasa Turki memakai y.'}},
- {id:'kalemi',prompt:{en:'the pen',id:'pena itu'},visual:'✏️',result:'kalemi',seq:['kalem','i'],cards:[['kalem','root'],['i','suffix'],['ı','distractor'],['ler','distractor']],explain:'kalem + i → kalemi',rule:{en:'kalem takes -i as object suffix.',id:'kalem memakai -i sebagai akhiran objek.'}},
- {id:'cayi',prompt:{en:'the tea',id:'teh itu'},visual:'☕',result:'çayı',seq:['çay','ı'],cards:[['çay','root'],['ı','suffix'],['i','distractor'],['lar','distractor']],explain:'çay + ı → çayı',rule:{en:'çay takes -ı as object suffix.',id:'çay memakai -ı sebagai akhiran objek.'}}
- ]
-};
-let learner=localStorage.getItem('tmb_learner')||'';let style=localStorage.getItem('tmb_style')||'';let lesson='alphabet';let index=0;let selected=[];let currentAudio=null;
-let store=safeGet('tmb_store_v26',{stats:{score:0,attempts:0},done:{bella:{alphabet:[],root:[],meaning:[],plural:[],accusative:[]},ayza:{alphabet:[],root:[],meaning:[],plural:[],accusative:[]}}});
-function safeGet(k,f){try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(f))}catch(e){return f}}
-function save(){localStorage.setItem('tmb_store_v26',JSON.stringify(store));if(learner)localStorage.setItem('tmb_learner',learner);if(style)localStorage.setItem('tmb_style',style)}
-function lang(){return learner==='ayza'?'id':'en'}function T(k){return (UI[lang()]&&UI[lang()][k])||UI.en[k]||k}function text(o){return typeof o==='string'?o:(lang()==='id'?o.id:o.en)}function $(id){return document.getElementById(id)}function show(id){$(id).classList.remove('hidden')}function hide(id){$(id).classList.add('hidden')}function set(id,v){$(id).textContent=v}
-function speakTurkish(word){ if(!('speechSynthesis' in window)){setFeedback(T('audioMissing'),false);return} speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(word); u.lang='tr-TR'; u.rate=.78; speechSynthesis.speak(u); }
-function playFile(src,btn){ if(!src){setFeedback(T('audioMissing'),false);return} if(currentAudio){currentAudio.pause();currentAudio=null} const a=new Audio(src); currentAudio=a; if(btn){btn.classList.add('playing');btn.textContent=T('audioLoading')} a.onplay=()=>{if(btn)btn.textContent=T('audioPlaying')}; a.onended=()=>{if(btn){btn.classList.remove('playing');btn.textContent=btn.dataset.label||T('listenSound')}}; a.onerror=()=>{if(btn){btn.classList.remove('playing');btn.textContent=btn.dataset.label||T('listenSound')} setFeedback(T('audioMissing'),false)}; a.play().catch(()=>{if(btn){btn.classList.remove('playing');btn.textContent=btn.dataset.label||T('listenSound')} setFeedback(T('audioMissing'),false)}); }
-function playResult(item,btn){ if(item.audio) playFile(item.audio,btn); else speakTurkish(item.result); }
-function lessonList(){return {alphabet:ALPHABET,root:ROOTS,meaning:BUILDERS.meaning,plural:BUILDERS.plural,accusative:BUILDERS.accusative}[lesson]}
-function doneList(type=lesson){if(!learner) return []; if(!store.done[learner])store.done[learner]={alphabet:[],root:[],meaning:[],plural:[],accusative:[]}; if(!store.done[learner][type])store.done[learner][type]=[]; return store.done[learner][type]}
-function markDone(type,id,scored=true){const d=doneList(type); if(!d.includes(id))d.push(id); if(scored){store.stats.score++;store.stats.attempts++} save(); updateStats();}
-function attempt(ok){store.stats.attempts++; if(ok)store.stats.score++; save(); updateStats();}
-function chooseLearner(x){learner=x; if(!style)style='kids'; save(); renderStart()}function setStyle(x){style=x;save();renderStart()}function showStart(){show('startPage');hide('homePage');hide('lessonPage');renderStart()}function showHome(){hide('startPage');hide('lessonPage');show('homePage');applyLabels();renderPath();updateStats()}
-function applyLabels(){set('subtitle',T('subtitle'));set('changeBtn',T('change'));set('resetBtn',T('reset'));set('homeTitle',(learner==='ayza'?'Ayza':'Bella')+' — '+T('home'));set('homeNote',T('homeNote'));set('scoreLabel',T('score'));set('practiceLabel',T('practice'));set('accuracyLabel',T('accuracy'));set('pathTitle',T('path'));}
-function renderStart(){set('subtitle',learner?T('subtitle'):'Choose learner / Pilih pengguna');set('chooseTitle',learner?T('choose'):'Choose learner / Pilih pengguna'); if(!learner){hide('styleArea');return} show('styleArea');set('styleTitle',T('style'));set('continueBtn',T('continue')); const modes=[['kids',T('kids'),T('kidsDesc')],['family',T('family'),T('familyDesc')],['adult',T('adult'),T('adultDesc')]]; $('styleList').innerHTML=modes.map(m=>`<div class="mode-card ${style===m[0]?'active':''}" onclick="setStyle('${m[0]}')"><strong>${m[1]}</strong><div class="small">${m[2]}</div></div>`).join('')}
-function updateStats(){const total=LESSON_ORDER.reduce((a,l)=>a+({alphabet:ALPHABET,root:ROOTS,meaning:BUILDERS.meaning,plural:BUILDERS.plural,accusative:BUILDERS.accusative}[l].length),0);const comp=LESSON_ORDER.reduce((a,l)=>a+doneList(l).length,0);const acc=store.stats.attempts?Math.round(store.stats.score/store.stats.attempts*100):0;set('score',store.stats.score);set('attempts',store.stats.attempts);set('accuracy',acc+'%');$('totalBar').style.width=Math.round(comp/total*100)+'%'}
-function renderPath(){const meta={alphabet:['🔤',T('alphabet'),T('alphabetDesc')],root:['🌱',T('root'),T('rootDesc')],meaning:['🧩',T('meaning'),T('meaningDesc')],plural:['🔢',T('plural'),T('pluralDesc')],accusative:['🎯',T('accusative'),T('accusativeDesc')]}; $('pathBox').innerHTML=LESSON_ORDER.map(l=>{const list={alphabet:ALPHABET,root:ROOTS,meaning:BUILDERS.meaning,plural:BUILDERS.plural,accusative:BUILDERS.accusative}[l];const pct=Math.round(doneList(l).length/list.length*100);return `<div class="path-card"><div class="path-top"><div class="path-icon">${meta[l][0]}</div><div><div class="path-title">${meta[l][1]}</div><div class="path-desc">${meta[l][2]}</div></div></div><div class="path-meta"><span class="pill">${pct===100?T('done'):T('now')}</span><span class="pill">${pct}%</span></div><div class="progress"><div style="width:${pct}%"></div></div><button class="btn btn-primary" style="width:100%;margin-top:10px" onclick="openLesson('${l}')">${T('open')}</button></div>`}).join('')}
-function openLesson(l){lesson=l;index=0;selected=[];hide('homePage');hide('startPage');show('lessonPage');renderLesson()}function prevItem(){if(index>0){index--;renderLesson()}}function nextItem(){const list=lessonList(); if(lesson==='alphabet')markDone('alphabet',list[index].id,false); if(lesson==='root')markDone('root',list[index].id,false); if(index<list.length-1){index++;renderLesson()}else showHome()}
-function lessonMeta(l=lesson){return {alphabet:T('alphabet'),root:T('root'),meaning:T('meaning'),plural:T('plural'),accusative:T('accusative')}[l]}
-function renderLesson(){const list=lessonList();const pagePct=Math.round((index+1)/list.length*100);const compPct=Math.round(doneList().length/list.length*100);set('lessonTitle',lessonMeta());set('counter',T('page')+' '+(index+1)+' / '+list.length);set('pageProgressText',T('page')+': '+pagePct+'%');set('completeProgressText',T('completed')+': '+compPct+'%');$('lessonBar').style.width=pagePct+'%';set('prevBtn',T('previous'));set('prevBtn2',T('previous'));set('menuBtn',T('menu'));set('nextBtn',index===list.length-1?T('finish'):T('next'));$('prevBtn').disabled=index===0;$('prevBtn2').disabled=index===0; if(lesson==='alphabet')renderAlphabet(); else if(lesson==='root')renderRoot(); else renderBuilder();}
-function layaBlock(title,body,more){const showLaya=style==='kids';return `<div class="explain-card"><div class="explain-top">${showLaya?`<img class="laya" src="${LAYA_SRC}" onerror="this.style.display='none'" alt="Laya">`:''}<div><div class="explain-title">${title}</div><div class="explain-text">${body}</div></div></div>${more?`<button class="btn btn-secondary btn-compact" style="margin-top:8px" onclick="toggleMore(this)">${T('showTip')}</button><div class="more"><div class="small">${more}</div></div>`:''}</div>`}
-function toggleMore(btn){const m=btn.nextElementSibling;m.classList.toggle('open');btn.textContent=m.classList.contains('open')?T('hideTip'):T('showTip')}
-function renderAlphabet(){const item=ALPHABET[index];$('activity').innerHTML=layaBlock(T('topicIntro'), lang()==='id'?'Dengarkan bunyi utama, lalu contoh dan perbandingan.':'Listen to the main sound, then the example and contrast sound.', text(item.tip))+`<div class="big-word">${item.letter}</div><div class="alphabet-example"><span class="tr-word">${item.example.label}</span> <span class="translation">= ${text(item.example.meaning)}</span></div><div class="row"><button class="btn btn-audio" data-label="${T('listenMain')}: ${item.main.label}" onclick="playFile('${item.main.audio}',this)">${T('listenMain')}: ${item.main.label}</button><button class="btn btn-audio" data-label="${T('listenExample')}: ${item.example.label}" onclick="playFile('${item.example.audio}',this)">${T('listenExample')}: ${item.example.label}</button></div><div class="row" style="margin-top:8px"><button class="btn btn-audio" data-label="${T('listenContrast')}: ${item.contrast.label}" onclick="playFile('${item.contrast.audio}',this)">${T('listenContrast')}: ${item.contrast.label}</button><button class="btn btn-success" onclick="markDone('alphabet','${item.id}',false);renderLesson();">${T('know')}</button></div><div id="fb" class="feedback">${text(item.tip)}</div>`}
-function renderRoot(){const item=ROOTS[index];$('activity').innerHTML=layaBlock(T('topicIntro'), lang()==='id'?'Ini kata dasar. Nanti akhiran akan menambah makna baru.':'This is a root word. Later, suffixes will add meaning to it.', lang()==='id'?'Dengar kata Turki dan hubungkan dengan gambar, bukan hanya terjemahan.':'Listen to the Turkish word and connect it with the image, not only the translation.')+`<div class="root-card"><div class="root-media">${renderWordVisual(item.word)}<div class="root-copy"><div class="big-word">${item.word}</div><div class="meaning">${text(item.meaning)}</div></div></div><button class="btn btn-audio" data-label="${T('listenRoot')}" onclick="playFile('${item.audio}',this)">${T('listenRoot')}</button><button class="btn btn-success" style="margin-top:8px;width:100%" onclick="markDone('root','${item.id}',false);renderLesson();">${T('know')}</button></div><div id="fb" class="feedback">${T('rootDesc')}</div>`}
-function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
-function renderBuilder(){const item=lessonList()[index];selected=[];const shuffled=shuffle(item.cards);const intro={meaning:[lang()==='id'?'Akhiran menambah makna. Susun bagian kata tanpa melihat jawaban.':'Suffixes add meaning. Build the word without seeing the answer first.',lang()==='id'?'Contoh logika: akar + kepunyaan + tempat. Urutan penting.':'Logic example: root + possession + location. Order matters.'],plural:[lang()==='id'?'Bahasa Turki memakai -ler atau -lar untuk jamak.':'Turkish uses -ler or -lar for plural words.',lang()==='id'?'Pilih akhiran jamak yang cocok dengan bunyi kata.':'Choose the plural suffix that fits the word sound.'],accusative:[lang()==='id'?'Objek tertentu memakai akhiran khusus.':'A specific object can take a special object suffix.',lang()==='id'?'Jika kata berakhir vokal, huruf y bisa muncul sebagai penyambung.':'If the word ends with a vowel, buffer y can appear.']}[lesson];$('activity').innerHTML=layaBlock(T('topicIntro'),intro[0],intro[1])+`<div class="meaning">${text(item.prompt)}</div><div class="topic-visual-row">${renderWordVisual(firstRootForVisual(item),true)}</div><div id="answerBox" class="answer-box">${T('tap')}</div><div class="word-grid" id="wordGrid"></div><div class="row" style="margin-top:10px"><button class="btn btn-clear" onclick="renderBuilder()">${T('clear')}</button><button class="btn btn-primary" onclick="checkBuilder()">${T('check')}</button></div><div id="fb" class="feedback">${T('tap')}</div><div id="rule" class="rule-reveal"></div>`;const grid=$('wordGrid');shuffled.forEach((c,i)=>{const b=document.createElement('button');b.className='word-chip '+c[1];b.textContent=c[0];b.onclick=()=>pickPart(b,c[0]);grid.appendChild(b)});}
-function pickPart(btn,label){if(btn.disabled)return;btn.disabled=true;btn.classList.add('selected');selected.push(label);$('answerBox').textContent=selected.join(' + ')}
-function checkBuilder(){const item=lessonList()[index];const ok=selected.length===item.seq.length&&selected.every((v,i)=>v===item.seq[i]);attempt(ok);if(ok){markDone(lesson,item.id,false);setFeedback(T('correct'),true);$('answerBox').textContent=item.result;$('rule').innerHTML=`<strong>${item.result}</strong><br>${text(item.rule)}<br><span class="small">${item.explain}</span><div style="margin-top:8px"><button class="btn btn-audio btn-compact" data-label="${T('listenSound')}" onclick="playResult(lessonList()[index],this)">${T('listenSound')}</button></div>`;$('rule').classList.add('show')}else{setFeedback(T('wrong'),false)}}
-function setFeedback(msg,good){const fb=$('fb');if(!fb)return;fb.textContent=msg;fb.className='feedback '+(good===true?'good':good===false?'bad':'')}
-function resetProgress(){store={stats:{score:0,attempts:0},done:{bella:{alphabet:[],root:[],meaning:[],plural:[],accusative:[]},ayza:{alphabet:[],root:[],meaning:[],plural:[],accusative:[]}}};save();showHome()}
-$('chooseBella').onclick=()=>chooseLearner('bella');$('chooseAyza').onclick=()=>chooseLearner('ayza');$('continueBtn').onclick=showHome;$('changeBtn').onclick=showStart;$('resetBtn').onclick=resetProgress;$('prevBtn').onclick=prevItem;$('prevBtn2').onclick=prevItem;$('menuBtn').onclick=showHome;$('nextBtn').onclick=nextItem;
-window.setStyle=setStyle;window.openLesson=openLesson;window.playFile=playFile;window.markDone=markDone;window.renderLesson=renderLesson;window.pickPart=pickPart;window.checkBuilder=checkBuilder;window.renderBuilder=renderBuilder;window.playResult=playResult;window.toggleMore=toggleMore;
-renderStart(); if(learner&&style)showHome();
+/* =========================
+   PROGRESS ENGINE
+========================= */
+function loadProgress(){
+  try{
+    return JSON.parse(localStorage.getItem(CONFIG.storageKey)) || {completed:{alphabet:[],root_words:[],meaning_builder:[],plural_builder:[],accusative_builder:[]},attempts:{}};
+  }catch(e){return {completed:{alphabet:[],root_words:[],meaning_builder:[],plural_builder:[],accusative_builder:[]},attempts:{}}}
+}
+let PROGRESS = loadProgress();
+function saveProgress(){localStorage.setItem(CONFIG.storageKey, JSON.stringify(PROGRESS))}
+function topicKey(id){return id}
+function markComplete(topic,id){
+  const k=topicKey(topic);
+  if(!PROGRESS.completed[k]) PROGRESS.completed[k]=[];
+  if(!PROGRESS.completed[k].includes(id)) PROGRESS.completed[k].push(id);
+  saveProgress();
+}
+function isComplete(topic,id){return (PROGRESS.completed[topicKey(topic)]||[]).includes(id)}
+function completionPct(topic){
+  const total=datasetFor(topic).length || 1;
+  const done=(PROGRESS.completed[topicKey(topic)]||[]).length;
+  return Math.round((done/total)*100);
+}
+function countAttempt(itemId, ok){
+  if(!PROGRESS.attempts[itemId]) PROGRESS.attempts[itemId]={total:0,correct:0,wrong:0};
+  PROGRESS.attempts[itemId].total++;
+  if(ok) PROGRESS.attempts[itemId].correct++; else PROGRESS.attempts[itemId].wrong++;
+  saveProgress();
+}
+
+/* =========================
+   AUDIO ENGINE
+========================= */
+let currentAudio=null;
+function playAudio(path, statusElId){
+  const status = statusElId ? document.getElementById(statusElId) : null;
+  if(!path){
+    if(status) status.textContent = "Audio not available yet.";
+    return;
+  }
+  try{
+    if(currentAudio){currentAudio.pause(); currentAudio=null;}
+    const a = new Audio(path);
+    currentAudio = a;
+    if(status) status.textContent = "Loading sound…";
+    a.addEventListener("playing",()=>{if(status) status.textContent="Playing…"});
+    a.addEventListener("ended",()=>{if(status) status.textContent="Ready to replay."; currentAudio=null;});
+    a.addEventListener("error",()=>{if(status) status.textContent="Audio file could not be loaded."; currentAudio=null;});
+    a.play().catch(()=>{if(status) status.textContent="Tap again to play sound.";});
+  }catch(e){
+    if(status) status.textContent="Audio not available.";
+  }
+}
+
+/* =========================
+   VISUAL ENGINE
+========================= */
+function safeFallback(item){
+  if(!item) return "WORD";
+  return item.fallback || item.word || "WORD";
+}
+function renderVisual(item, cls="root-visual"){
+  const fallback = safeFallback(item);
+  if(item && item.image){
+    return `<div class="${cls}"><img src="${item.image}" alt="" onerror="this.remove();this.parentElement.innerHTML='<span class=&quot;fallback&quot;>${String(fallback).replace(/'/g,"")}</span>'"></div>`;
+  }
+  return `<div class="${cls}"><span class="fallback">${fallback}</span></div>`;
+}
+
+/* =========================
+   UI COMPONENTS
+========================= */
+const root = document.getElementById("root");
+function t(key){return TXT[STATE.lang][key] || TXT.en[key] || key}
+function topicTitle(id){return TOPICS.find(x=>x.id===id)?.title || id}
+function buttonLabelForProgress(p){return p>=100?t("completed"):p>0?t("continue"):t("start")}
+function progressBar(topic){
+  const p=completionPct(topic);
+  return `<div class="progress-line"><span style="width:${p}%"></span></div><div class="progress-text">${p}% ${p>=100?t("completed"):""}</div>`;
+}
+function explanationButton(key){
+  if(!key) return "";
+  const label = STATE.mode==="kids" ? t("layaExplains") : (STATE.mode==="adult" ? t("grammarRule") : t("learnWhy"));
+  return `<button class="btn secondary small" onclick="openExplanation('${key}')">${label}</button>`;
+}
+function renderExplain(key, fallback){
+  const ex = EXPLANATION_MAP[key] || {main:fallback||"Listen, compare, and practice."};
+  const showLaya = STATE.mode==="kids";
+  return `<div class="explain-card">
+    ${showLaya?`<img class="laya" src="${CONFIG.layaPath}" alt="Laya" onerror="this.style.display='none'">`:""}
+    <div style="flex:1">
+      <h3>${STATE.mode==="kids"?"Laya guide":"Topic explanation"}</h3>
+      <p>${ex.main || fallback || ""}</p>
+      <div class="learn-row"><span>${STATE.mode==="kids"?"Short help. Details only if needed.":"Short rule. Details are optional."}</span>${explanationButton(key)}</div>
+    </div>
+  </div>`;
+}
+function openExplanation(key){
+  const ex = EXPLANATION_MAP[key];
+  if(!ex) return;
+  document.getElementById("sheetTitle").textContent = STATE.mode==="kids" ? "Laya explains" : "Learn why";
+  const txt = STATE.lang==="id" ? ex.id : (STATE.mode==="adult" ? ex.adult_en : ex.kids_en);
+  document.getElementById("sheetBody").innerHTML = `<p>${txt || ex.main}</p><div class="mini-rule">${ex.main}</div>`;
+  document.getElementById("sheetBackdrop").classList.add("show");
+}
+document.getElementById("sheetClose").onclick=()=>document.getElementById("sheetBackdrop").classList.remove("show");
+document.getElementById("sheetBackdrop").addEventListener("click",e=>{if(e.target.id==="sheetBackdrop") e.currentTarget.classList.remove("show")});
+
+/* =========================
+   RENDERERS
+========================= */
+function renderHome(){
+  STATE.view="home"; STATE.topic=null;
+  document.getElementById("footerNav").classList.add("hidden");
+  const topics = TOPICS.map((topic,i)=>{
+    const p=completionPct(topic.id);
+    return `<button class="topic" onclick="openTopic('${topic.id}',0)">
+      <div class="topic-num">${i+1}</div>
+      <div style="flex:1">
+        <h3>${topic.title}</h3>
+        <p>${topic.sub}</p>
+        ${progressBar(topic.id)}
+        <div class="progress-text">${buttonLabelForProgress(p)}</div>
+      </div>
+    </button>`;
+  }).join("");
+  root.innerHTML = `
+    <section class="card hero">
+      <h2>${t("homeTitle")}</h2>
+      <p>${t("homeSub")}</p>
+      <div style="margin-top:12px"><button class="btn danger small" onclick="resetProgress()">${t("reset")}</button></div>
+    </section>
+    <section class="grid">${topics}</section>
+    ${CONFIG.qaMode?renderQA():''}
+  `;
+}
+
+function openTopic(topic,index=0){
+  STATE.view="lesson"; STATE.topic=topic; STATE.index=Math.max(0,Math.min(index,datasetFor(topic).length-1)); STATE.selected=[]; STATE.answered=false;
+  renderLesson();
+}
+function currentItem(){return datasetFor(STATE.topic)[STATE.index]}
+function renderLesson(){
+  const topic=TOPICS.find(x=>x.id===STATE.topic);
+  const item=currentItem();
+  document.getElementById("footerNav").classList.remove("hidden");
+  let body="";
+  if(topic.type==="alphabet") body=renderAlphabet(item);
+  if(topic.type==="root") body=renderRootWord(item);
+  if(topic.type==="builder") body=renderBuilder(topic.id,item);
+  root.innerHTML = `<div class="lesson-head">
+    <div class="lesson-title"><h2>${topic.title}</h2><p>Item ${STATE.index+1} / ${datasetFor(STATE.topic).length}</p></div>
+    <div style="min-width:120px">${progressBar(STATE.topic)}</div>
+  </div>${body}`;
+}
+function renderAlphabet(item){
+  const statusId = `audio-status-${item.id}`;
+  const extras = item.extraExamples ? item.extraExamples.map(x=>`<button class="btn secondary small" onclick="playAudio('${x.audio}','${statusId}')">Example: ${x.word}</button>`).join("") : "";
+  return `<section class="card center">
+    ${renderExplain(item.explanationKey, item.target)}
+    <div class="letter">${item.letter}</div>
+    <div class="prompt-sub">${item.target}</div>
+    <div class="audio-row">
+      ${item.mainAudio?`<button class="btn secondary small" onclick="playAudio('${item.mainAudio}','${statusId}')">Main sound</button>`:""}
+      <button class="btn secondary small" onclick="playAudio('${item.exampleAudio}','${statusId}')">Example word</button>
+      ${item.contrastAudio?`<button class="btn secondary small" onclick="playAudio('${item.contrastAudio}','${statusId}')">Contrast sound</button>`:""}
+      ${extras}
+    </div>
+    <div class="example-word">${item.exampleWord || ""}</div>
+    <div class="audio-status" id="${statusId}"></div>
+    <div style="margin-top:16px"><button class="btn success full" onclick="markAndRender('${STATE.topic}','${item.id}')">${t("know")}</button></div>
+  </section>`;
+}
+function renderRootWord(item){
+  const statusId = `audio-status-${item.id}`;
+  return `<section class="card center">
+    ${renderVisual(item)}
+    <div class="word-title">${item.word}</div>
+    <p class="meaning">${STATE.lang==="id"?item.meaning_id:item.meaning_en}</p>
+    <button class="btn secondary" onclick="playAudio('${item.audio}','${statusId}')">${t("listen")}</button>
+    <div class="audio-status" id="${statusId}"></div>
+    <div style="margin-top:16px"><button class="btn success full" onclick="markAndRender('${STATE.topic}','${item.id}')">${t("know")}</button></div>
+  </section>`;
+}
+function renderBuilder(topicId,item){
+  const statusId = `audio-status-${item.id}`;
+  const selectedHtml = STATE.selected.length ? STATE.selected.map(x=>`<button class="chip selected" onclick="removeSelected('${x}')">${x}</button>`).join("") : t("answerHere");
+  const options = item.options.map(part=>`<button class="chip ${isSuffix(part)?'suffix':''}" onclick="pickPart('${part.replace(/'/g,"\\'")}')">${part}</button>`).join("");
+  const imageItem = item.image ? {image:item.image,fallback:""} : null;
+  return `<section class="card">
+    ${renderExplain(item.explanationKey, "Build from left to right: root first, suffixes after.")}
+    <div class="prompt">${STATE.lang==="id"?item.prompt_id:item.prompt_en}</div>
+    <p class="prompt-sub">${t("listenAfter")}</p>
+    ${imageItem?renderVisual(imageItem):""}
+    <div class="answer-zone ${STATE.selected.length?'':'empty'}">${selectedHtml}</div>
+    <div class="chip-grid">${options}</div>
+    <div class="compact-actions">
+      <button class="btn secondary" onclick="clearSelection()">${t("clear")}</button>
+      <button class="btn primary" onclick="checkAnswer()">${t("check")}</button>
+    </div>
+    <div id="feedback" class="feedback"></div>
+    <div class="audio-status" id="${statusId}"></div>
+  </section>`;
+}
+function isSuffix(p){return !["ev","araba","masa","kalem","el","göz","kitap","park","köpek","okul","gazete","elma"].includes(p)}
+function pickPart(part){
+  if(STATE.answered) return;
+  STATE.selected.push(part);
+  renderLesson();
+}
+function removeSelected(part){
+  if(STATE.answered) return;
+  const idx=STATE.selected.indexOf(part);
+  if(idx>-1) STATE.selected.splice(idx,1);
+  renderLesson();
+}
+function clearSelection(){STATE.selected=[]; STATE.answered=false; renderLesson();}
+function checkAnswer(){
+  const item=currentItem();
+  const ok = JSON.stringify(STATE.selected)===JSON.stringify(item.answerParts);
+  countAttempt(item.id,ok);
+  const fb=document.getElementById("feedback");
+  fb.className=`feedback show ${ok?'ok':'bad'}`;
+  if(ok){
+    STATE.answered=true;
+    markComplete(STATE.topic,item.id);
+    fb.innerHTML = `${t("correct")}<div class="rule">${item.revealAfterCorrect}</div><div style="margin-top:10px"><button class="btn secondary small" onclick="playAudio('${item.audio}','audio-status-${item.id}')">${t("listen")}</button></div>`;
+  }else{
+    fb.innerHTML = t("wrong");
+  }
+  saveProgress();
+  // update home/footer progress without re-rendering selected state
+}
+function markAndRender(topic,id){markComplete(topic,id); renderLesson();}
+function resetProgress(){if(confirm("Delete all local progress?")){localStorage.removeItem(CONFIG.storageKey); PROGRESS=loadProgress(); renderHome();}}
+function go(delta){openTopic(STATE.topic, STATE.index+delta)}
+function renderQA(){
+  const lines=[];
+  for(const topic of TOPICS){
+    const ds=datasetFor(topic.id);
+    lines.push(`${topic.title}: ${ds.length} items, ${completionPct(topic.id)}% complete`);
+    ds.forEach(x=>{
+      const audio=x.audio||x.mainAudio||x.exampleAudio||"";
+      const image=x.image||"";
+      lines.push(`- ${x.id} | audio: ${audio||"n/a"} | image: ${image||"n/a"}`);
+    });
+  }
+  return `<section class="card"><h2>QA Mode</h2><div class="qa-panel">${lines.join("\n")}</div></section>`;
+}
+
+/* =========================
+   APP INIT
+========================= */
+document.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{
+  STATE.mode=b.dataset.mode;
+  document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("active",x.dataset.mode===STATE.mode));
+  STATE.view==="home"?renderHome():renderLesson();
+});
+document.querySelectorAll("[data-lang]").forEach(b=>b.onclick=()=>{
+  STATE.lang=b.dataset.lang;
+  document.querySelectorAll("[data-lang]").forEach(x=>x.classList.toggle("active",x.dataset.lang===STATE.lang));
+  STATE.view==="home"?renderHome():renderLesson();
+});
+document.getElementById("homeBtn").onclick=renderHome;
+document.getElementById("mainBtn").onclick=renderHome;
+document.getElementById("prevBtn").onclick=()=>go(-1);
+document.getElementById("nextBtn").onclick=()=>go(1);
+renderHome();
 </script>
 </body>
 </html>
