@@ -1,9 +1,9 @@
 export const TOPICS = [
   { id:'alphabet', type:'alphabet', title:{en:'Alphabet Pro', id:'Alfabet Turki'}, sub:{en:'Sounds and contrasts', id:'Bunyi dan perbandingan'} },
   { id:'root_words', type:'root', title:{en:'Root Words', id:'Kata Dasar'}, sub:{en:'Concrete starter words', id:'Kata awal yang nyata'} },
-  { id:'meaning_builder', type:'builder', title:{en:'Meaning Builder', id:'Penyusun Makna'}, sub:{en:'Root + meaning suffixes', id:'Kata dasar + akhiran makna'} },
+  { id:'meaning_builder', type:'builder', title:{en:'Meaning Builder', id:'Penyusun Makna'}, sub:{en:'Root + meaning blocks', id:'Kata dasar + blok makna'} },
   { id:'plural_builder', type:'builder', title:{en:'Plural Builder', id:'Bentuk Jamak'}, sub:{en:'-lar / -ler', id:'-lar / -ler'} },
-  { id:'accusative_builder', type:'builder', title:{en:'Accusative Builder', id:'Objek Tertentu'}, sub:{en:'The definite object', id:'Objek yang sudah tertentu'} }
+  { id:'accusative_builder', type:'builder', title:{en:'Object Builder', id:'Pembuat Objek'}, sub:{en:'Build the object form', id:'Susun bentuk objek'} }
 ];
 
 export const ALPHABET_PRO = [
@@ -43,8 +43,8 @@ export const MEANING_BUILDER = [
   {id:'meaning_kalemimde',prompt:{en:'in / on my pencil',id:'di pensil saya'},answerParts:['kalem','im','de'],options:['kalem','im','de','da','m'],finalWord:'kalemimde',audio:'audio/pronunciation_tr_kalemimde.mp3',image:'images/kalem.png',revealAfterCorrect:'kalem + im + de = kalemimde',explanationKey:'safe_builder_order'},
   {id:'meaning_parkta',prompt:{en:'at / in the park',id:'di taman'},answerParts:['park','ta'],options:['park','ta','da','de'],finalWord:'parkta',audio:'audio/pronunciation_tr_parkta.mp3',image:null,revealAfterCorrect:'park + ta = parkta',explanationKey:'locative_suffix_basic'},
   {id:'meaning_elimde',prompt:{en:'in my hand',id:'di tangan saya'},answerParts:['el','im','de'],options:['el','im','de','da','in'],finalWord:'elimde',audio:'audio/pronunciation_tr_elimde.mp3',image:null,revealAfterCorrect:'el + im + de = elimde',explanationKey:'safe_builder_order'},
-  {id:'meaning_gozumde',prompt:{en:'in my eye',id:'di mata saya'},answerParts:['göz','üm','de'],options:['göz','üm','de','im','da'],finalWord:'gözümde',audio:'audio/pronunciation_tr_gozumde.mp3',image:'images/goz.png',revealAfterCorrect:'göz + üm + de = gözümde',explanationKey:'vowel_harmony_suffix_shape'},
-  {id:'meaning_kitabimda',prompt:{en:'in my book',id:'di buku saya'},answerParts:['kitap','ım','da'],options:['kitap','ım','da','im','ta'],finalWord:'kitabımda',audio:'audio/pronunciation_tr_kitabimda.mp3',image:'images/kitap.png',revealAfterCorrect:'kitap + ım + da → kitabımda',explanationKey:'consonant_softening_p_b'}
+  {id:'meaning_gozumde',prompt:{en:'in my eye',id:'di mata saya'},answerParts:['göz','üm','de'],options:['göz','üm','de','im','da'],finalWord:'gözümde',audio:'audio/pronunciation_tr_gozumde.mp3',image:'images/goz.png',revealAfterCorrect:'göz + üm + de = gözümde',explanationKey:'safe_sound_match'},
+  {id:'meaning_kitabimda',prompt:{en:'in my book',id:'di buku saya'},answerParts:['kitab','ım','da'],options:['kitab','ım','da','im','ta'],finalWord:'kitabımda',audio:'audio/pronunciation_tr_kitabimda.mp3',image:'images/kitap.png',revealAfterCorrect:'kitap changes to kitab here: kitab + ım + da = kitabımda',explanationKey:'softened_book_builder'}
 ];
 
 export const PLURAL_BUILDER = [
@@ -58,8 +58,8 @@ export const PLURAL_BUILDER = [
 export const ACCUSATIVE_BUILDER = [
   {id:'acc_elmayi',prompt:{en:'the apple',id:'apel itu'},answerParts:['elma','yı'],options:['elma','yı','yi','ı'],finalWord:'elmayı',audio:'audio/pronunciation_tr_elmayi.mp3',image:'images/elma.png',revealAfterCorrect:'elma + yı = elmayı',explanationKey:'y_glide_accusative'},
   {id:'acc_gazeteyi',prompt:{en:'the newspaper',id:'koran itu'},answerParts:['gazete','yi'],options:['gazete','yi','yı','i'],finalWord:'gazeteyi',audio:'audio/pronunciation_tr_gazeteyi.mp3',image:null,revealAfterCorrect:'gazete + yi = gazeteyi',explanationKey:'y_glide_accusative'},
-  {id:'acc_kitabi',prompt:{en:'the book',id:'buku itu'},answerParts:['kitap','ı'],options:['kitap','ı','i','yı'],finalWord:'kitabı',audio:'audio/pronunciation_tr_kitabi.mp3',image:'images/kitap.png',revealAfterCorrect:'kitap + ı → kitabı',explanationKey:'consonant_softening_p_b'},
-  {id:'acc_kopegi',prompt:{en:'the dog',id:'anjing itu'},answerParts:['köpek','i'],options:['köpek','i','ı','yi'],finalWord:'köpeği',audio:'audio/pronunciation_tr_kopegi.mp3',image:'images/kopek.png',revealAfterCorrect:'köpek + i → köpeği',explanationKey:'consonant_softening_k_ğ'},
+  {id:'acc_kitabi',prompt:{en:'the book',id:'buku itu'},answerParts:['kitab','ı'],options:['kitab','ı','i','yı'],finalWord:'kitabı',audio:'audio/pronunciation_tr_kitabi.mp3',image:'images/kitap.png',revealAfterCorrect:'kitap changes to kitab here: kitab + ı = kitabı',explanationKey:'softened_book_builder'},
+  {id:'acc_kopegi',prompt:{en:'the dog',id:'anjing itu'},answerParts:['köpeğ','i'],options:['köpeğ','i','ı','yi'],finalWord:'köpeği',audio:'audio/pronunciation_tr_kopegi.mp3',image:'images/kopek.png',revealAfterCorrect:'köpek changes to köpeğ here: köpeğ + i = köpeği',explanationKey:'softened_k_builder'},
   {id:'acc_arabayi',prompt:{en:'the car',id:'mobil itu'},answerParts:['araba','yı'],options:['araba','yı','yi','ı'],finalWord:'arabayı',audio:'audio/pronunciation_tr_arabayi.mp3',image:'images/araba.png',revealAfterCorrect:'araba + yı = arabayı',explanationKey:'y_glide_accusative'}
 ];
 
@@ -120,15 +120,15 @@ export const EXPLANATIONS = {
     mistake:{en:'Common mistake: pronouncing dağ with a strong final g.',id:'Kesalahan umum: mengucapkan dağ dengan g keras di akhir.'},
     practice:{en:['Listen to dağ.','Listen to ağaç.','Listen to soğuk.','Do not practice isolated ğ.'],id:['Dengarkan dağ.','Dengarkan ağaç.','Dengarkan soğuk.','Jangan berlatih ğ sendirian.']}
   },
-  possessive_suffix_basic:{main:{en:'Turkish can add “my” by attaching a suffix after the word.',id:'Bahasa Turki dapat menambahkan arti “milik saya” dengan akhiran setelah kata.'}},
-  possessive_after_vowel:{main:{en:'After a word ending in a vowel, the possessive block can be shorter.',id:'Setelah kata yang berakhir dengan vokal, blok kepemilikan bisa lebih pendek.'}},
-  locative_suffix_basic:{main:{en:'The place suffix means in, on, or at. Choose the root first, then the place suffix.',id:'Akhiran tempat berarti di, pada, atau dalam. Pilih kata dasar dulu, lalu akhiran tempat.'}},
-  safe_builder_order:{main:{en:'Build from left to right: root first, then meaning blocks. The final answer appears only after you solve it.',id:'Susun dari kiri ke kanan: kata dasar dulu, lalu blok makna. Jawaban akhir muncul hanya setelah kamu menyelesaikannya.'}},
-  vowel_harmony_suffix_shape:{main:{en:'Suffixes can change sound to match the word. Choose the suffix that sounds right with the root.',id:'Akhiran dapat berubah bunyi agar cocok dengan kata. Pilih akhiran yang cocok dengan kata dasar.'}},
-  consonant_softening_p_b:{main:{en:'Some final sounds soften before a vowel suffix, such as kitap becoming kitabı.',id:'Beberapa bunyi akhir melembut sebelum akhiran vokal, misalnya kitap menjadi kitabı.'}},
-  consonant_softening_k_ğ:{main:{en:'Some final k sounds soften before a vowel suffix, such as köpek becoming köpeği.',id:'Beberapa bunyi akhir k melembut sebelum akhiran vokal, misalnya köpek menjadi köpeği.'}},
-  y_glide_accusative:{main:{en:'When a word ends with a vowel, Turkish may add y before the object suffix.',id:'Jika kata berakhir dengan vokal, bahasa Turki dapat menambahkan y sebelum akhiran objek.'}},
-  plural_basic:{main:{en:'Turkish uses -lar or -ler for plural words. Choose by the sound of the root word.',id:'Bahasa Turki memakai -lar atau -ler untuk bentuk jamak. Pilih sesuai bunyi kata dasar.'}}
+  possessive_suffix_basic:{main:{en:'Turkish can add “my” by attaching a meaning block after the word.',id:'Bahasa Turki dapat menambahkan arti “milik saya” dengan blok makna setelah kata.'}},
+  possessive_after_vowel:{main:{en:'After a word ending in a vowel, the “my” block can be shorter.',id:'Setelah kata yang berakhir dengan vokal, blok “milik saya” bisa lebih pendek.'}},
+  locative_suffix_basic:{main:{en:'This place block means in, on, or at. Choose the word first, then the place block.',id:'Blok tempat ini berarti di, pada, atau dalam. Pilih kata dulu, lalu blok tempat.'}},
+  safe_builder_order:{main:{en:'Build from left to right: word first, then meaning blocks. The final answer appears only after you solve it.',id:'Susun dari kiri ke kanan: kata dulu, lalu blok makna. Jawaban akhir muncul hanya setelah kamu menyelesaikannya.'}},
+  safe_sound_match:{main:{en:'Some blocks change sound to fit the word. Trust the sound and choose the block that matches.',id:'Beberapa blok berubah bunyi agar cocok dengan kata. Dengarkan bunyinya dan pilih blok yang cocok.'}},
+  softened_book_builder:{main:{en:'Here, kitap is shown as kitab before the next block. Build the spoken/written result as kitabımda.',id:'Di sini, kitap ditampilkan sebagai kitab sebelum blok berikutnya. Susun hasilnya menjadi kitabımda.'}},
+  softened_k_builder:{main:{en:'Here, köpek is shown as köpeğ before the next block. Build the spoken/written result as köpeği.',id:'Di sini, köpek ditampilkan sebagai köpeğ sebelum blok berikutnya. Susun hasilnya menjadi köpeği.'}},
+  y_glide_accusative:{main:{en:'When a word ends with a vowel, Turkish may add y before the next sound.',id:'Jika kata berakhir dengan vokal, bahasa Turki dapat menambahkan y sebelum bunyi berikutnya.'}},
+  plural_basic:{main:{en:'Turkish uses -lar or -ler for more than one. Choose by the sound of the word.',id:'Bahasa Turki memakai -lar atau -ler untuk lebih dari satu. Pilih sesuai bunyi kata.'}}
 };
 
 export function datasetFor(topicId){
