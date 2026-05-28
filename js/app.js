@@ -44,7 +44,7 @@ function renderHome(){
     const label=p>=100?t(lang,'completed'):p>0?t(lang,'continue'):t(lang,'start');
     return `<button class="topic-card" data-action="open-topic" data-topic="${esc(topic.id)}"><span class="topic-num">${i+1}</span><div><h3>${esc(localized(topic.title,lang))}</h3><p>${esc(localized(topic.sub,lang))}</p>${progressBar(p)}<b>${esc(label)}</b></div></button>`;
   }).join('');
-  app.innerHTML=`${topbar(t(lang,'appTitle'), `${state.profile.name} · ${t(lang,state.mode)} · ${state.progress.storeLabel()}`)}<main class="page"><section class="card hero"><div><h2>${esc(t(lang,'homeTitle'))}</h2><p>${esc(t(lang,'homeSub'))}</p><p class="scope">${esc(t(lang,'progressSavedFor'))}: <b>${esc(state.profile.name)}</b> · ${esc(LANGS[lang].native)}</p></div><div class="home-actions"><button class="btn secondary" data-action="settings">${esc(t(lang,'settings'))}</button><button class="btn ghost" data-action="profile-screen">${esc(t(lang,'changeProfile'))}</button></div></section><section class="topic-grid">${topicCards}</section><section class="danger-zone"><button class="btn danger" data-action="reset-progress">${esc(t(lang,'reset'))}</button></section>${isQA?renderQA(state):''}</main>`;
+  app.innerHTML=`${topbar(t(lang,'appTitle'), `${state.profile.name} · ${t(lang,state.mode)}`)}<main class="page"><section class="card hero"><div><h2>${esc(t(lang,'homeTitle'))}</h2><p>${esc(t(lang,'homeSub'))}</p><p class="scope">${esc(t(lang,'progressSavedFor'))}: <b>${esc(state.profile.name)}</b> · ${esc(LANGS[lang].native)}</p></div><div class="home-actions"><button class="btn secondary" data-action="settings">${esc(t(lang,'settings'))}</button><button class="btn ghost" data-action="profile-screen">${esc(t(lang,'changeProfile'))}</button></div></section><section class="topic-grid">${topicCards}</section><section class="danger-zone"><button class="btn danger" data-action="reset-progress">${esc(t(lang,'reset'))}</button></section>${isQA?renderQA(state):''}</main>`;
 }
 function currentItem(){ return datasetFor(state.topicId)[state.index]; }
 function renderLesson(){
@@ -75,7 +75,7 @@ function renderSettings(){
   const lang=state.language;
   const langBtns=Object.values(LANGS).map(l=>`<button class="seg ${state.language===l.code?'active':''}" data-action="set-lang" data-lang="${l.code}">${esc(lang==='id' ? (l.code==='en'?'Bahasa Inggris':'Bahasa Indonesia') : l.native)}</button>`).join('');
   const modes=['kids','family','adult'].map(m=>`<button class="seg ${state.mode===m?'active':''}" data-action="set-mode" data-mode="${m}">${esc(t(lang,m))}</button>`).join('');
-  sheetRoot.innerHTML=`<div class="sheet-backdrop" data-action="close-sheet"><div class="sheet" role="dialog" aria-modal="true" onclick="event.stopPropagation()"><h2>${esc(t(lang,'settings'))}</h2><label>${esc(t(lang,'language'))}</label><div class="seg-row">${langBtns}</div><label>${esc(t(lang,'learnerMode'))}</label><div class="seg-row">${modes}</div><button class="btn primary full" data-action="close-sheet">${esc(t(lang,'close'))}</button></div></div>`;
+  sheetRoot.innerHTML=`<div class="sheet-backdrop" data-action="close-sheet"><div class="sheet" role="dialog" aria-modal="true"><h2>${esc(t(lang,'settings'))}</h2><label>${esc(t(lang,'language'))}</label><div class="seg-row">${langBtns}</div><label>${esc(t(lang,'learnerMode'))}</label><div class="seg-row">${modes}</div><button class="btn primary full" data-action="close-sheet">${esc(t(lang,'close'))}</button></div></div>`;
 }
 function play(path){
   const lang=state.language; const status=document.getElementById('audio-status');
@@ -101,7 +101,10 @@ document.addEventListener('click', e=>{
   if(action==='select-profile') return setProfile(el.dataset.profile);
   if(action==='profile-screen'){ state.screen='profile'; return render(); }
   if(action==='settings') return renderSettings();
-  if(action==='close-sheet'){ sheetRoot.innerHTML=''; return; }
+  if(action==='close-sheet'){
+    if(el.classList.contains('sheet-backdrop') && e.target!==el) return;
+    sheetRoot.innerHTML=''; return;
+  }
   if(action==='set-lang'){ state.language=el.dataset.lang; updateScope(); sheetRoot.innerHTML=''; return render(); }
   if(action==='set-mode'){ state.mode=el.dataset.mode; updateScope(); sheetRoot.innerHTML=''; return render(); }
   if(action==='open-topic') return openTopic(el.dataset.topic,0);
