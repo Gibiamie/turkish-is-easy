@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Turkish Meaning Builder — v1 RC</title>
+  <title>Turkish Meaning Builder — v1 RC3</title>
   <style>
     :root{
       --bg:#f6f8fc;
@@ -99,6 +99,7 @@
     .root-visual img{width:100%;height:100%;object-fit:cover}
     .root-visual .fallback{font-size:34px;font-weight:900;color:#334155;letter-spacing:.04em}
     .center{text-align:center}
+    .muted{color:var(--muted);line-height:1.45}
     .letter{font-size:76px;line-height:1;font-weight:900;letter-spacing:-.06em;margin:10px 0;color:#0f172a}
     .example-word{font-size:28px;font-weight:650;letter-spacing:0;margin:4px 0 2px;font-variant-ligatures:none}
     .word-title{font-size:30px;font-weight:850;margin:6px 0 2px}
@@ -167,7 +168,7 @@
         <div class="brand-mark">TR</div>
         <div>
           <h1>Turkish Meaning Builder</h1>
-          <p>v1 Release Candidate</p>
+          <p>v1 Release Candidate 3</p>
         </div>
       </div>
       <button class="btn ghost small" id="homeBtn">Home</button>
@@ -205,8 +206,8 @@
    CONFIG
 ========================= */
 const CONFIG = {
-  version: "v1-rc",
-  layaPath: "assets/laya_dolphin_3d.png",
+  version: "v1-rc3",
+  layaPath: "assets/laya_dolphin_3d_transparent.png",
   qaMode: new URLSearchParams(location.search).get("qa") === "1",
   storageKey: "tmb_v1_rc_progress"
 };
@@ -381,11 +382,15 @@ function markComplete(topic,id){
   if(!PROGRESS.completed[k].includes(id)) PROGRESS.completed[k].push(id);
   saveProgress();
 }
-function isComplete(topic,id){return (PROGRESS.completed[topicKey(topic)]||[]).includes(id)}
+function isComplete(topic,id){return validCompletedIds(topic).includes(id)}
+function validCompletedIds(topic){
+  const validIds = new Set(datasetFor(topic).map(x=>x.id));
+  return (PROGRESS.completed[topicKey(topic)]||[]).filter(id=>validIds.has(id));
+}
 function completionPct(topic){
   const total=datasetFor(topic).length || 1;
-  const done=(PROGRESS.completed[topicKey(topic)]||[]).length;
-  return Math.round((done/total)*100);
+  const done=validCompletedIds(topic).length;
+  return Math.min(100, Math.round((done/total)*100));
 }
 function countAttempt(itemId, ok){
   if(!PROGRESS.attempts[itemId]) PROGRESS.attempts[itemId]={total:0,correct:0,wrong:0};
@@ -506,17 +511,27 @@ function openTopic(topic,index=0){
   renderLesson();
 }
 function currentItem(){return datasetFor(STATE.topic)[STATE.index]}
+function updateFooterButtons(){
+  const total = datasetFor(STATE.topic).length;
+  document.getElementById("prevBtn").disabled = STATE.index <= 0;
+  document.getElementById("nextBtn").disabled = STATE.index >= total - 1;
+}
+function refreshLessonProgress(){
+  const el = document.getElementById("lessonProgress");
+  if(el) el.innerHTML = progressBar(STATE.topic);
+}
 function renderLesson(){
   const topic=TOPICS.find(x=>x.id===STATE.topic);
   const item=currentItem();
   document.getElementById("footerNav").classList.remove("hidden");
+  updateFooterButtons();
   let body="";
   if(topic.type==="alphabet") body=renderAlphabet(item);
   if(topic.type==="root") body=renderRootWord(item);
   if(topic.type==="builder") body=renderBuilder(topic.id,item);
   root.innerHTML = `<div class="lesson-head">
     <div class="lesson-title"><h2>${topic.title}</h2><p>Item ${STATE.index+1} / ${datasetFor(STATE.topic).length}</p></div>
-    <div style="min-width:120px">${progressBar(STATE.topic)}</div>
+    <div id="lessonProgress" style="min-width:120px">${progressBar(STATE.topic)}</div>
   </div>${body}`;
 }
 function renderAlphabet(item){
@@ -590,16 +605,19 @@ function checkAnswer(){
   if(ok){
     STATE.answered=true;
     markComplete(STATE.topic,item.id);
-    fb.innerHTML = `${t("correct")}<div class="rule">${item.revealAfterCorrect}</div><div style="margin-top:10px"><button class="btn secondary small" onclick="playAudio('${item.audio}','audio-status-${item.id}')">${t("listen")}</button></div>`;
+    refreshLessonProgress();
+    const nextAction = STATE.index < datasetFor(STATE.topic).length - 1
+      ? `<button class="btn primary small" onclick="go(1)">${t("next")}</button>`
+      : `<button class="btn primary small" onclick="renderHome()">${t("mainPage")}</button>`;
+    fb.innerHTML = `${t("correct")}<div class="rule">${item.revealAfterCorrect}</div><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn secondary small" onclick="playAudio('${item.audio}','audio-status-${item.id}')">${t("listen")}</button>${nextAction}</div>`;
   }else{
     fb.innerHTML = t("wrong");
   }
   saveProgress();
-  // update home/footer progress without re-rendering selected state
 }
 function markAndRender(topic,id){markComplete(topic,id); renderLesson();}
 function resetProgress(){if(confirm("Delete all local progress?")){localStorage.removeItem(CONFIG.storageKey); PROGRESS=loadProgress(); renderHome();}}
-function go(delta){openTopic(STATE.topic, STATE.index+delta)}
+function go(delta){const total=datasetFor(STATE.topic).length; const target=STATE.index+delta; if(target<0 || target>=total) return; openTopic(STATE.topic, target)}
 function qaAudioFor(x){return x.audio||x.mainAudio||x.exampleAudio||"";}
 function qaImageFor(x){return x.image||"";}
 function qaSafeId(id){return String(id||"").replace(/[^a-zA-Z0-9_-]/g,"_");}
