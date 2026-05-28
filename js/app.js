@@ -50,8 +50,12 @@ function currentItem(){ return datasetFor(state.topicId)[state.index]; }
 function renderLesson(){
   const lang=state.language; const topic=topicById(state.topicId); const ds=datasetFor(state.topicId); const item=currentItem();
   const done=state.progress.completedCount(state.topicId, ds.map(x=>x.id)); const p=pct(done,ds.length);
+  const isLast=state.index>=ds.length-1;
+  const endButton=isLast
+    ? `<button class="btn success" data-action="finish-topic">${esc(t(lang,'finishTopic'))}</button>`
+    : `<button class="btn primary" data-action="next">${esc(t(lang,'next'))}</button>`;
   let body=''; if(topic.type==='alphabet') body=renderAlphabet(item); if(topic.type==='root') body=renderRoot(item); if(topic.type==='builder') body=renderBuilder(item);
-  app.innerHTML=`${topbar(localized(topic.title,lang), `${t(lang,'item')} ${state.index+1} ${t(lang,'of')} ${ds.length} · ${state.profile.name}`)}<main class="page lesson"><div class="lesson-meta">${progressBar(p)}</div>${body}<nav class="lesson-nav"><button class="btn secondary" data-action="prev" ${state.index===0?'disabled':''}>${esc(t(lang,'previous'))}</button><button class="btn secondary" data-action="home">${esc(t(lang,'mainPage'))}</button><button class="btn primary" data-action="next" ${state.index>=ds.length-1?'disabled':''}>${esc(t(lang,'next'))}</button></nav></main>`;
+  app.innerHTML=`${topbar(localized(topic.title,lang), `${t(lang,'item')} ${state.index+1} ${t(lang,'of')} ${ds.length} · ${state.profile.name}`)}<main class="page lesson"><div class="lesson-meta">${progressBar(p)}</div>${body}<nav class="lesson-nav"><button class="btn secondary" data-action="prev" ${state.index===0?'disabled':''}>${esc(t(lang,'previous'))}</button><button class="btn secondary" data-action="home">${esc(t(lang,'mainPage'))}</button>${endButton}</nav></main>`;
 }
 function renderAlphabet(item){
   const lang=state.language; const buttons=[];
@@ -109,6 +113,7 @@ document.addEventListener('click', e=>{
   if(action==='set-mode'){ state.mode=el.dataset.mode; updateScope(); sheetRoot.innerHTML=''; return render(); }
   if(action==='open-topic') return openTopic(el.dataset.topic,0);
   if(action==='home'){ state.screen='home'; state.topicId=null; state.selected=[]; state.answered=false; return render(); }
+  if(action==='finish-topic'){ state.screen='home'; state.topicId=null; state.selected=[]; state.answered=false; return render(); }
   if(action==='prev') return go(-1);
   if(action==='next') return go(1);
   if(action==='play') return play(el.dataset.path);
