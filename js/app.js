@@ -11,6 +11,14 @@ const isQA=new URLSearchParams(location.search).get('qa')==='1';
 let audio=null;
 let state={ screen:'profile', profile:null, language:'en', mode:'kids', topicId:null, index:0, selected:[], answered:false, progress:null, practiceActions:{} };
 
+const topicVisual={
+  alphabet:{icon:'ABC',emoji:'🔤',tone:'blue'},
+  root_words:{icon:'-lik',emoji:'🌳',tone:'green'},
+  meaning_builder:{icon:'🧩',emoji:'🧩',tone:'purple'},
+  plural_builder:{icon:'🦆',emoji:'🦆',tone:'amber'},
+  accusative_builder:{icon:'🎒',emoji:'🎒',tone:'aqua'}
+};
+
 function setProfile(profileId){
   const profile=getProfile(profileId) || defaultProfile();
   state.profile=profile;
@@ -27,6 +35,7 @@ function render(){
   if(state.screen==='home') return renderHome();
   if(state.screen==='lesson') return renderLesson();
 }
+function displayName(){ return state.profile?.name || (state.language==='id'?'Ayza':'Bella'); }
 function itemKey(){ const item=currentItem(); return state.topicId && item ? `${state.topicId}::${item.id}` : ''; }
 function hasPracticeAction(){ return !!state.practiceActions[itemKey()]; }
 function markPracticeAction(){ const key=itemKey(); if(key) state.practiceActions[key]=true; }
@@ -57,10 +66,18 @@ function ensureCelebrationStyles(){
   document.head.appendChild(style);
 }
 function butterflyBurst(){ return `<div class="butterfly-burst" aria-hidden="true"><span>🦋</span><span>🦋</span><span>🦋</span><span>🦋</span><span>🦋</span><span>🦋</span></div>`; }
+function bottomNav(active='home'){
+  return `<nav class="bottom-nav" aria-label="Main navigation">
+    <button class="${active==='home'?'active':''}" data-action="home"><span>🏠</span><b>Home</b></button>
+    <button class="${active==='learn'?'active':''}" data-action="home"><span>📖</span><b>Learn</b></button>
+    <button data-action="open-topic" data-topic="meaning_builder"><span>🎮</span><b>Play</b></button>
+    <button><span>🏅</span><b>Rewards</b></button>
+    <button data-action="settings"><span>☺</span><b>Profile</b></button>
+  </nav>`;
+}
 function topbar(title, sub){
   const lang=state.language;
-  return `<header class="topbar"><div class="brand-row"><div class="brand-mark">TR</div><div><h1>${esc(title)}</h1><p>${esc(sub)}</p></div></div>
-  ${state.screen!=='home'?`<button class="btn ghost" data-action="home">${esc(t(lang,'home'))}</button>`:''}</header>`;
+  return `<header class="lesson-topbar"><button class="round-btn" data-action="home" aria-label="Home">${state.screen==='home'?'TR':'×'}</button><div><h1>${esc(title)}</h1><p>${esc(sub||'')}</p></div>${state.screen!=='home'?`<span class="streak-pill">🔥 7</span>`:`<button class="lang-pill" data-action="settings">🌐 ${esc(lang.toUpperCase())}</button>`}</header>`;
 }
 function renderProfilePicker(){
   const lang=state.language || 'en';
@@ -68,13 +85,24 @@ function renderProfilePicker(){
   app.innerHTML=`<main class="center-shell"><section class="hero-card"><div class="brand-mark big">TR</div><h1>${esc(t(lang,'appTitle'))}</h1><p>${esc(t(lang,'version'))}</p></section><section class="card"><h2>${esc(t(lang,'selectProfile'))}</h2><p>${esc(t(lang,'selectProfileSub'))}</p><div class="profile-grid">${cards}</div></section></main>`;
 }
 function renderHome(){
-  const lang=state.language;
-  const topicCards=TOPICS.map((topic,i)=>{
-    const ds=datasetFor(topic.id); const done=state.progress.completedCount(topic.id, ds.map(x=>x.id)); const p=pct(done,ds.length);
-    const label=p>=100?t(lang,'completed'):p>0?t(lang,'continue'):t(lang,'start');
-    return `<button class="topic-card" data-action="open-topic" data-topic="${esc(topic.id)}"><span class="topic-num">${i+1}</span><div><h3>${esc(localized(topic.title,lang))}</h3><p>${esc(localized(topic.sub,lang))}</p>${progressBar(p)}<b>${esc(label)}</b></div></button>`;
-  }).join('');
-  app.innerHTML=`${topbar(t(lang,'appTitle'), `${state.profile.name} · ${t(lang,state.mode)}`)}<main class="page"><section class="card hero"><div><h2>${esc(t(lang,'homeTitle'))}</h2><p>${esc(t(lang,'homeSub'))}</p><p class="scope">${esc(t(lang,'progressSavedFor'))}: <b>${esc(state.profile.name)}</b> · ${esc(LANGS[lang].native)}</p></div><div class="home-actions"><button class="btn secondary" data-action="settings">${esc(t(lang,'settings'))}</button><button class="btn ghost" data-action="profile-screen">${esc(t(lang,'changeProfile'))}</button></div></section><section class="topic-grid">${topicCards}</section><section class="danger-zone"><button class="btn danger" data-action="reset-progress">${esc(t(lang,'reset'))}</button></section>${isQA?renderQA(state):''}</main>`;
+  const lang=state.language; const name=displayName();
+  const allIds=TOPICS.flatMap(topic=>datasetFor(topic.id).map(x=>({topicId:topic.id,id:x.id})));
+  const total=allIds.length || 1;
+  const done=allIds.filter(x=>state.progress.isComplete(x.topicId,x.id)).length;
+  const overall=pct(done,total);
+  const topicCards=TOPICS.map(topic=>{
+    const ds=datasetFor(topic.id); const completed=state.progress.completedCount(topic.id, ds.map(x=>x.id)); const p=pct(completed,ds.length);
+    const meta=topicVisual[topic.id]||{icon:'★',emoji:'✨',tone:'blue'};
+    return `<button class="module-card ${meta.tone}" data-action="open-topic" data-topic="${esc(topic.id)}">
+      <span class="module-art">${esc(meta.icon)}</span><span class="module-copy"><strong>${esc(localized(topic.title,lang))}</strong><em>${esc(localized(topic.sub,lang))}</em></span><span class="module-arrow">→</span><i style="--p:${p}%"></i>
+    </button>`;
+  }).join('') + `<button class="module-card pink" type="button"><span class="module-art">🎁</span><span class="module-copy"><strong>Fun Zone</strong><em>Games, quizzes and surprises!</em></span><span class="module-arrow">→</span><i style="--p:0%"></i></button>`;
+  app.innerHTML=`<main class="home-page">
+    <section class="home-header"><div class="avatar">${esc((name[0]||'B').toUpperCase())}</div><div><h1>${esc(name)}</h1><p><span>⭐ 27</span> Day Streak</p></div><button class="lang-pill" data-action="settings">🌐 ${esc(lang.toUpperCase())}</button></section>
+    <section class="laya-hero"><div class="laya-mascot">🐬</div><div class="hero-text"><h2>Merhaba, ${esc(name)}! 👋</h2><p>${lang==='id'?'Ayo susun makna dalam bahasa Turki hari ini!':'Let’s build meanings in Turkish today!'}</p><button class="btn primary hero-cta" data-action="open-topic" data-topic="meaning_builder">▶ ${esc(t(lang,'continue'))}</button></div><span class="float-butterfly">🦋</span></section>
+    <section class="progress-card"><div class="progress-ring" style="--p:${overall}"><strong>${overall}%</strong><span>Complete</span></div><div class="progress-copy"><h3>${lang==='id'?'Hebat!':'Great job!'} <span>${lang==='id'?'Kamu semakin maju.':'You’re doing amazing!'}</span></h3>${progressBar(overall)}<div class="stats"><b>📘 ${total}<small>Lessons</small></b><b>🏆 ${done}<small>Done</small></b><b>🔥 27<small>Day Streak</small></b></div></div></section>
+    <section class="module-grid">${topicCards}</section>${isQA?renderQA(state):''}${bottomNav('home')}
+  </main>`;
 }
 function currentItem(){ return datasetFor(state.topicId)[state.index]; }
 function renderLesson(){
@@ -84,31 +112,33 @@ function renderLesson(){
   const endButton=isLast
     ? `<button class="btn success" data-action="finish-topic">${esc(t(lang,'finishTopic'))}</button>`
     : `<button class="btn primary" data-action="next">${esc(t(lang,'next'))}</button>`;
-  let body=''; if(topic.type==='alphabet') body=renderAlphabet(item); if(topic.type==='root') body=renderRoot(item); if(topic.type==='builder') body=renderBuilder(item);
-  app.innerHTML=`${topbar(localized(topic.title,lang), `${t(lang,'item')} ${state.index+1} ${t(lang,'of')} ${ds.length} · ${state.profile.name}`)}<main class="page lesson"><div class="lesson-meta">${progressBar(p)}</div>${body}<nav class="lesson-nav"><button class="btn secondary" data-action="prev" ${state.index===0?'disabled':''}>${esc(t(lang,'previous'))}</button><button class="btn secondary" data-action="home">${esc(t(lang,'mainPage'))}</button>${endButton}</nav></main>`;
+  let body=''; if(topic.type==='alphabet') body=renderAlphabet(item,p,topic,ds.length); if(topic.type==='root') body=renderRoot(item,p,topic,ds.length); if(topic.type==='builder') body=renderBuilder(item,p,topic,ds.length);
+  app.innerHTML=`<main class="lesson-page">${body}<nav class="lesson-nav"><button class="btn secondary" data-action="prev" ${state.index===0?'disabled':''}>${esc(t(lang,'previous'))}</button><button class="btn secondary" data-action="home">${esc(t(lang,'mainPage'))}</button>${endButton}</nav></main>`;
 }
+function lessonHeader(title,p,total){ return `<header class="lesson-head"><button class="close-x" data-action="home">×</button><h1>${esc(title)}</h1><span class="streak-pill">🔥 7</span><div class="lesson-progress"><span style="width:${p}%"></span></div><b>${state.index+1} / ${total}</b></header>`; }
+function layaGuide(text){ return `<section class="laya-guide"><div class="mini-laya">🐬</div><div><strong>Laya guide</strong><p>${esc(text)}</p></div><span>🦋</span></section>`; }
 function practiceActions(){
   const lang=state.language;
-  return `<div class="button-row learning-actions"><button class="btn success" data-action="practice-done">${esc(t(lang,'practiceDone'))}</button><button class="btn secondary" data-action="already-know">${esc(t(lang,'alreadyKnow'))}</button><button class="btn secondary" data-action="needs-more">${esc(t(lang,'needsMorePractice'))}</button></div><p class="status">${esc(t(lang,'practiceRule'))}</p>`;
+  return `<div class="learning-actions"><button class="learn-action done" data-action="practice-done"><span>✓</span>${esc(t(lang,'practiceDone'))}</button><button class="learn-action" data-action="already-know"><span>☆</span>${esc(t(lang,'alreadyKnow'))}</button><button class="learn-action" data-action="needs-more"><span>↻</span>${esc(t(lang,'needsMorePractice'))}</button></div><p class="status">${esc(t(lang,'practiceRule'))}</p>`;
 }
-function renderAlphabet(item){
+function renderAlphabet(item,p,topic,total){
   const lang=state.language; const buttons=[];
-  if(item.mainAudio) buttons.push(`<button class="btn secondary" data-action="play" data-path="${esc(item.mainAudio)}">${esc(t(lang,'mainSound'))}</button>`);
-  if(item.exampleAudio) buttons.push(`<button class="btn secondary" data-action="play" data-path="${esc(item.exampleAudio)}">${esc(t(lang,'exampleWord'))}</button>`);
-  if(item.contrastAudio) buttons.push(`<button class="btn secondary" data-action="play" data-path="${esc(item.contrastAudio)}">${esc(t(lang,'contrastSound'))}</button>`);
-  if(item.extraExamples) item.extraExamples.forEach(x=>buttons.push(`<button class="btn secondary" data-action="play" data-path="${esc(x.audio)}">${esc(t(lang,'extraExample'))}: ${esc(x.word)}</button>`));
-  return `<section class="card lesson-card center">${explanationCard(lang,item.explanationKey)}<div class="letter">${esc(item.letter)}</div><p class="target">${esc(localized(item.target,lang))}</p><div class="button-row">${buttons.join('')}</div><div class="word-large">${esc(item.exampleWord||'')}</div><p id="audio-status" class="status"></p>${practiceActions()}</section>`;
+  if(item.mainAudio) buttons.push(`<button class="sound-card" data-action="play" data-path="${esc(item.mainAudio)}">🔊 <b>${esc(t(lang,'mainSound'))}</b></button>`);
+  if(item.exampleAudio) buttons.push(`<button class="sound-card" data-action="play" data-path="${esc(item.exampleAudio)}">📖 <b>${esc(t(lang,'exampleWord'))}</b></button>`);
+  if(item.contrastAudio) buttons.push(`<button class="sound-card" data-action="play" data-path="${esc(item.contrastAudio)}">〽 <b>${esc(t(lang,'contrastSound'))}</b></button>`);
+  if(item.extraExamples) item.extraExamples.forEach(x=>buttons.push(`<button class="sound-card" data-action="play" data-path="${esc(x.audio)}">📖 <b>${esc(x.word)}</b></button>`));
+  return `${lessonHeader(localized(topic.title,lang),p,total)}<section class="lesson-card alphabet-card">${layaGuide(localized(item.target,lang))}<div class="letter-stage"><div class="letter">${esc(item.letter)}</div><div class="button-row sound-grid">${buttons.join('')}</div></div><section class="example-card"><div class="example-icon">🎁</div><div><div class="word-large">${esc(item.exampleWord||'')}</div><p class="target">${esc(localized(item.target,lang))}</p></div><button class="round-sound" data-action="play" data-path="${esc(item.exampleAudio||item.mainAudio||'')}">🔊</button></section><button class="link-btn" data-action="explain" data-key="${esc(item.explanationKey)}">Learn why</button><p id="audio-status" class="status"></p>${practiceActions()}</section>`;
 }
-function renderRoot(item){
+function renderRoot(item,p,topic,total){
   const lang=state.language;
-  return `<section class="card lesson-card center">${visual(item)}<div class="word-large">${esc(item.word)}</div><p class="target">${esc(localized(item.meaning,lang))}</p><button class="btn secondary" data-action="play" data-path="${esc(item.audio)}">${esc(t(lang,'listen'))}</button><p id="audio-status" class="status"></p>${practiceActions()}</section>`;
+  return `${lessonHeader(localized(topic.title,lang),p,total)}<section class="lesson-card root-card">${layaGuide(lang==='id'?'Dengarkan kata, lihat gambar, lalu latih sekali.':'Listen to the word, look at the image, then practice once.')}<div class="prompt-card">${visual(item)}<div><h2>${esc(item.word)}</h2><p>${esc(localized(item.meaning,lang))}</p></div><button class="round-sound" data-action="play" data-path="${esc(item.audio)}">🔊</button></div><p id="audio-status" class="status"></p>${practiceActions()}</section>`;
 }
-function renderBuilder(item){
+function renderBuilder(item,p,topic,total){
   const lang=state.language; const selected=state.selected.length ? state.selected.map((x,i)=>`<button class="chip selected" data-action="remove-part" data-index="${i}">${esc(x)}</button>`).join('') : `<span>${esc(t(lang,'answerHere'))}</span>`;
   const options=item.options.map(part=>`<button class="chip" data-action="pick-part" data-part="${esc(part)}">${esc(part)}</button>`).join('');
   const celebration=state.answered?butterflyBurst():'';
-  const fb=state.answered?`<div class="feedback ok"><b>${esc(t(lang,'correct'))}</b><p>${esc(item.revealAfterCorrect)}</p><button class="btn secondary" data-action="play" data-path="${esc(item.audio)}">${esc(t(lang,'listen'))}</button></div>`:'';
-  return `<section class="card lesson-card">${explanationCard(lang,item.explanationKey)}<h2 class="prompt">${esc(localized(item.prompt,lang))}</h2><p class="target center">${esc(t(lang,'noFinalAnswer'))}</p>${item.image?visual({image:item.image,fallback:''}):''}<div class="answer-zone ${state.selected.length?'':'empty'}">${selected}</div><div class="chip-grid">${options}</div><div class="button-row celebration-anchor"><button class="btn secondary" data-action="clear">${esc(t(lang,'clear'))}</button><button class="btn primary" data-action="check">${esc(t(lang,'check'))}</button>${celebration}</div><div id="feedback-slot">${fb}</div><p id="audio-status" class="status">${state.answered?'':esc(t(lang,'audioLocked'))}</p></section>`;
+  const fb=state.answered?`<section class="success-panel"><div class="success-check">✓</div><div><h2>Harika! 🎉</h2><p>${esc(t(lang,'correct'))}</p><strong>${esc(item.finalWord||item.revealAfterCorrect)}</strong></div><div class="success-laya">🐬</div><span class="success-butterflies">🦋 🦋</span><button class="btn secondary" data-action="play" data-path="${esc(item.audio)}">${esc(t(lang,'listen'))}</button></section>`:'';
+  return `${lessonHeader(localized(topic.title,lang),p,total)}<section class="builder-screen"><section class="meaning-prompt-card">${item.image?visual({image:item.image,fallback:''}):'<div class="visual"><span>📘</span></div>'}<div><button class="round-sound" data-action="play" data-path="${esc(item.audio)}">🔊</button><h2>${esc(localized(item.prompt,lang))}</h2><p>${esc(t(lang,'noFinalAnswer'))}</p></div></section>${layaGuide(state.answered?(lang==='id'?'Doğru cevabı parçalardan oluşturdun.':'Great job! You built the meaning!'):(lang==='id'?'Parçaları sırayla seç.':'Choose the blocks in the correct order.'))}<div class="answer-zone ${state.selected.length?'':'empty'}">${selected}</div><div class="chip-grid">${options}</div><div class="button-row celebration-anchor"><button class="btn secondary" data-action="clear">↻ ${esc(t(lang,'clear'))}</button><button class="btn primary" data-action="check">✓ ${esc(t(lang,'check'))}</button>${celebration}</div><div id="feedback-slot">${fb}</div><p id="audio-status" class="status">${state.answered?'':esc(t(lang,'audioLocked'))}</p><div class="lesson-tools"><button class="btn secondary" data-action="explain" data-key="${esc(item.explanationKey)}">ⓘ Word Info</button><button class="btn secondary">🔖 Kaydet</button></div></section>`;
 }
 function renderSettings(){
   const lang=state.language;
