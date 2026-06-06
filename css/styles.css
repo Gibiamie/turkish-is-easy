@@ -120,6 +120,17 @@ button{cursor:pointer}
 .learn-action.primary .ico{background:rgba(255,255,255,.22);color:#fff}
 .learn-action.primary:hover{box-shadow:0 12px 28px rgba(11,118,246,.30)}
 .status{text-align:center;color:#5b6a86;min-height:22px}
+.recall-cue{display:flex;flex-direction:column;align-items:center;gap:12px;margin:6px 0 18px}
+.recall-cue .visual{width:148px;height:148px}
+.recall-cue p{margin:0;font-size:16px;color:#1f3252;text-align:center}
+.recall-cue p strong{color:#082052}
+.recall-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.recall-option{min-height:62px;border:1.5px solid var(--line);background:#fff;border-radius:16px;font-weight:850;font-size:18px;color:#092052;box-shadow:var(--soft-shadow);transition:transform .06s ease,box-shadow .15s ease,border-color .15s ease}
+.recall-option:hover{border-color:#b9d4f0;transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.10)}
+.recall-option:active{transform:scale(.98)}
+.recall-option.right{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;border-color:transparent}
+.recall-option.wrong{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.recall-option:disabled{cursor:default}
 .visual{width:100%;height:128px;border-radius:20px;border:1px solid var(--line);background:#f8fbff;display:grid;place-items:center;overflow:hidden}
 .visual img{width:100%;height:100%;object-fit:cover}
 .visual span{font-size:34px}
