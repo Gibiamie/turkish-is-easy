@@ -111,10 +111,10 @@ export const GREETINGS = [
 export const COLORS = [
   {id:'cl_kirmizi',word:'kırmızı',meaning:{en:'red',id:'merah'},audio:'audio/pronunciation_tr_kirmizi.mp3',swatch:'#e23b3b'},
   {id:'cl_mavi',word:'mavi',meaning:{en:'blue',id:'biru'},audio:'audio/pronunciation_tr_mavi.mp3',swatch:'#2f6fe0'},
-  {id:'cl_sari',word:'sarı',meaning:{en:'yellow',id:'kuning'},audio:'audio/pronunciation_tr_sari.mp3',swatch:'#f4c430'},
-  {id:'cl_mor',word:'mor',meaning:{en:'purple',id:'ungu'},audio:'audio/pronunciation_tr_mor.mp3',swatch:'#7b3ff2'},
+  {id:'cl_sari',word:'sarı',meaning:{en:'yellow',id:'kuning'},audio:'audio/pronunciation_tr_sari.mp3',swatch:'#ffe000'},
+  {id:'cl_mor',word:'mor',meaning:{en:'purple',id:'ungu'},audio:'audio/pronunciation_tr_mor.mp3',swatch:'#8e24aa'},
   {id:'cl_pembe',word:'pembe',meaning:{en:'pink',id:'merah muda'},audio:'audio/pronunciation_tr_pembe.mp3',swatch:'#ff7ab0'},
-  {id:'cl_turuncu',word:'turuncu',meaning:{en:'orange',id:'oranye'},audio:'audio/pronunciation_tr_turuncu.mp3',swatch:'#ff8c2b'},
+  {id:'cl_turuncu',word:'turuncu',meaning:{en:'orange',id:'oranye'},audio:'audio/pronunciation_tr_turuncu.mp3',swatch:'#ff6a00'},
   {id:'cl_beyaz',word:'beyaz',meaning:{en:'white',id:'putih'},audio:'audio/pronunciation_tr_beyaz.mp3',swatch:'#ffffff'}
 ];
 
