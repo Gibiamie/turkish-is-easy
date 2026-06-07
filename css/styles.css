@@ -77,6 +77,9 @@ button{cursor:pointer}
 .module-card.aqua{background:linear-gradient(135deg,#bcfff5,#ecfffc)}
 .module-card.sky{background:linear-gradient(135deg,#cdefff,#f0fbff)}
 .module-card.rose{background:linear-gradient(135deg,#ffd6e7,#fff0f6)}
+.module-card.mint{background:linear-gradient(135deg,#c7ffe9,#effff8)}
+.module-card.sun{background:linear-gradient(135deg,#fff0b8,#fffae6)}
+.module-card.lilac{background:linear-gradient(135deg,#e3dcff,#f5f1ff)}
 .module-art{font-size:34px;font-weight:950}
 .module-copy strong{display:block;font-size:17px;color:#082052;line-height:1.08}
 .module-copy em{display:block;font-style:normal;color:#33506e;font-size:13px;margin-top:5px;line-height:1.25}
@@ -126,6 +129,11 @@ button{cursor:pointer}
 .recall-cue p{margin:0;font-size:16px;color:#1f3252;text-align:center}
 .recall-cue p strong{color:#082052}
 .recall-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.recall-grid.stack{grid-template-columns:1fr}
+.visual.swatch{border:1px solid rgba(0,0,0,.12)}
+.visual.emoji-cue span{font-size:46px}
+.recall-cue .visual.emoji-cue span{font-size:84px}
+.recall-cue .visual.swatch{border:1px solid rgba(0,0,0,.12)}
 .recall-option{min-height:62px;border:1.5px solid var(--line);background:#fff;border-radius:16px;font-weight:850;font-size:18px;color:#092052;box-shadow:var(--soft-shadow);transition:transform .06s ease,box-shadow .15s ease,border-color .15s ease}
 .recall-option:hover{border-color:#b9d4f0;transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.10)}
 .recall-option:active{transform:scale(.98)}

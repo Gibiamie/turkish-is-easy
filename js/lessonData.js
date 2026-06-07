@@ -5,7 +5,10 @@ export const TOPICS = [
   { id:'whose_builder', type:'builder', title:{en:'Whose? Builder', id:'Punya Siapa? Builder'}, sub:{en:'my, your, his/her, our, their', id:'punya saya, kamu, dia, kita, mereka'} },
   { id:'plural_builder', type:'builder', title:{en:'More Than One Builder', id:'Pembuat Lebih Dari Satu'}, sub:{en:'ev → evler, kitap → kitaplar', id:'ev → evler, kitap → kitaplar'} },
   { id:'accusative_builder', type:'builder', title:{en:'Object Builder', id:'Pembuat Objek'}, sub:{en:'Build the object form', id:'Susun bentuk objek'} },
-  { id:'dative_builder', type:'builder', title:{en:'To Where? Builder', id:'Ke Mana? Builder'}, sub:{en:'eve, okula — the “to” form', id:'eve, okula — bentuk “ke”'} }
+  { id:'dative_builder', type:'builder', title:{en:'To Where? Builder', id:'Ke Mana? Builder'}, sub:{en:'eve, okula — the “to” form', id:'eve, okula — bentuk “ke”'} },
+  { id:'greetings', type:'vocab', title:{en:'Greetings', id:'Salam'}, sub:{en:'merhaba, günaydın, teşekkürler', id:'merhaba, günaydın, teşekkürler'} },
+  { id:'colors', type:'vocab', title:{en:'Colors', id:'Warna'}, sub:{en:'kırmızı, mavi, sarı…', id:'kırmızı, mavi, sarı…'} },
+  { id:'family', type:'vocab', title:{en:'Family', id:'Keluarga'}, sub:{en:'anne, baba, çocuk…', id:'anne, baba, çocuk…'} }
 ];
 
 export const ALPHABET_PRO = [
@@ -90,6 +93,40 @@ export const DATIVE_BUILDER = [
   {id:'dat_suya',prompt:{en:'to the water',id:'ke air'},answerParts:['su','ya'],options:['su','ya','a','e'],finalWord:'suya',audio:null,image:'images/su.png',revealAfterCorrect:'su + ya = suya',explanationKey:'dative_y_glide'},
   {id:'dat_kitaba',prompt:{en:'to the book',id:'ke buku'},answerParts:['kitab','a'],options:['kitab','a','e','ya'],finalWord:'kitaba',audio:null,image:'images/kitap.png',revealAfterCorrect:'kitap changes to kitab here: kitab + a = kitaba',explanationKey:'dative_softened_kitap'},
   {id:'dat_kopege',prompt:{en:'to the dog',id:'ke anjing'},answerParts:['köpeğ','e'],options:['köpeğ','e','a','ye'],finalWord:'köpeğe',audio:null,image:'images/kopek.png',revealAfterCorrect:'köpek changes to köpeğ here: köpeğ + e = köpeğe',explanationKey:'dative_softened_kopek'}
+];
+
+export const GREETINGS = [
+  {id:'gr_merhaba',word:'merhaba',meaning:{en:'hello',id:'halo'},audio:'audio/pronunciation_tr_merhaba.mp3',emoji:'👋'},
+  {id:'gr_gunaydin',word:'günaydın',meaning:{en:'good morning',id:'selamat pagi'},audio:'audio/pronunciation_tr_gunaydin.mp3',emoji:'🌅'},
+  {id:'gr_iyigeceler',word:'iyi geceler',meaning:{en:'good night',id:'selamat malam'},audio:'audio/pronunciation_tr_iyi_geceler.mp3',emoji:'🌙'},
+  {id:'gr_tesekkurler',word:'teşekkürler',meaning:{en:'thank you',id:'terima kasih'},audio:'audio/pronunciation_tr_tesekkurler.mp3',emoji:'🙏'},
+  {id:'gr_ricaederim',word:'rica ederim',meaning:{en:'you’re welcome',id:'sama-sama'},audio:'audio/pronunciation_tr_rica_ederim.mp3',emoji:'😊'},
+  {id:'gr_lutfen',word:'lütfen',meaning:{en:'please',id:'tolong'},audio:'audio/pronunciation_tr_lutfen.mp3',emoji:'🥺'},
+  {id:'gr_evet',word:'evet',meaning:{en:'yes',id:'ya'},audio:'audio/pronunciation_tr_evet.mp3',emoji:'✅'},
+  {id:'gr_hayir',word:'hayır',meaning:{en:'no',id:'tidak'},audio:'audio/pronunciation_tr_hayir.mp3',emoji:'❌'},
+  {id:'gr_hoscakal',word:'hoşça kal',meaning:{en:'goodbye',id:'selamat tinggal'},audio:'audio/pronunciation_tr_hoscakal.mp3',emoji:'🚪'},
+  {id:'gr_gorusuruz',word:'görüşürüz',meaning:{en:'see you',id:'sampai jumpa'},audio:'audio/pronunciation_tr_gorusuruz.mp3',emoji:'🔜'}
+];
+
+export const COLORS = [
+  {id:'cl_kirmizi',word:'kırmızı',meaning:{en:'red',id:'merah'},audio:'audio/pronunciation_tr_kirmizi.mp3',swatch:'#e23b3b'},
+  {id:'cl_mavi',word:'mavi',meaning:{en:'blue',id:'biru'},audio:'audio/pronunciation_tr_mavi.mp3',swatch:'#2f6fe0'},
+  {id:'cl_sari',word:'sarı',meaning:{en:'yellow',id:'kuning'},audio:'audio/pronunciation_tr_sari.mp3',swatch:'#f4c430'},
+  {id:'cl_mor',word:'mor',meaning:{en:'purple',id:'ungu'},audio:'audio/pronunciation_tr_mor.mp3',swatch:'#7b3ff2'},
+  {id:'cl_pembe',word:'pembe',meaning:{en:'pink',id:'merah muda'},audio:'audio/pronunciation_tr_pembe.mp3',swatch:'#ff7ab0'},
+  {id:'cl_turuncu',word:'turuncu',meaning:{en:'orange',id:'oranye'},audio:'audio/pronunciation_tr_turuncu.mp3',swatch:'#ff8c2b'},
+  {id:'cl_beyaz',word:'beyaz',meaning:{en:'white',id:'putih'},audio:'audio/pronunciation_tr_beyaz.mp3',swatch:'#ffffff'}
+];
+
+export const FAMILY = [
+  {id:'fm_anne',word:'anne',meaning:{en:'mother',id:'ibu'},audio:'audio/pronunciation_tr_anne.mp3',emoji:'🤱'},
+  {id:'fm_baba',word:'baba',meaning:{en:'father',id:'ayah'},audio:'audio/pronunciation_tr_baba.mp3',emoji:'🧔'},
+  {id:'fm_bebek',word:'bebek',meaning:{en:'baby',id:'bayi'},audio:'audio/pronunciation_tr_bebek.mp3',emoji:'👶'},
+  {id:'fm_cocuk',word:'çocuk',meaning:{en:'child',id:'anak'},audio:'audio/pronunciation_tr_cocuk.mp3',emoji:'🧒'},
+  {id:'fm_kadin',word:'kadın',meaning:{en:'woman',id:'wanita'},audio:'audio/pronunciation_tr_kadin.mp3',emoji:'👩'},
+  {id:'fm_erkek',word:'erkek',meaning:{en:'man',id:'pria'},audio:'audio/pronunciation_tr_erkek.mp3',emoji:'👨'},
+  {id:'fm_arkadas',word:'arkadaş',meaning:{en:'friend',id:'teman'},audio:'audio/pronunciation_tr_arkadas.mp3',emoji:'👫'},
+  {id:'fm_aile',word:'aile',meaning:{en:'family',id:'keluarga'},audio:'audio/pronunciation_tr_aile.mp3',emoji:'👨‍👩‍👧‍👦'}
 ];
 
 const whosePeople = {
@@ -295,6 +332,9 @@ export function datasetFor(topicId){
   if(topicId==='plural_builder') return PLURAL_BUILDER;
   if(topicId==='accusative_builder') return ACCUSATIVE_BUILDER;
   if(topicId==='dative_builder') return DATIVE_BUILDER;
+  if(topicId==='greetings') return GREETINGS;
+  if(topicId==='colors') return COLORS;
+  if(topicId==='family') return FAMILY;
   return [];
 }
 export function topicById(id){ return TOPICS.find(t=>t.id===id) || null; }
