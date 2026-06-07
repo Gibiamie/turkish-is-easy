@@ -242,52 +242,52 @@ export const EXPLANATIONS = {
     practice:{en:['Listen to dağ.','Listen to ağaç.','Listen to soğuk.','Do not practice isolated ğ.'],id:['Dengarkan dağ.','Dengarkan ağaç.','Dengarkan soğuk.','Jangan berlatih ğ sendirian.']}
   },
   possessive_suffix_basic:{
-    main:{en:'To say “my”, Turkish does not use a separate word. It glues a small block onto the end of the word. ev (house) + im = evim (my house).',id:'Untuk mengatakan “milik saya”, bahasa Turki tidak memakai kata terpisah. Ia menempelkan blok kecil di akhir kata. ev (rumah) + im = evim (rumah saya).'},
-    hear:{en:'Listen: ev → evim. The “my” block here is im.',id:'Dengarkan: ev → evim. Blok “milik saya” di sini adalah im.'},
-    mistake:{en:'Do not pick a place block like de. For “my”, the block is im.',id:'Jangan pilih blok tempat seperti de. Untuk “milik saya”, bloknya im.'},
-    practice:{en:['Look at the word ev.','Add the “my” block im.','Build: ev + im = evim.'],id:['Lihat kata ev.','Tambahkan blok “milik saya” im.','Susun: ev + im = evim.']}
+    main:{en:'To say “my”, Turkish glues a small block onto the end. After a consonant the block is -im/-ım/-um/-üm. Look at the last vowel: e/i → -im. So ev + im = evim.',id:'Untuk mengatakan “milik saya”, bahasa Turki menempelkan blok kecil di akhir. Setelah konsonan bloknya -im/-ım/-um/-üm. Lihat vokal terakhir: e/i → -im. Jadi ev + im = evim.'},
+    hear:{en:'Last-vowel rule: e/i → -im, a/ı → -ım, o/u → -um, ö/ü → -üm. ev has e, so -im.',id:'Aturan vokal terakhir: e/i → -im, a/ı → -ım, o/u → -um, ö/ü → -üm. ev punya e, jadi -im.'},
+    mistake:{en:'Not evım or evüm. The last vowel e takes -im.',id:'Bukan evım atau evüm. Vokal terakhir e memakai -im.'},
+    practice:{en:['Find the last vowel: e.','e/i → -im.','Build: ev + im = evim.'],id:['Cari vokal terakhir: e.','e/i → -im.','Susun: ev + im = evim.']}
   },
   possessive_after_vowel:{
-    main:{en:'When a word already ends in a vowel (like araba), the “my” block is just m, not im. araba + m = arabam (my car).',id:'Jika kata sudah berakhir dengan vokal (seperti araba), blok “milik saya” cukup m, bukan im. araba + m = arabam (mobil saya).'},
-    hear:{en:'Listen: araba → arabam. After a vowel, “my” is only m.',id:'Dengarkan: araba → arabam. Setelah vokal, “milik saya” hanya m.'},
-    mistake:{en:'Do not add im after araba. Because it ends in a vowel, use only m.',id:'Jangan tambahkan im setelah araba. Karena berakhir vokal, gunakan hanya m.'},
-    practice:{en:['Say araba.','It ends in a vowel, so “my” is just m.','Build: araba + m = arabam.'],id:['Ucapkan araba.','Berakhir vokal, jadi “milik saya” cukup m.','Susun: araba + m = arabam.']}
+    main:{en:'When the word already ends in a vowel (like araba), there is no buffer vowel — the “my” block is just -m. araba + m = arabam (my car).',id:'Jika kata sudah berakhir dengan vokal (seperti araba), tidak ada vokal penyambung — blok “milik saya” cukup -m. araba + m = arabam (mobil saya).'},
+    hear:{en:'After a vowel, “my” is only -m. araba → arabam.',id:'Setelah vokal, “milik saya” hanya -m. araba → arabam.'},
+    mistake:{en:'Do not add -ım after araba. After a vowel use only -m.',id:'Jangan tambahkan -ım setelah araba. Setelah vokal gunakan hanya -m.'},
+    practice:{en:['Say araba — it ends in a vowel.','So “my” is just -m.','Build: araba + m = arabam.'],id:['Ucapkan araba — berakhir vokal.','Jadi “milik saya” cukup -m.','Susun: araba + m = arabam.']}
   },
   locative_suffix_basic:{
-    main:{en:'The place block means in, on, or at. Choose the word first, then add the place block. ev + de = evde (at home).',id:'Blok tempat berarti di, pada, atau dalam. Pilih kata dulu, lalu tambahkan blok tempat. ev + de = evde (di rumah).'},
-    hear:{en:'Listen: ev → evde. The place block here is de.',id:'Dengarkan: ev → evde. Blok tempat di sini adalah de.'},
-    mistake:{en:'After a sharp sound like k or p the block becomes te/ta (park → parkta). After soft sounds use de/da.',id:'Setelah bunyi keras seperti k atau p, blok menjadi te/ta (park → parkta). Setelah bunyi lembut gunakan de/da.'},
-    practice:{en:['Pick the word, e.g. ev.','Add the place block de.','Build: ev + de = evde.'],id:['Pilih kata, misalnya ev.','Tambahkan blok tempat de.','Susun: ev + de = evde.']}
+    main:{en:'The place block means in/on/at. Look at the last vowel: e/i/ö/ü → -de; a/ı/o/u → -da. ev has e, so ev + de = evde.',id:'Blok tempat berarti di/pada/dalam. Lihat vokal terakhir: e/i/ö/ü → -de; a/ı/o/u → -da. ev punya e, jadi ev + de = evde.'},
+    hear:{en:'Vowel rule: a/ı/o/u → -da, e/i/ö/ü → -de.',id:'Aturan vokal: a/ı/o/u → -da, e/i/ö/ü → -de.'},
+    mistake:{en:'If the word ends in a hard (voiceless) consonant like p, ç, t, k, the d hardens to t: park → parkta.',id:'Jika kata berakhir dengan konsonan keras (tak bersuara) seperti p, ç, t, k, maka d mengeras menjadi t: park → parkta.'},
+    practice:{en:['Find the last vowel: e.','e → -de.','Build: ev + de = evde.'],id:['Cari vokal terakhir: e.','e → -de.','Susun: ev + de = evde.']}
   },
   safe_builder_order:{
     main:{en:'Build from left to right: the word first, then “my”, then the place block. ev + im + de = evimde (in my house).',id:'Susun dari kiri ke kanan: kata dulu, lalu “milik saya”, lalu blok tempat. ev + im + de = evimde (di rumah saya).'},
-    hear:{en:'Keep the order: word, then im (my), then de (place). The final answer appears only after you solve it.',id:'Jaga urutannya: kata, lalu im (milik saya), lalu de (tempat). Jawaban akhir muncul hanya setelah kamu menyelesaikannya.'},
+    hear:{en:'Keep the order: word, then “my”, then place. The final answer appears only after you solve it.',id:'Jaga urutannya: kata, lalu “milik saya”, lalu tempat. Jawaban akhir muncul hanya setelah kamu menyelesaikannya.'},
     mistake:{en:'Do not put the place block before “my”. The order is word + my + place.',id:'Jangan letakkan blok tempat sebelum “milik saya”. Urutannya kata + milik saya + tempat.'},
     practice:{en:['Start with the word: ev.','Add “my”: im.','Add place: de → evimde.'],id:['Mulai dari kata: ev.','Tambahkan “milik saya”: im.','Tambahkan tempat: de → evimde.']}
   },
   safe_sound_match:{
-    main:{en:'Blocks change their vowel to match the word’s sound. For göz the “my” block becomes üm, not im: göz + üm + de = gözümde.',id:'Blok mengubah vokalnya agar cocok dengan bunyi kata. Untuk göz, blok “milik saya” menjadi üm, bukan im: göz + üm + de = gözümde.'},
-    hear:{en:'Listen: göz, gözüm, gözümde. The round ö pulls the block to üm.',id:'Dengarkan: göz, gözüm, gözümde. Bunyi bulat ö menarik blok menjadi üm.'},
-    mistake:{en:'Do not build gözimde. After ö, the “my” block is üm.',id:'Jangan susun gözimde. Setelah ö, blok “milik saya” adalah üm.'},
-    practice:{en:['Say göz.','Round sound ö → use üm.','Build: göz + üm + de = gözümde.'],id:['Ucapkan göz.','Bunyi bulat ö → gunakan üm.','Susun: göz + üm + de = gözümde.']}
+    main:{en:'The “my” block follows the last vowel: ö/ü → -üm. göz has ö, so göz + üm = gözüm (then + de = gözümde).',id:'Blok “milik saya” mengikuti vokal terakhir: ö/ü → -üm. göz punya ö, jadi göz + üm = gözüm (lalu + de = gözümde).'},
+    hear:{en:'Last-vowel rule: e/i → -im, a/ı → -ım, o/u → -um, ö/ü → -üm. göz has ö → -üm.',id:'Aturan vokal terakhir: e/i → -im, a/ı → -ım, o/u → -um, ö/ü → -üm. göz punya ö → -üm.'},
+    mistake:{en:'Not gözimde. The last vowel ö takes -üm.',id:'Bukan gözimde. Vokal terakhir ö memakai -üm.'},
+    practice:{en:['Find the last vowel: ö.','ö/ü → -üm.','Build: göz + üm + de = gözümde.'],id:['Cari vokal terakhir: ö.','ö/ü → -üm.','Susun: göz + üm + de = gözümde.']}
   },
   softened_book_builder:{
-    main:{en:'Here, kitap is shown as kitab before the next block. Build the spoken/written result as kitabımda.',id:'Di sini, kitap ditampilkan sebagai kitab sebelum blok berikutnya. Susun hasilnya menjadi kitabımda.'},
-    hear:{en:'Listen for the softer ending: kitap → kitabı, kitabımda.',id:'Dengarkan bunyi akhirnya yang melembut: kitap → kitabı, kitabımda.'},
-    mistake:{en:'Do not build kitapımda. Use kitab + ım + da.',id:'Jangan susun kitapımda. Gunakan kitab + ım + da.'},
-    practice:{en:['Look at kitap.','When the next block starts with a vowel sound, use kitab.','Build: kitab + ım + da.'],id:['Lihat kitap.','Saat blok berikutnya mulai dengan bunyi vokal, gunakan kitab.','Susun: kitab + ım + da.']}
+    main:{en:'A final p, ç, t, or k softens before a vowel block: p→b, ç→c, t→d, k→ğ. So kitap → kitab-: kitabı, kitabımda.',id:'Konsonan akhir p, ç, t, k melunak sebelum blok vokal: p→b, ç→c, t→d, k→ğ. Jadi kitap → kitab-: kitabı, kitabımda.'},
+    hear:{en:'Listen: kitap → kitabı / kitabımda. The p softens to b before the vowel.',id:'Dengarkan: kitap → kitabı / kitabımda. Bunyi p melunak menjadi b sebelum vokal.'},
+    mistake:{en:'Do not keep the hard p: not kitapı / kitapımda. Use kitab-.',id:'Jangan pertahankan p keras: bukan kitapı / kitapımda. Gunakan kitab-.'},
+    practice:{en:['See the final p in kitap.','Before a vowel block, p → b: kitab.','Build: kitab + ı = kitabı.'],id:['Lihat p akhir pada kitap.','Sebelum blok vokal, p → b: kitab.','Susun: kitab + ı = kitabı.']}
   },
   softened_k_builder:{
-    main:{en:'Here, köpek is shown as köpeğ before the next block. Build the spoken/written result as köpeği.',id:'Di sini, köpek ditampilkan sebagai köpeğ sebelum blok berikutnya. Susun hasilnya menjadi köpeği.'},
-    hear:{en:'Listen for the soft flow: köpek → köpeği.',id:'Dengarkan aliran bunyinya: köpek → köpeği.'},
-    mistake:{en:'Do not build köpeki. Use köpeğ + i.',id:'Jangan susun köpeki. Gunakan köpeğ + i.'},
-    practice:{en:['Look at köpek.','When the next block starts with i, use köpeğ.','Build: köpeğ + i.'],id:['Lihat köpek.','Saat blok berikutnya mulai dengan i, gunakan köpeğ.','Susun: köpeğ + i.']}
+    main:{en:'A final k softens to ğ before a vowel block. köpek → köpeğ-: köpeğ + i = köpeği.',id:'Konsonan akhir k melunak menjadi ğ sebelum blok vokal. köpek → köpeğ-: köpeğ + i = köpeği.'},
+    hear:{en:'Listen: köpek → köpeği. The k softens to ğ before the vowel.',id:'Dengarkan: köpek → köpeği. Bunyi k melunak menjadi ğ sebelum vokal.'},
+    mistake:{en:'Not köpeki. Use köpeğ + i = köpeği.',id:'Bukan köpeki. Gunakan köpeğ + i = köpeği.'},
+    practice:{en:['See the final k in köpek.','Before a vowel block, k → ğ: köpeğ.','Build: köpeğ + i = köpeği.'],id:['Lihat k akhir pada köpek.','Sebelum blok vokal, k → ğ: köpeğ.','Susun: köpeğ + i = köpeği.']}
   },
   y_glide_accusative:{
-    main:{en:'When a word ends in a vowel, Turkish slips a y between it and the object block. elma + yı = elmayı (the apple).',id:'Jika kata berakhir dengan vokal, bahasa Turki menyisipkan y di antara kata dan blok objek. elma + yı = elmayı (apel itu).'},
-    hear:{en:'Listen: elma → elmayı. The y keeps two vowels from clashing.',id:'Dengarkan: elma → elmayı. Huruf y mencegah dua vokal bertabrakan.'},
-    mistake:{en:'Do not say elmaı. Add the y bridge: elmayı.',id:'Jangan ucapkan elmaı. Tambahkan jembatan y: elmayı.'},
-    practice:{en:['Say elma.','It ends in a vowel, so add y.','Build: elma + yı = elmayı.'],id:['Ucapkan elma.','Berakhir vokal, jadi tambahkan y.','Susun: elma + yı = elmayı.']}
+    main:{en:'The object block is -ı/-i/-u/-ü by the last vowel; after a vowel add a y bridge. elma (a) → elma + yı = elmayı.',id:'Blok objek adalah -ı/-i/-u/-ü menurut vokal terakhir; setelah vokal tambahkan jembatan y. elma (a) → elma + yı = elmayı.'},
+    hear:{en:'Vowel rule: a/ı → -ı, e/i → -i, o/u → -u, ö/ü → -ü. elma has a → -ı, plus y after the vowel: -yı.',id:'Aturan vokal: a/ı → -ı, e/i → -i, o/u → -u, ö/ü → -ü. elma punya a → -ı, plus y setelah vokal: -yı.'},
+    mistake:{en:'Do not say elmaı. After a vowel add the y bridge: elmayı.',id:'Jangan ucapkan elmaı. Setelah vokal tambahkan jembatan y: elmayı.'},
+    practice:{en:['Last vowel a → -ı.','It ends in a vowel, so add y.','Build: elma + yı = elmayı.'],id:['Vokal terakhir a → -ı.','Berakhir vokal, jadi tambahkan y.','Susun: elma + yı = elmayı.']}
   },
   whose_benim_story:peopleStory(whosePeople.benim),
   whose_senin_story:peopleStory(whosePeople.senin),
