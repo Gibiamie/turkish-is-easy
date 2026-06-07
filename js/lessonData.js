@@ -6,6 +6,7 @@ export const TOPICS = [
   { id:'plural_builder', type:'builder', title:{en:'More Than One Builder', id:'Pembuat Lebih Dari Satu'}, sub:{en:'ev → evler, kitap → kitaplar', id:'ev → evler, kitap → kitaplar'} },
   { id:'accusative_builder', type:'builder', title:{en:'Object Builder', id:'Pembuat Objek'}, sub:{en:'Build the object form', id:'Susun bentuk objek'} },
   { id:'dative_builder', type:'builder', title:{en:'To Where? Builder', id:'Ke Mana? Builder'}, sub:{en:'eve, okula — the “to” form', id:'eve, okula — bentuk “ke”'} },
+  { id:'combo_builder', type:'builder', title:{en:'Suffix Stack Builder', id:'Susun Banyak Imbuhan'}, sub:{en:'evler + imiz + de = evlerimizde', id:'evler + imiz + de = evlerimizde'} },
   { id:'greetings', type:'vocab', title:{en:'Greetings', id:'Salam'}, sub:{en:'merhaba, günaydın, teşekkürler', id:'merhaba, günaydın, teşekkürler'} },
   { id:'colors', type:'vocab', title:{en:'Colors', id:'Warna'}, sub:{en:'kırmızı, mavi, sarı…', id:'kırmızı, mavi, sarı…'} },
   { id:'family', type:'vocab', title:{en:'Family', id:'Keluarga'}, sub:{en:'anne, baba, çocuk…', id:'anne, baba, çocuk…'} }
@@ -92,6 +93,18 @@ export const DATIVE_BUILDER = [
   {id:'dat_suya',prompt:{en:'to the water',id:'ke air'},answerParts:['su','ya'],options:['su','ya','a','e'],finalWord:'suya',audio:'audio/pronunciation_tr_suya.mp3',image:'images/su.png',revealAfterCorrect:'su + ya = suya',explanationKey:'dative_y_glide'},
   {id:'dat_kitaba',prompt:{en:'to the book',id:'ke buku'},answerParts:['kitab','a'],options:['kitab','a','e','ya'],finalWord:'kitaba',audio:'audio/pronunciation_tr_kitaba.mp3',image:'images/kitap.png',revealAfterCorrect:'kitap changes to kitab here: kitab + a = kitaba',explanationKey:'dative_softened_kitap'},
   {id:'dat_kopege',prompt:{en:'to the dog',id:'ke anjing'},answerParts:['köpeğ','e'],options:['köpeğ','e','a','ye'],finalWord:'köpeğe',audio:'audio/pronunciation_tr_kopege.mp3',image:'images/kopek.png',revealAfterCorrect:'köpek changes to köpeğ here: köpeğ + e = köpeğe',explanationKey:'dative_softened_kopek'}
+];
+
+// Multi-suffix stacking (plural + possessive + case). Audio not recorded yet
+// for these long forms, so they ship without audio (text + blocks only).
+export const COMBO_BUILDER = [
+  {id:'cmb_evlerim',prompt:{en:'my houses',id:'rumah-rumah saya'},answerParts:['ev','ler','im'],options:['ev','ler','im','lar','ım','de'],finalWord:'evlerim',audio:null,image:'images/ev.png',revealAfterCorrect:'ev + ler + im = evlerim',explanationKey:'multi_suffix_basic'},
+  {id:'cmb_arabalarim',prompt:{en:'my cars',id:'mobil-mobil saya'},answerParts:['araba','lar','ım'],options:['araba','lar','ım','ler','im','da'],finalWord:'arabalarım',audio:null,image:'images/araba.png',revealAfterCorrect:'araba + lar + ım = arabalarım',explanationKey:'multi_suffix_basic'},
+  {id:'cmb_gozlerim',prompt:{en:'my eyes',id:'mata saya'},answerParts:['göz','ler','im'],options:['göz','ler','im','lar','üm','ım'],finalWord:'gözlerim',audio:null,image:'images/goz.png',revealAfterCorrect:'göz + ler + im = gözlerim',explanationKey:'multi_suffix_basic'},
+  {id:'cmb_evlerimiz',prompt:{en:'our houses',id:'rumah-rumah kami'},answerParts:['ev','ler','imiz'],options:['ev','ler','imiz','lar','ımız','im'],finalWord:'evlerimiz',audio:null,image:'images/ev.png',revealAfterCorrect:'ev + ler + imiz = evlerimiz',explanationKey:'multi_suffix_basic'},
+  {id:'cmb_okullarimiz',prompt:{en:'our schools',id:'sekolah-sekolah kami'},answerParts:['okul','lar','ımız'],options:['okul','lar','ımız','ler','imiz','da'],finalWord:'okullarımız',audio:null,image:'images/okul.png',revealAfterCorrect:'okul + lar + ımız = okullarımız',explanationKey:'multi_suffix_basic'},
+  {id:'cmb_evlerimizde',prompt:{en:'in our houses',id:'di rumah-rumah kami'},answerParts:['ev','ler','imiz','de'],options:['ev','ler','imiz','de','da','im'],finalWord:'evlerimizde',audio:null,image:'images/ev.png',revealAfterCorrect:'ev + ler + imiz + de = evlerimizde',explanationKey:'multi_suffix_case'},
+  {id:'cmb_arabalarimda',prompt:{en:'in my cars',id:'di mobil-mobil saya'},answerParts:['araba','lar','ım','da'],options:['araba','lar','ım','da','de','ımız'],finalWord:'arabalarımda',audio:null,image:'images/araba.png',revealAfterCorrect:'araba + lar + ım + da = arabalarımda',explanationKey:'multi_suffix_case'}
 ];
 
 export const GREETINGS = [
@@ -324,6 +337,18 @@ export const EXPLANATIONS = {
     hear:{en:'Listen: köpek → köpeğe. The k softens to ğ.',id:'Dengarkan: köpek → köpeğe. Bunyi k melembut menjadi ğ.'},
     mistake:{en:'Do not build köpeke. Use köpeğ + e = köpeğe.',id:'Jangan susun köpeke. Gunakan köpeğ + e = köpeğe.'},
     practice:{en:['Look at köpek.','Soften k to ğ → köpeğ.','Build: köpeğ + e = köpeğe.'],id:['Lihat köpek.','Lembutkan k menjadi ğ → köpeğ.','Susun: köpeğ + e = köpeğe.']}
+  },
+  multi_suffix_basic:{
+    main:{en:'Stack blocks in order: word first, then plural (-ler/-lar), then “my/our”. ev + ler + im = evlerim (my houses).',id:'Susun blok berurutan: kata dulu, lalu jamak (-ler/-lar), lalu “milik saya/kami”. ev + ler + im = evlerim (rumah-rumah saya).'},
+    hear:{en:'After the plural -ler, the “my” block becomes -im (matching the e), not -üm. Listen: evler → evlerim.',id:'Setelah jamak -ler, blok “milik saya” menjadi -im (cocok dengan e), bukan -üm. Dengarkan: evler → evlerim.'},
+    mistake:{en:'Do not put “my” before the plural. The order is word + plural + my.',id:'Jangan letakkan “milik saya” sebelum jamak. Urutannya kata + jamak + milik saya.'},
+    practice:{en:['Start with the word: ev.','Add plural: ler.','Add “my”: im → evlerim.'],id:['Mulai dari kata: ev.','Tambahkan jamak: ler.','Tambahkan “milik saya”: im → evlerim.']}
+  },
+  multi_suffix_case:{
+    main:{en:'Add the place block (-de/-da) at the very end: ev + ler + imiz + de = evlerimizde (in our houses).',id:'Tambahkan blok tempat (-de/-da) di paling akhir: ev + ler + imiz + de = evlerimizde (di rumah-rumah kami).'},
+    hear:{en:'Build left to right: word, plural, “our”, then place. Each block keeps its order.',id:'Susun dari kiri ke kanan: kata, jamak, “milik kami”, lalu tempat. Setiap blok menjaga urutannya.'},
+    mistake:{en:'The place block comes last, after “our”. Do not put it earlier.',id:'Blok tempat datang terakhir, setelah “milik kami”. Jangan letakkan lebih awal.'},
+    practice:{en:['Build plural + “our”: evlerimiz.','Add the place block: de.','Result: evlerimizde.'],id:['Susun jamak + “milik kami”: evlerimiz.','Tambahkan blok tempat: de.','Hasil: evlerimizde.']}
   }
 };
 
@@ -335,6 +360,7 @@ export function datasetFor(topicId){
   if(topicId==='plural_builder') return PLURAL_BUILDER;
   if(topicId==='accusative_builder') return ACCUSATIVE_BUILDER;
   if(topicId==='dative_builder') return DATIVE_BUILDER;
+  if(topicId==='combo_builder') return COMBO_BUILDER;
   if(topicId==='greetings') return GREETINGS;
   if(topicId==='colors') return COLORS;
   if(topicId==='family') return FAMILY;

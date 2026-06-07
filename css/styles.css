@@ -80,6 +80,7 @@ button{cursor:pointer}
 .module-card.mint{background:linear-gradient(135deg,#c7ffe9,#effff8)}
 .module-card.sun{background:linear-gradient(135deg,#fff0b8,#fffae6)}
 .module-card.lilac{background:linear-gradient(135deg,#e3dcff,#f5f1ff)}
+.module-card.indigo{background:linear-gradient(135deg,#cdd6ff,#eef1ff)}
 .module-art{font-size:34px;font-weight:950}
 .module-copy strong{display:block;font-size:17px;color:#082052;line-height:1.08}
 .module-copy em{display:block;font-style:normal;color:#33506e;font-size:13px;margin-top:5px;line-height:1.25}
