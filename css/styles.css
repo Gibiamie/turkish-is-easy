@@ -154,8 +154,8 @@ button{cursor:pointer}
 .butterfly-burst span:nth-child(5){--x:86px;--y:-104px;animation-delay:.08s}
 @keyframes butterflyFly{0%{opacity:0;transform:translate(-50%,-50%) scale(.5) rotate(0)}18%{opacity:1}70%{opacity:1;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.05) rotate(14deg)}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y) - 28px)) scale(.7) rotate(-16deg)}}
 @media (prefers-reduced-motion:reduce){.butterfly-burst span{animation:none;opacity:0}}
-.visual{width:100%;height:128px;border-radius:20px;border:1px solid var(--line);background:#f8fbff;display:grid;place-items:center;overflow:hidden}
-.visual img{width:100%;height:100%;object-fit:cover}
+.visual{position:relative;width:100%;height:128px;border-radius:20px;border:1px solid var(--line);background:#f8fbff;display:grid;place-items:center;overflow:hidden}
+.visual img{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);object-fit:contain}
 .visual span{font-size:34px}
 .meaning-prompt-card{grid-template-columns:1fr 1fr;padding:14px}
 .meaning-prompt-card .visual{height:160px}
