@@ -83,6 +83,19 @@ button{cursor:pointer}
 .module-card.indigo{background:linear-gradient(135deg,#cdd6ff,#eef1ff)}
 .module-card.teal{background:linear-gradient(135deg,#bdf3ea,#ecfffb)}
 .module-card.peach{background:linear-gradient(135deg,#ffd9c2,#fff2ea)}
+
+/* Adult mode: calmer, grown-up theme — hide mascot & butterflies, mute colours */
+html[data-mode="adult"] .laya-mascot,
+html[data-mode="adult"] .mini-laya,
+html[data-mode="adult"] .success-laya,
+html[data-mode="adult"] .success-butterflies,
+html[data-mode="adult"] .butterfly-burst{display:none!important}
+html[data-mode="adult"] .laya-hero{grid-template-columns:1fr;background:linear-gradient(135deg,#eef2f7,#f8fafc);min-height:0}
+html[data-mode="adult"] .laya-guide{grid-template-columns:1fr;background:#f4f7fb;border-color:#e3e9f1}
+html[data-mode="adult"] .module-card{background:linear-gradient(135deg,#eef2f7,#f8fafc)}
+html[data-mode="adult"] .avatar{background:linear-gradient(135deg,#dbe3ee,#eef2f7)}
+html[data-mode="adult"] .hero-text h2{font-size:23px}
+html[data-mode="adult"] .success-panel{background:linear-gradient(135deg,#eef6f0,#f8fbf9);border-color:#cfe6d8}
 .module-art{font-size:34px;font-weight:950}
 .module-copy strong{display:block;font-size:17px;color:#082052;line-height:1.08}
 .module-copy em{display:block;font-style:normal;color:#33506e;font-size:13px;margin-top:5px;line-height:1.25}
