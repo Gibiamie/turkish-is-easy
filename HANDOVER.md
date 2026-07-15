@@ -1,9 +1,16 @@
-# Turkish Meaning Builder — Project Handover
+# Turkish Is Easy — Project Handover
 
-**Repo:** https://github.com/Gibiamie/turkish-tutor-kids-clean
-**Live:** https://gibiamie.github.io/turkish-tutor-kids-clean/
+> **Note:** this repo is the corrected successor of `turkish-tutor-kids-clean` (RC9),
+> rebranded to **Turkish Is Easy**. It adds: shuffled builder blocks, spaced-repetition
+> review, rewards/celebration screens, guided path sections, optional speech practice,
+> session restore + hash routing, PWA/offline, a11y fixes, optimized images, working
+> `?qa=1` panel, tests + CI. Sections below describe the inherited RC9 baseline; the
+> frozen decisions and red-lines (§4–§6) remain binding.
+
+**Repo:** https://github.com/gibiamie/turkish-is-easy
+**Live:** https://gibiamie.github.io/turkish-is-easy/
 **QA mode:** add `?qa=1` to the URL
-**Version:** RC9 · **Branch:** `main` (single working branch) · **Last update commit:** `3671e36`
+**Baseline:** RC9 of turkish-tutor-kids-clean · **Branch:** `main` (single working branch)
 **Author identity for commits:** `Mert Alkan <mertalkaneng@gmail.com>`
 
 This document is the single source of truth for handover. It lists every frozen decision,

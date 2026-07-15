@@ -222,6 +222,47 @@ html[data-mode="adult"] .success-panel{background:linear-gradient(135deg,#eef6f0
   .lesson-page{padding-bottom:32px}
   .letter{font-size:76px}
 }
+/* ---------- Turkish Is Easy additions ---------- */
+.bottom-nav{grid-template-columns:1fr 1fr 1fr}
+#toast-root{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:80;width:min(480px,92vw);pointer-events:none}
+.toast{background:#0b2d6b;color:#fff;border-radius:16px;padding:13px 18px;font-weight:700;text-align:center;box-shadow:0 14px 34px rgba(7,26,68,.35);animation:toastIn .2s ease-out}
+.toast-warn{background:#9a3412}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.toast{animation:none}}
+.section-title{margin:20px 4px 10px;font-size:16px;color:#33506e;text-transform:uppercase;letter-spacing:.06em}
+.module-card{overflow:visible}
+.module-card .start-ribbon{position:absolute;top:-10px;right:10px;background:linear-gradient(135deg,#ffb347,#ff8c1a);color:#fff;font-size:12px;font-weight:900;border-radius:999px;padding:5px 12px;box-shadow:0 6px 14px rgba(255,140,26,.4);z-index:2}
+.module-card.recommended{box-shadow:0 0 0 3px rgba(255,140,26,.45),var(--soft-shadow)}
+.due-badge{display:inline-block;margin-top:6px;background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:999px;padding:3px 10px;font-size:12px;font-weight:800}
+.due-badge.fresh{border-color:#86efac;color:#166534}
+.daily-goal{margin:10px 0 4px;font-size:13px;font-weight:800;color:#33506e}
+.daily-goal.reached{color:#0b8a43}
+.progress.goal span{background:linear-gradient(90deg,#ffb347,#ff8c1a)}
+.badge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-bottom:10px}
+.badge-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px 10px;text-align:center;box-shadow:var(--soft-shadow);opacity:.65}
+.badge-card.earned{opacity:1;background:linear-gradient(135deg,#fff8e1,#fff);border-color:#fbbf24}
+.badge-card .badge-icon{display:block;font-size:34px;margin-bottom:8px}
+.badge-card strong{display:block;font-size:13px;line-height:1.2;color:#082052}
+.badge-card em{display:block;font-style:normal;font-size:11px;color:#667085;margin-top:4px}
+.badge-card.small{padding:10px 8px}
+.celebrate-card{position:relative;overflow:visible;padding:30px 22px}
+.celebrate-card .success-laya{font-size:74px;margin-bottom:6px}
+.celebrate-anchor{height:1px}
+.star-row{font-size:44px;letter-spacing:8px;margin:12px 0}
+.star-row .star{color:#e2e8f0}
+.star-row .star.lit{color:#fbbf24;text-shadow:0 4px 14px rgba(251,191,36,.5)}
+.celebrate-stats{justify-content:center}
+.sound-grid.inline{grid-template-columns:repeat(2,1fr);margin-top:10px}
+.sound-grid.inline:empty{display:none}
+.sound-card.say-it{border-color:#c4b5fd;color:#5b21b6}
+.sound-card.robot{border-style:dashed;border-color:#94a3b8;color:#475569;font-size:13px}
+.visual-fallback{font-size:34px}
+.visual img{content-visibility:auto}
+@media(max-width:540px){
+  .badge-grid{grid-template-columns:repeat(2,1fr)}
+  #toast-root{bottom:76px}
+}
+/* ---------- end additions ---------- */
 @media(max-width:540px){
   .app-shell{box-shadow:none;min-height:100vh}
   .home-page,.lesson-page{padding-left:14px;padding-right:14px}

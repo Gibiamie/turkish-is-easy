@@ -1,19 +1,22 @@
+// `section` drives the guided learning path on the dashboard
+// (sounds → words → builders → practice). Nothing is hard-locked.
+export const SECTIONS = ['sounds','words','builders','practice'];
 export const TOPICS = [
-  { id:'alphabet', type:'alphabet', title:{en:'Alphabet Pro', id:'Alfabet Turki'}, sub:{en:'Sounds and contrasts', id:'Bunyi dan perbandingan'} },
-  { id:'root_words', type:'root', title:{en:'Root Words', id:'Kata Dasar'}, sub:{en:'Concrete starter words', id:'Kata awal yang nyata'} },
-  { id:'meaning_builder', type:'builder', title:{en:'Meaning Builder', id:'Penyusun Makna'}, sub:{en:'Root + meaning blocks', id:'Kata dasar + blok makna'} },
-  { id:'whose_builder', type:'builder', title:{en:'Whose? Builder', id:'Punya Siapa? Builder'}, sub:{en:'my, your, his/her, our, their', id:'punya saya, kamu, dia, kita, mereka'} },
-  { id:'plural_builder', type:'builder', title:{en:'More Than One Builder', id:'Pembuat Lebih Dari Satu'}, sub:{en:'ev → evler, kitap → kitaplar', id:'ev → evler, kitap → kitaplar'} },
-  { id:'accusative_builder', type:'builder', title:{en:'Object Builder', id:'Pembuat Objek'}, sub:{en:'Build the object form', id:'Susun bentuk objek'} },
-  { id:'dative_builder', type:'builder', title:{en:'To Where? Builder', id:'Ke Mana? Builder'}, sub:{en:'eve, okula — the “to” form', id:'eve, okula — bentuk “ke”'} },
-  { id:'combo_builder', type:'builder', title:{en:'Suffix Stack Builder', id:'Susun Banyak Imbuhan'}, sub:{en:'evler + imiz + de = evlerimizde', id:'evler + imiz + de = evlerimizde'} },
-  { id:'greetings', type:'vocab', title:{en:'Greetings', id:'Salam'}, sub:{en:'merhaba, günaydın, teşekkürler', id:'merhaba, günaydın, teşekkürler'} },
-  { id:'colors', type:'vocab', title:{en:'Colors', id:'Warna'}, sub:{en:'kırmızı, mavi, sarı…', id:'kırmızı, mavi, sarı…'} },
-  { id:'numbers', type:'vocab', title:{en:'Numbers', id:'Angka'}, sub:{en:'0 – 10', id:'0 – 10'} },
-  { id:'family', type:'vocab', title:{en:'Family', id:'Keluarga'}, sub:{en:'anne, baba, çocuk…', id:'anne, baba, çocuk…'} },
-  { id:'animals', type:'vocab', title:{en:'Animals', id:'Hewan'}, sub:{en:'kedi, köpek, kuş…', id:'kedi, köpek, kuş…'} },
-  { id:'deconstruct', type:'deconstruct', title:{en:'What Does It Mean?', id:'Apa Artinya?'}, sub:{en:'Turkish word → meaning', id:'kata Turki → arti'} },
-  { id:'review', type:'review', title:{en:'Mixed Review', id:'Ulang Campur'}, sub:{en:'Practice everything · no score', id:'Latih semua · tanpa skor'} }
+  { id:'alphabet', type:'alphabet', section:'sounds', title:{en:'Alphabet Pro', id:'Alfabet Turki'}, sub:{en:'Sounds and contrasts', id:'Bunyi dan perbandingan'} },
+  { id:'root_words', type:'root', section:'words', title:{en:'Root Words', id:'Kata Dasar'}, sub:{en:'Concrete starter words', id:'Kata awal yang nyata'} },
+  { id:'greetings', type:'vocab', section:'words', title:{en:'Greetings', id:'Salam'}, sub:{en:'merhaba, günaydın, teşekkürler', id:'merhaba, günaydın, teşekkürler'} },
+  { id:'colors', type:'vocab', section:'words', title:{en:'Colors', id:'Warna'}, sub:{en:'kırmızı, mavi, sarı…', id:'kırmızı, mavi, sarı…'} },
+  { id:'numbers', type:'vocab', section:'words', title:{en:'Numbers', id:'Angka'}, sub:{en:'0 – 10', id:'0 – 10'} },
+  { id:'family', type:'vocab', section:'words', title:{en:'Family', id:'Keluarga'}, sub:{en:'anne, baba, çocuk…', id:'anne, baba, çocuk…'} },
+  { id:'animals', type:'vocab', section:'words', title:{en:'Animals', id:'Hewan'}, sub:{en:'kedi, köpek, kuş…', id:'kedi, köpek, kuş…'} },
+  { id:'meaning_builder', type:'builder', section:'builders', title:{en:'Meaning Builder', id:'Penyusun Makna'}, sub:{en:'Root + meaning blocks', id:'Kata dasar + blok makna'} },
+  { id:'whose_builder', type:'builder', section:'builders', title:{en:'Whose? Builder', id:'Punya Siapa? Builder'}, sub:{en:'my, your, his/her, our, their', id:'punya saya, kamu, dia, kita, mereka'} },
+  { id:'plural_builder', type:'builder', section:'builders', title:{en:'More Than One Builder', id:'Pembuat Lebih Dari Satu'}, sub:{en:'ev → evler, kitap → kitaplar', id:'ev → evler, kitap → kitaplar'} },
+  { id:'accusative_builder', type:'builder', section:'builders', title:{en:'Object Builder', id:'Pembuat Objek'}, sub:{en:'Build the object form', id:'Susun bentuk objek'} },
+  { id:'dative_builder', type:'builder', section:'builders', title:{en:'To Where? Builder', id:'Ke Mana? Builder'}, sub:{en:'eve, okula — the “to” form', id:'eve, okula — bentuk “ke”'} },
+  { id:'combo_builder', type:'builder', section:'builders', title:{en:'Suffix Stack Builder', id:'Susun Banyak Imbuhan'}, sub:{en:'evler + imiz + de = evlerimizde', id:'evler + imiz + de = evlerimizde'} },
+  { id:'deconstruct', type:'deconstruct', section:'practice', title:{en:'What Does It Mean?', id:'Apa Artinya?'}, sub:{en:'Turkish word → meaning', id:'kata Turki → arti'} },
+  { id:'review', type:'review', section:'practice', title:{en:'Mixed Review', id:'Ulang Campur'}, sub:{en:'Practice everything · no score', id:'Latih semua · tanpa skor'} }
 ];
 
 export const ALPHABET_PRO = [
@@ -404,13 +407,48 @@ export const EXPLANATIONS = {
   }
 };
 
+// Mixed Review is fed by the spaced-repetition queue first (due items),
+// then filled with random recall items. Items carry srcTopic so review
+// results update the source item's review schedule — review itself is
+// never scored and never counts toward topic progress.
+const REVIEW_VOCAB_SOURCES = [
+  ['root_words',ROOT_WORDS],['colors',COLORS],['numbers',NUMBERS],
+  ['family',FAMILY],['animals',ANIMALS],['greetings',GREETINGS]
+];
+const REVIEW_BUILDER_SOURCES = [
+  ['meaning_builder',MEANING_BUILDER],['whose_builder',WHOSE_BUILDER],['plural_builder',PLURAL_BUILDER],
+  ['accusative_builder',ACCUSATIVE_BUILDER],['dative_builder',DATIVE_BUILDER],['combo_builder',COMBO_BUILDER]
+];
+const REVIEW_SIZE = 12;
+// Builder/deconstruct items become recall items for review. The cue fallback
+// is a neutral icon — never the word itself, which would reveal the answer.
+function asRecall(x, srcTopic, icon){
+  return { id:x.id, word:x.finalWord||x.word, meaning:x.prompt||x.meaning, audio:x.audio, image:x.image||null, fallback:icon, srcTopic };
+}
+function fullReviewPool(){
+  const vocab=REVIEW_VOCAB_SOURCES.flatMap(([srcTopic,items])=>items.map(x=>({...x, srcTopic})));
+  const built=REVIEW_BUILDER_SOURCES.flatMap(([srcTopic,items])=>items.map(x=>asRecall(x,srcTopic,'🧩')));
+  const decon=DECONSTRUCT.map(x=>asRecall(x,'deconstruct','🔍'));
+  return { vocab, all:[...vocab, ...built, ...decon] };
+}
+// Only keys that Mixed Review can actually serve count toward the due badge.
+export function reviewableDueKeys(dueKeys){
+  const servable=new Set(fullReviewPool().all.map(x=>`${x.srcTopic}::${x.id}`));
+  return (dueKeys||[]).filter(k=>servable.has(k));
+}
 let _reviewCache=null;
-export function reviewDataset(){
-  if(_reviewCache) return _reviewCache;
-  const pool=[...ROOT_WORDS,...COLORS,...NUMBERS,...FAMILY,...ANIMALS,...GREETINGS];
-  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [pool[i],pool[j]]=[pool[j],pool[i]]; }
-  _reviewCache=pool.slice(0,12);
+export function buildReviewDataset(dueKeys=[]){
+  const { vocab, all } = fullReviewPool();
+  const due=new Set(dueKeys);
+  const dueItems=all.filter(x=>due.has(`${x.srcTopic}::${x.id}`));
+  const dueIds=new Set(dueItems.map(x=>`${x.srcTopic}::${x.id}`));
+  const rest=vocab.filter(x=>!dueIds.has(`${x.srcTopic}::${x.id}`));
+  for(let i=rest.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [rest[i],rest[j]]=[rest[j],rest[i]]; }
+  _reviewCache=[...dueItems, ...rest].slice(0,REVIEW_SIZE);
   return _reviewCache;
+}
+export function reviewDataset(){
+  return _reviewCache || buildReviewDataset();
 }
 export function datasetFor(topicId){
   if(topicId==='alphabet') return ALPHABET_PRO;
