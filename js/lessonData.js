@@ -20,18 +20,18 @@ export const TOPICS = [
 ];
 
 export const ALPHABET_PRO = [
-  {id:'alpha_a',letter:'a',target:{en:'Turkish a sound',id:'bunyi a Turki'},mainAudio:'audio/pronunciation_tr_a.mp3',exampleWord:'araba',exampleAudio:'audio/pronunciation_tr_araba.mp3',explanationKey:'a_sound'},
-  {id:'alpha_e',letter:'e',target:{en:'Turkish e sound; not i',id:'bunyi e Turki; bukan i'},mainAudio:'audio/pronunciation_tr_e.mp3',exampleWord:'ev',exampleAudio:'audio/pronunciation_tr_ev.mp3',contrast:'i',contrastAudio:'audio/pronunciation_tr_i.mp3',explanationKey:'e_i_contrast'},
-  {id:'alpha_i_dotless',letter:'ı',target:{en:'Dotless Turkish ı',id:'huruf ı Turki tanpa titik'},mainAudio:'audio/pronunciation_tr_i_noktasiz.mp3',exampleWord:'altı',exampleAudio:'audio/pronunciation_tr_alti.mp3',contrast:'i',contrastAudio:'audio/pronunciation_tr_i.mp3',explanationKey:'i_ı_contrast'},
-  {id:'alpha_i',letter:'i',target:{en:'Dotted Turkish i',id:'huruf i Turki bertitik'},mainAudio:'audio/pronunciation_tr_i.mp3',exampleWord:'iki',exampleAudio:'audio/pronunciation_tr_iki.mp3',contrast:'ı',contrastAudio:'audio/pronunciation_tr_i_noktasiz.mp3',explanationKey:'i_ı_contrast'},
-  {id:'alpha_o',letter:'o',target:{en:'Turkish o sound',id:'bunyi o Turki'},mainAudio:'audio/pronunciation_tr_o.mp3',exampleWord:'on',exampleAudio:'audio/pronunciation_tr_on.mp3',contrast:'ö',contrastAudio:'audio/pronunciation_tr_o_noktali.mp3',explanationKey:'o_ö_contrast'},
-  {id:'alpha_o_noktali',letter:'ö',target:{en:'Turkish ö sound',id:'bunyi ö Turki'},mainAudio:'audio/pronunciation_tr_o_noktali.mp3',exampleWord:'öğretmen',exampleAudio:'audio/pronunciation_tr_ogretmen.mp3',contrast:'o',contrastAudio:'audio/pronunciation_tr_o.mp3',explanationKey:'o_ö_contrast'},
-  {id:'alpha_u',letter:'u',target:{en:'Turkish u sound',id:'bunyi u Turki'},mainAudio:'audio/pronunciation_tr_u.mp3',exampleWord:'su',exampleAudio:'audio/pronunciation_tr_su.mp3',contrast:'ü',contrastAudio:'audio/pronunciation_tr_u_noktali.mp3',explanationKey:'u_ü_contrast'},
-  {id:'alpha_u_noktali',letter:'ü',target:{en:'Turkish ü sound',id:'bunyi ü Turki'},mainAudio:'audio/pronunciation_tr_u_noktali.mp3',exampleWord:'üzgünüm',exampleAudio:'audio/pronunciation_tr_uzgunum.mp3',contrast:'u',contrastAudio:'audio/pronunciation_tr_u.mp3',explanationKey:'u_ü_contrast'},
-  {id:'alpha_c',letter:'c',target:{en:'Turkish c; not English c / Indonesian c',id:'huruf c Turki; bukan c Indonesia'},mainAudio:'audio/pronunciation_tr_c.mp3',exampleWord:'cam',exampleAudio:'audio/pronunciation_tr_cam.mp3',contrast:'ç',contrastAudio:'audio/pronunciation_tr_cok.mp3',explanationKey:'c_ç_contrast'},
-  {id:'alpha_c_cedilla',letter:'ç',target:{en:'Turkish ç sound',id:'bunyi ç Turki'},mainAudio:'audio/pronunciation_tr_cok.mp3',exampleWord:'ağaç',exampleAudio:'audio/pronunciation_tr_agac.mp3',contrast:'ş',contrastAudio:'audio/pronunciation_tr_sh.mp3',explanationKey:'ş_ç_contrast'},
-  {id:'alpha_sh',letter:'ş',target:{en:'Turkish ş sound',id:'bunyi ş Turki'},mainAudio:'audio/pronunciation_tr_sh.mp3',exampleWord:'şeker',exampleAudio:'audio/pronunciation_tr_seker.mp3',contrast:'ç',contrastAudio:'audio/pronunciation_tr_cok.mp3',explanationKey:'ş_ç_contrast'},
-  {id:'alpha_soft_g',letter:'ğ',target:{en:'Safe learner explanation of ğ',id:'penjelasan aman untuk huruf ğ'},mainAudio:null,noIsolatedAudio:true,exampleWord:'dağ',exampleAudio:'audio/pronunciation_tr_dag.mp3',extraExamples:[{word:'ağaç',audio:'audio/pronunciation_tr_agac.mp3'},{word:'soğuk',audio:'audio/pronunciation_tr_soguk.mp3'}],contrast:'g',contrastAudio:'audio/pronunciation_tr_gel.mp3',explanationKey:'safe_ğ_explanation'}
+  {id:'alpha_a',letter:'a',target:{en:'Like the a in “father” — open and clear.',id:'Seperti a pada kata “apa” — terbuka dan jelas.'},mainAudio:'audio/pronunciation_tr_a.mp3',exampleWord:'araba',exampleAudio:'audio/pronunciation_tr_araba.mp3',explanationKey:'a_sound'},
+  {id:'alpha_e',letter:'e',target:{en:'Like the e in “bed” — not i.',id:'E taling seperti pada “bebek” — bukan e pepet.'},mainAudio:'audio/pronunciation_tr_e.mp3',exampleWord:'ev',exampleAudio:'audio/pronunciation_tr_ev.mp3',contrast:'i',contrastAudio:'audio/pronunciation_tr_i.mp3',explanationKey:'e_i_contrast'},
+  {id:'alpha_i_dotless',letter:'ı',target:{en:'Like the first a in “again” — flat, not “ee”.',id:'Mirip e pepet seperti pada “empat” — bukan i.'},mainAudio:'audio/pronunciation_tr_i_noktasiz.mp3',exampleWord:'altı',exampleAudio:'audio/pronunciation_tr_alti.mp3',contrast:'i',contrastAudio:'audio/pronunciation_tr_i.mp3',explanationKey:'i_ı_contrast'},
+  {id:'alpha_i',letter:'i',target:{en:'Like the ee in “see”, short and bright.',id:'Seperti i pada kata “ini”.'},mainAudio:'audio/pronunciation_tr_i.mp3',exampleWord:'iki',exampleAudio:'audio/pronunciation_tr_iki.mp3',contrast:'ı',contrastAudio:'audio/pronunciation_tr_i_noktasiz.mp3',explanationKey:'i_ı_contrast'},
+  {id:'alpha_o',letter:'o',target:{en:'Like the o in “more” — no “w” glide.',id:'Seperti o pada kata “kota”.'},mainAudio:'audio/pronunciation_tr_o.mp3',exampleWord:'on',exampleAudio:'audio/pronunciation_tr_on.mp3',contrast:'ö',contrastAudio:'audio/pronunciation_tr_o_noktali.mp3',explanationKey:'o_ö_contrast'},
+  {id:'alpha_o_noktali',letter:'ö',target:{en:'Say “e” as in bed, but round your lips like “o”.',id:'Ucapkan e taling seperti “bebek”, tapi bulatkan bibir seperti huruf o.'},mainAudio:'audio/pronunciation_tr_o_noktali.mp3',exampleWord:'öğretmen',exampleAudio:'audio/pronunciation_tr_ogretmen.mp3',contrast:'o',contrastAudio:'audio/pronunciation_tr_o.mp3',explanationKey:'o_ö_contrast'},
+  {id:'alpha_u',letter:'u',target:{en:'Like the oo in “moon”, short and crisp.',id:'Seperti u pada kata “susu”.'},mainAudio:'audio/pronunciation_tr_u.mp3',exampleWord:'su',exampleAudio:'audio/pronunciation_tr_su.mp3',contrast:'ü',contrastAudio:'audio/pronunciation_tr_u_noktali.mp3',explanationKey:'u_ü_contrast'},
+  {id:'alpha_u_noktali',letter:'ü',target:{en:'Say “ee” as in see, but round your lips like whistling.',id:'Ucapkan i seperti “ini”, tapi bulatkan bibir seperti bersiul.'},mainAudio:'audio/pronunciation_tr_u_noktali.mp3',exampleWord:'üzgünüm',exampleAudio:'audio/pronunciation_tr_uzgunum.mp3',contrast:'u',contrastAudio:'audio/pronunciation_tr_u.mp3',explanationKey:'u_ü_contrast'},
+  {id:'alpha_c',letter:'c',target:{en:'Like the j in “jam” — not English c.',id:'Seperti huruf j pada kata “jam” — bukan c Indonesia.'},mainAudio:'audio/pronunciation_tr_c.mp3',exampleWord:'cam',exampleAudio:'audio/pronunciation_tr_cam.mp3',contrast:'ç',contrastAudio:'audio/pronunciation_tr_cok.mp3',explanationKey:'c_ç_contrast'},
+  {id:'alpha_c_cedilla',letter:'ç',target:{en:'Like the ch in “chicken”.',id:'Seperti huruf c pada kata “coklat”.'},mainAudio:'audio/pronunciation_tr_cok.mp3',exampleWord:'ağaç',exampleAudio:'audio/pronunciation_tr_agac.mp3',contrast:'ş',contrastAudio:'audio/pronunciation_tr_sh.mp3',explanationKey:'ş_ç_contrast'},
+  {id:'alpha_sh',letter:'ş',target:{en:'Like the sh in “she”.',id:'Seperti bunyi sy pada kata “syukur”.'},mainAudio:'audio/pronunciation_tr_sh.mp3',exampleWord:'şeker',exampleAudio:'audio/pronunciation_tr_seker.mp3',contrast:'ç',contrastAudio:'audio/pronunciation_tr_cok.mp3',explanationKey:'ş_ç_contrast'},
+  {id:'alpha_soft_g',letter:'ğ',target:{en:'A silent glide, never a hard g — only inside real words.',id:'Luncuran lembut, bukan g keras — hanya muncul di dalam kata nyata.'},mainAudio:null,noIsolatedAudio:true,exampleWord:'dağ',exampleAudio:'audio/pronunciation_tr_dag.mp3',extraExamples:[{word:'ağaç',audio:'audio/pronunciation_tr_agac.mp3'},{word:'soğuk',audio:'audio/pronunciation_tr_soguk.mp3'}],contrast:'g',contrastAudio:'audio/pronunciation_tr_gel.mp3',explanationKey:'safe_ğ_explanation'}
 ];
 
 export const ROOT_WORDS = [
@@ -223,60 +223,60 @@ function carStory(x){return {main:{en:x.en,id:x.id},hear:{en:x.hearEn,id:x.hearI
 
 export const EXPLANATIONS = {
   a_sound:{
-    main:{en:'Turkish a is a clear, open a sound.',id:'Huruf a Turki adalah bunyi a yang jelas dan terbuka.'},
-    hear:{en:'Hear it in araba. Keep the sound clean and open.',id:'Dengarkan dalam kata araba. Bunyi tetap jelas dan terbuka.'},
-    mouth:{en:'Open the mouth naturally. Do not turn it into English “ey”.',id:'Buka mulut secara alami. Jangan ubah menjadi bunyi seperti “ey”.'},
-    mistake:{en:'Do not read araba like “areyba”.',id:'Jangan membaca araba seperti “areyba”.'},
-    practice:{en:['Listen to the main sound.','Listen to araba.','Say a — araba slowly.'],id:['Dengarkan bunyi utama.','Dengarkan araba.','Ucapkan a — araba perlahan.']}
+    main:{en:'Turkish a sounds like the a in “father” — open and clear.',id:'Huruf a Turki mirip bunyi a pada kata “apa” — terbuka dan jelas.'},
+    hear:{en:'Say “father”, then say araba with that same open a: a-ra-ba.',id:'Ucapkan “apa”, lalu ucapkan araba dengan bunyi a yang sama: a-ra-ba.'},
+    mouth:{en:'Drop your jaw and keep the sound flat. Do not glide it into “ey” like the a in “day”.',id:'Buka rahang dan jaga bunyi tetap datar, seperti pada “apa”.'},
+    mistake:{en:'Do not read araba like “a-REY-ba”. There is no “ey” glide in Turkish a.',id:'Jangan ucapkan araba dengan bunyi yang berubah — bunyi a harus tetap sama seperti pada “apa”.'},
+    practice:{en:['Say “father” — feel the open a.','Listen to the main sound.','Listen to araba.','Say a — araba slowly, keeping the a open like in father.'],id:['Ucapkan “apa” — rasakan bunyi a yang terbuka.','Dengarkan bunyi utama.','Dengarkan araba.','Ucapkan a — araba perlahan, jaga bunyi a seperti pada apa.']}
   },
   e_i_contrast:{
-    main:{en:'Turkish e and i are separate sounds.',id:'Huruf e dan i dalam bahasa Turki adalah bunyi yang berbeda.'},
-    hear:{en:'e is the sound in ev. i is the sound in iki. ev must not become iv.',id:'e adalah bunyi dalam ev. i adalah bunyi dalam iki. ev tidak boleh menjadi iv.'},
-    mouth:{en:'For e, the mouth is slightly open and relaxed. For i, the lips stretch more and the sound is higher.',id:'Untuk e, mulut sedikit terbuka dan rileks. Untuk i, bibir lebih melebar dan bunyinya lebih tinggi.'},
-    mistake:{en:'Common mistake: reading ev as if it starts with i.',id:'Kesalahan umum: membaca ev seolah-olah dimulai dengan i.'},
-    practice:{en:['Play Main sound: e.','Play Example word: ev.','Play Contrast sound: i.','Repeat: e — ev, then i — iki.'],id:['Putar Bunyi utama: e.','Putar Contoh kata: ev.','Putar Bunyi pembanding: i.','Ulangi: e — ev, lalu i — iki.']}
+    main:{en:'Turkish e sounds like the e in “bed” — short and open, never like i.',id:'Huruf e Turki adalah e taling, seperti pada kata “bebek” — bukan e pepet seperti pada “empat”.'},
+    hear:{en:'Say “bed”, then say ev with that same e: ev. It should not sound like “iv”.',id:'Ucapkan “bebek”, lalu ucapkan ev dengan e yang sama: ev.'},
+    mouth:{en:'Keep the mouth slightly open, like saying “eh”. Do not let it drift toward i as in “see”.',id:'Mulut sedikit terbuka, seperti bunyi e pada “bebek”, bukan e pepet yang samar.'},
+    mistake:{en:'Do not read ev like “iv” — the e must stay open like in bed, not tighten toward i.',id:'Jangan ucapkan ev dengan e pepet (seperti pada “empat”) — harus e taling seperti pada “bebek”.'},
+    practice:{en:['Say “bed” — hold that e sound.','Listen to the main sound: e.','Listen to ev.','Listen to the contrast: i, as in iki.','Repeat: e — ev, then i — iki.'],id:['Ucapkan “bebek” — rasakan bunyi e taling.','Dengarkan bunyi utama: e.','Dengarkan ev.','Dengarkan bunyi pembanding: i, seperti pada iki.','Ulangi: e — ev, lalu i — iki.']}
   },
   i_ı_contrast:{
-    main:{en:'Dotted i and dotless ı are two different Turkish vowels.',id:'i bertitik dan ı tanpa titik adalah dua vokal Turki yang berbeda.'},
-    hear:{en:'i is heard in iki. ı is heard in altı. Do not replace ı with i.',id:'i terdengar dalam iki. ı terdengar dalam altı. Jangan mengganti ı dengan i.'},
-    mouth:{en:'i is higher and brighter. ı is deeper and more central.',id:'i lebih tinggi dan terang. ı lebih dalam dan berada di tengah.'},
-    mistake:{en:'Common mistake: reading altı like alti.',id:'Kesalahan umum: membaca altı seperti alti.'},
-    practice:{en:['Listen to ı.','Listen to altı.','Compare with i and iki.'],id:['Dengarkan ı.','Dengarkan altı.','Bandingkan dengan i dan iki.']}
+    main:{en:'i and ı are different Turkish letters. i is like the ee in “see” (short). ı is like the first, quiet a in “again” — there is no English letter for it.',id:'i dan ı adalah huruf Turki yang berbeda. i seperti pada kata “ini”. ı paling dekat dengan e pepet seperti pada “empat” — tidak ada huruf Indonesia yang persis sama.'},
+    hear:{en:'Say “see”, then “iki” — bright, forward i. Say “again” and hold the first “uh”, then “altı” — flat, back ı.',id:'Ucapkan “ini”, lalu “iki” — terang dan ke depan. Ucapkan “empat”, tahan e pepetnya, lalu “altı” — datar dan ke belakang.'},
+    mouth:{en:'For i, stretch the lips wide, tongue high and forward. For ı, relax the tongue back and center — do not stretch the lips.',id:'Untuk i, lebarkan bibir, lidah tinggi ke depan. Untuk ı, lidah rileks ke tengah-belakang, jangan melebarkan bibir.'},
+    mistake:{en:'Do not read altı as “alti”. The last sound is the flat “uh” of again, not the bright ee of see.',id:'Jangan ucapkan altı seperti “alti”. Bunyi terakhirnya harus e pepet seperti pada “empat”, bukan i terang seperti “ini”.'},
+    practice:{en:['Say “see” then “again” — feel the two different sounds.','Listen to i in iki.','Listen to ı in altı.','Repeat: iki — altı, keeping i bright and ı flat.'],id:['Ucapkan “ini” lalu “empat” — rasakan dua bunyi yang berbeda.','Dengarkan i pada iki.','Dengarkan ı pada altı.','Ulangi: iki — altı, jaga i tetap terang dan ı tetap datar.']}
   },
   o_ö_contrast:{
-    main:{en:'Turkish o and ö are separate vowels.',id:'o dan ö adalah vokal Turki yang berbeda.'},
-    hear:{en:'o is in on. ö is in öğretmen. Do not read ö as o.',id:'o ada dalam on. ö ada dalam öğretmen. Jangan membaca ö sebagai o.'},
-    mouth:{en:'For ö, keep the lips rounded but move the tongue forward.',id:'Untuk ö, bibir tetap membulat tetapi lidah lebih ke depan.'},
-    mistake:{en:'Common mistake: reading öğretmen as ogretmen with plain o.',id:'Kesalahan umum: membaca öğretmen dengan o biasa.'},
-    practice:{en:['Listen to o.','Listen to ö.','Compare: on — öğretmen.'],id:['Dengarkan o.','Dengarkan ö.','Bandingkan: on — öğretmen.']}
+    main:{en:'o and ö are different Turkish vowels. o is like the o in “more” (no w-glide). ö has no English equivalent — say the e in “bed”, but round your lips like “o”.',id:'o dan ö adalah vokal Turki yang berbeda. o seperti pada kata “kota”. ö tidak ada padanan di bahasa Indonesia — ucapkan e taling seperti “bebek”, tapi bulatkan bibir seperti o.'},
+    hear:{en:'Say “more” without adding a “w” at the end, then “on”. For ö, say “bed”, then round your lips and say “öğretmen”.',id:'Ucapkan “kota”, lalu “on”. Untuk ö, ucapkan “bebek”, lalu bulatkan bibir sambil mengucapkan “öğretmen”.'},
+    mouth:{en:'For o, lips rounded, no glide. For ö, lips stay rounded like o, but the tongue moves forward like for e.',id:'Untuk o, bibir bulat, tanpa luncuran. Untuk ö, bibir tetap bulat seperti o, tapi lidah maju ke depan seperti e.'},
+    mistake:{en:'Do not read öğretmen with a plain o — that drops the lip-rounded e sound and changes the word.',id:'Jangan ucapkan öğretmen dengan o biasa — itu menghilangkan bunyi e dengan bibir bulat dan mengubah kata.'},
+    practice:{en:['Say “more” — flat, no w-glide.','Listen to o in on.','Say “bed”, then round your lips.','Listen to ö in öğretmen.','Repeat: on — öğretmen, keeping them separate.'],id:['Ucapkan “kota” — datar, tanpa luncuran.','Dengarkan o pada on.','Ucapkan “bebek”, lalu bulatkan bibir.','Dengarkan ö pada öğretmen.','Ulangi: on — öğretmen, jaga keduanya tetap berbeda.']}
   },
   u_ü_contrast:{
-    main:{en:'Turkish u and ü are separate vowels.',id:'u dan ü adalah vokal Turki yang berbeda.'},
-    hear:{en:'u is in su. ü is in üzgünüm. Do not read ü as u.',id:'u ada dalam su. ü ada dalam üzgünüm. Jangan membaca ü sebagai u.'},
-    mouth:{en:'For ü, keep the lips rounded but the tongue is forward.',id:'Untuk ü, bibir membulat tetapi lidah maju.'},
-    mistake:{en:'Common mistake: reading üzgünüm with plain u sounds.',id:'Kesalahan umum: membaca üzgünüm dengan bunyi u biasa.'},
-    practice:{en:['Listen to u.','Listen to ü.','Say su, then üzgünüm slowly.'],id:['Dengarkan u.','Dengarkan ü.','Ucapkan su, lalu üzgünüm perlahan.']}
+    main:{en:'u and ü are different Turkish vowels. u is like the oo in “moon” (short). ü has no English equivalent — say the ee in “see”, but round your lips like whistling.',id:'u dan ü adalah vokal Turki yang berbeda. u seperti pada kata “susu”. ü tidak ada padanan di bahasa Indonesia — ucapkan i seperti “ini”, tapi bulatkan bibir seperti bersiul.'},
+    hear:{en:'Say “moon” short, then “su”. For ü, say “see”, then round your lips and say “üzgünüm”.',id:'Ucapkan “susu” pendek, lalu “su”. Untuk ü, ucapkan “ini”, lalu bulatkan bibir sambil mengucapkan “üzgünüm”.'},
+    mouth:{en:'For u, lips rounded, tongue back. For ü, lips stay rounded, but the tongue moves forward like for i.',id:'Untuk u, bibir bulat, lidah ke belakang. Untuk ü, bibir tetap bulat, tapi lidah maju ke depan seperti i.'},
+    mistake:{en:'Do not read üzgünüm with plain u sounds — that drops the forward-tongue i quality and changes the word.',id:'Jangan ucapkan üzgünüm dengan bunyi u biasa — itu menghilangkan sentuhan i di depan dan mengubah kata.'},
+    practice:{en:['Say “moon” — short, no glide.','Listen to u in su.','Say “see”, then round your lips.','Listen to ü in üzgünüm.','Repeat: su — üzgünüm, keeping them separate.'],id:['Ucapkan “susu” — pendek, tanpa luncuran.','Dengarkan u pada su.','Ucapkan “ini”, lalu bulatkan bibir.','Dengarkan ü pada üzgünüm.','Ulangi: su — üzgünüm, jaga keduanya tetap berbeda.']}
   },
   c_ç_contrast:{
-    main:{en:'Turkish c and ç are different letters.',id:'c dan ç adalah huruf Turki yang berbeda.'},
-    hear:{en:'Turkish c is heard in cam. Turkish ç is heard in çok. Do not guess from English or Indonesian spelling.',id:'c Turki terdengar dalam cam. ç Turki terdengar dalam çok. Jangan menebak dari ejaan Inggris atau Indonesia.'},
-    mouth:{en:'First listen to cam, then compare it with çok.',id:'Dengarkan cam dulu, lalu bandingkan dengan çok.'},
-    mistake:{en:'Common mistake: treating Turkish c and ç as the same sound.',id:'Kesalahan umum: menganggap c Turki dan ç sama.'},
-    practice:{en:['Listen to c.','Listen to cam.','Listen to ç in çok.','Repeat both slowly.'],id:['Dengarkan c.','Dengarkan cam.','Dengarkan ç dalam çok.','Ulangi keduanya perlahan.']}
+    main:{en:'Turkish c sounds like the j in “jam” — not like an English or Indonesian c.',id:'Huruf c Turki berbunyi seperti huruf j Indonesia (pada kata “jam”) — bukan seperti c Indonesia.'},
+    hear:{en:'Say “jam”, then “cam” with that same j-like start: jam.',id:'Ucapkan “jam”, lalu “cam” dengan bunyi awal yang sama seperti j.'},
+    mouth:{en:'Touch the tongue tip near the front of the roof of your mouth and release with a soft j, not a hard k or s sound.',id:'Sentuhkan ujung lidah dekat langit-langit depan, lepaskan dengan bunyi j lembut, bukan k atau s.'},
+    mistake:{en:'Do not read cam like English “come” or Indonesian “cam” (which sounds like ch). Turkish c is a soft j.',id:'Jangan ucapkan cam seperti c Indonesia (yang berbunyi seperti ch). Huruf c Turki adalah j lembut.'},
+    practice:{en:['Say “jam” — hold that soft j.','Listen to c.','Listen to cam.','Listen to the contrast: ç, as in çok.','Repeat: cam — çok, keeping c soft like j and ç sharp like ch.'],id:['Ucapkan “jam” — tahan bunyi j lembut itu.','Dengarkan c.','Dengarkan cam.','Dengarkan bunyi pembanding: ç, seperti pada çok.','Ulangi: cam — çok, jaga c tetap lembut seperti j dan ç tetap tajam seperti ch.']}
   },
   ş_ç_contrast:{
-    main:{en:'Turkish ş and ç are different sounds.',id:'ş dan ç adalah bunyi yang berbeda.'},
-    hear:{en:'ş is in şeker. ç is in çok / ağaç.',id:'ş ada dalam şeker. ç ada dalam çok / ağaç.'},
-    mouth:{en:'ş is a soft sh-like sound. ç is a sharper ch-like sound.',id:'ş mirip bunyi sh yang lembut. ç lebih tajam seperti ch.'},
-    mistake:{en:'Common mistake: replacing ş with ç or ç with ş.',id:'Kesalahan umum: menukar ş dengan ç atau ç dengan ş.'},
-    practice:{en:['Listen to ş.','Listen to ç.','Repeat: şeker — ağaç.'],id:['Dengarkan ş.','Dengarkan ç.','Ulangi: şeker — ağaç.']}
+    main:{en:'ş and ç are different Turkish letters. ş is like the sh in “she”. ç is like the ch in “chicken”.',id:'ş dan ç adalah huruf Turki yang berbeda. ş seperti bunyi sy pada kata “syukur”. ç seperti huruf c pada kata “coklat”.'},
+    hear:{en:'Say “she”, then “şeker”. Say “chicken”, then “çok” / “ağaç”.',id:'Ucapkan “syukur”, lalu “şeker”. Ucapkan “coklat”, lalu “çok” / “ağaç”.'},
+    mouth:{en:'ş is soft and continuous, like air hissing. ç is sharper, with a quick stop-and-release.',id:'ş lembut dan mengalir, seperti desisan angin. ç lebih tajam, dengan hentakan cepat.'},
+    mistake:{en:'Do not swap them — şeker with a ch-sound becomes wrong, and çok with a sh-sound becomes wrong.',id:'Jangan tertukar — şeker dengan bunyi c menjadi salah, dan çok dengan bunyi sy menjadi salah.'},
+    practice:{en:['Say “she” — soft, continuous.','Listen to ş in şeker.','Say “chicken” — sharp, quick.','Listen to ç in çok / ağaç.','Repeat: şeker — çok — ağaç.'],id:['Ucapkan “syukur” — lembut, mengalir.','Dengarkan ş pada şeker.','Ucapkan “coklat” — tajam, cepat.','Dengarkan ç pada çok / ağaç.','Ulangi: şeker — çok — ağaç.']}
   },
   safe_ğ_explanation:{
-    main:{en:'ğ is not a hard g and it does not begin Turkish words.',id:'ğ bukan g keras dan tidak muncul di awal kata Turki.'},
-    hear:{en:'Learn ğ only inside real words: dağ, ağaç, soğuk.',id:'Pelajari ğ hanya di dalam kata nyata: dağ, ağaç, soğuk.'},
-    mouth:{en:'Do not force a hard g sound. Listen to how the word flows.',id:'Jangan memaksa bunyi g keras. Dengarkan aliran katanya.'},
-    mistake:{en:'Common mistake: pronouncing dağ with a strong final g.',id:'Kesalahan umum: mengucapkan dağ dengan g keras di akhir.'},
-    practice:{en:['Listen to dağ.','Listen to ağaç.','Listen to soğuk.','Do not practice isolated ğ.'],id:['Dengarkan dağ.','Dengarkan ağaç.','Dengarkan soğuk.','Jangan berlatih ğ sendirian.']}
+    main:{en:'ğ is a silent glide, not a hard g — think of how English “though” has a silent “gh”. It never starts a word.',id:'ğ adalah luncuran lembut, bukan g keras — huruf ini tidak pernah muncul di awal kata.'},
+    hear:{en:'Learn ğ only inside real words: dağ, ağaç, soğuk. It stretches or glides the vowel before it — it does not add a new sound of its own.',id:'Pelajari ğ hanya di dalam kata nyata: dağ, ağaç, soğuk. Huruf ini memperpanjang atau meluncurkan vokal sebelumnya, bukan menambah bunyi baru.'},
+    mouth:{en:'Do not force a hard g. Let the vowel before ğ flow smoothly, almost as if ğ is not there.',id:'Jangan memaksa bunyi g keras. Biarkan vokal sebelum ğ mengalir lembut, seolah-olah ğ tidak ada.'},
+    mistake:{en:'Common mistake: pronouncing dağ with a strong final g, like English “dog”.',id:'Kesalahan umum: mengucapkan dağ dengan g keras di akhir, seperti kata Inggris “dog”.'},
+    practice:{en:['Say “though” — notice the silent gh.','Listen to dağ.','Listen to ağaç.','Listen to soğuk.','Do not practice isolated ğ — always inside a word.'],id:['Dengarkan dağ.','Dengarkan ağaç.','Dengarkan soğuk.','Jangan berlatih ğ sendirian — selalu di dalam kata.']}
   },
   possessive_suffix_basic:{
     main:{en:'To say “my”, Turkish glues a small block onto the end. After a consonant the block is -im/-ım/-um/-üm. Look at the last vowel: e/i → -im. So ev + im = evim.',id:'Untuk mengatakan “milik saya”, bahasa Turki menempelkan blok kecil di akhir. Setelah konsonan bloknya -im/-ım/-um/-üm. Lihat vokal terakhir: e/i → -im. Jadi ev + im = evim.'},
